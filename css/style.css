@@ -1133,3 +1133,18 @@ textarea#comment.update_mail::placeholder {
     background-color: #0056b3;
     border-color: #004085;
 }
+.detill-text {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.product-image-detaill {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    max-width: 100%;
+    height: auto; 
+}
+
