@@ -219,6 +219,7 @@ button {
     height: auto;
     background-size: 100%;
     background-repeat: no-repeat;
+
 }
 
 .header_bg {
@@ -228,9 +229,14 @@ button {
     height: auto;
     background-size: 100%;
     background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 .header_bg .navbar-expand-lg .navbar-nav .nav-link {
-    color: #ffffff;
+    color: #111111;
+    
 }
 
 .bg-light {
@@ -266,10 +272,13 @@ button {
 .navbar-brand {
     margin: 0px;
     float: right;
+    position: fixed;
+   
 }
 
 .navbar {
     padding: 15px 50px;
+    
 }
 
 .user_icon {
@@ -321,7 +330,21 @@ button {
     color: #252525;
     font-weight: 800;
 }
-
+.text_titer_center{
+    text-align: center;
+    width: 100%;
+    float: left;
+    font-size: 24px;
+    color: #e38773;
+    font-weight: bold;
+    
+}
+.tasty_text_icon {
+    float: left;
+    font-size: 45px;
+    color: black;
+    font-weight: bold;
+}
 .tasty_text {
     width: 100%;
     float: left;
@@ -347,6 +370,9 @@ button {
 .about_bt {
     width: 175px;
     float: left;
+}
+.body-background{
+    background-color: #DCF3F3;
 }
 
 .about_bt a {
@@ -438,6 +464,17 @@ button {
 .coffee_section {
     width: 100%;
     float: left;
+}
+
+.product_taital {
+    width: 100%;
+    float: center;
+    font-size: 40px;
+    color: #3b3b3b;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 0px;
 }
 
 .coffee_taital {
@@ -1037,4 +1074,20 @@ textarea#comment.update_mail::placeholder {
 
 .margin_top90 {
     margin-top: 90px;
+}
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#searchInput:focus {
+    border-color: #007bff;
+    box-shadow: 0 4px 6px rgba(0,123,255,0.2);
+    outline: none;
 }
