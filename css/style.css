@@ -459,9 +459,9 @@ button {
 /* banner section end */
 
 
-/* coffee section start */
+/* product section start */
 
-.coffee_section {
+.product_section {
     width: 100%;
     float: left;
 }
@@ -477,7 +477,7 @@ button {
     padding-bottom: 0px;
 }
 
-.coffee_taital {
+.product_taital {
     width: 100%;
     float: left;
     font-size: 40px;
@@ -488,7 +488,7 @@ button {
     padding-bottom: 0px;
 }
 
-.coffee_section_2 {
+.product_section_2 {
     width: 90%;
     margin: 0 auto;
     text-align: center;
@@ -500,7 +500,7 @@ button {
     text-align: center;
 }
 
-.coffee_img img {
+.product_img img {
     width: 100%;
     float: left;
 }
@@ -580,7 +580,7 @@ button {
 }
 
 
-/* coffee section end */
+/* product section end */
 
 
 /* about section start */
@@ -905,7 +905,7 @@ textarea#comment.massage-bt::placeholder {
     float: left;
     text-align: center;
     font-size: 30px;
-    color: #fefefd;
+    color: #000000;
     font-weight: bold;
     padding-bottom: 20px;
 }
@@ -914,7 +914,7 @@ textarea#comment.massage-bt::placeholder {
     width: 60%;
     margin: 0 auto;
     font-size: 16px;
-    color: #fefefd;
+    color: #000000;
     text-align: center;
 }
 
@@ -923,6 +923,7 @@ textarea#comment.massage-bt::placeholder {
     margin: 0 auto;
     text-align: center;
     padding-top: 50px;
+    color: #000;
 }
 
 .location_text ul {
@@ -932,12 +933,12 @@ textarea#comment.massage-bt::placeholder {
 
 .location_text li {
     font-size: 16px;
-    color: #ffffff;
+    color: #000;
     padding: 0px 0px 5px 0px;
 }
 
 .location_text li a {
-    color: #ffffff;
+    color: #000;
 }
 
 .location_text li a:hover {
@@ -1146,5 +1147,71 @@ textarea#comment.update_mail::placeholder {
     margin-right: auto; 
     max-width: 100%;
     height: auto; 
+}
+/* Card Container */
+.card-item-product {
+    border: 1px solid #000000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+    margin: 20px;
+    max-width: 300px;
+    text-align: center;
+}
+
+/* Image */
+.card-item-product img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Title */
+.card-item-product .card-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 15px 0;
+    color: #333;
+}
+
+/* Description */
+.card-item-product .card-description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0 15px 15px 15px;
+    color: #777;
+}
+
+/* Button */
+.card-item-product .card-button {
+    display: inline-block;
+    margin: 15px;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #d78373;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+/* Button Hover Effect */
+.card-item-product .card-button:hover {
+    background-color: #FAF9E1;
+    color: #000;
+}
+
+/* Card Hover Effect */
+.card-item-product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
