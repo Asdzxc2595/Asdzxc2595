@@ -202,7 +202,7 @@ button {
 
 .layout_padding {
     padding-top: 100px;
-    padding-bottom: 0px;
+    padding-bottom: 00px;
 }
 
 .padding_0 {
@@ -907,7 +907,7 @@ textarea#comment.massage-bt::placeholder {
     font-size: 30px;
     color: #fefefd;
     font-weight: bold;
-    padding-bottom: 50px;
+    padding-bottom: 20px;
 }
 
 .footer_text {
