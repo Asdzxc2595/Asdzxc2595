@@ -905,7 +905,7 @@ textarea#comment.massage-bt::placeholder {
     float: left;
     text-align: center;
     font-size: 30px;
-    color: #000000;
+    color: #f7f8a0;
     font-weight: bold;
     padding-bottom: 20px;
 }
@@ -914,7 +914,7 @@ textarea#comment.massage-bt::placeholder {
     width: 60%;
     margin: 0 auto;
     font-size: 16px;
-    color: #000000;
+    color: #f7f8a0;
     text-align: center;
 }
 
@@ -933,7 +933,7 @@ textarea#comment.massage-bt::placeholder {
 
 .location_text li {
     font-size: 16px;
-    color: #000;
+    color: #f7f8a0;
     padding: 0px 0px 5px 0px;
 }
 
