@@ -419,21 +419,21 @@ button {
 }
 
 #banner_slider a.carousel-control-prev {
-    left: -120px;
-    top: 455px;
+    left: -50px;
+    top: 230px;
 }
 
 #banner_slider a.carousel-control-next {
-    right: 0px;
-    top: 400px;
-    left: -120px;
+    right: -50px;
+    top: 230px;
     color: #fefefd;
     background-color: #4a4949;
 }
 
+
 #banner_slider .carousel-control-next,
 #banner_slider .carousel-control-prev {
-    width: 55px;
+    width: 50px;
     height: 55px;
     opacity: 1;
     font-size: 16px;
@@ -551,12 +551,13 @@ button {
 
 #main_slider a.carousel-control-prev {
     left: -50px;
-    top: 95px;
+    top: 210px;
+    
 }
 
 #main_slider a.carousel-control-next {
     right: -50px;
-    top: 95px;
+    top: 210px;
     color: #fefefd;
     background-color: #4a4949;
 }
@@ -569,6 +570,7 @@ button {
     font-size: 16px;
     color: #4a4949;
     background-color: #efefef;
+    transform: translateY(-50%);
 }
 
 #main_slider .carousel-control-next:focus,
@@ -1048,7 +1050,7 @@ textarea#comment.update_mail::placeholder {
 .copyright_section {
     width: 100%;
     float: left;
-    background-color: #d07d6b;
+    background-color: #f7f1a8;
     height: auto;
 }
 
