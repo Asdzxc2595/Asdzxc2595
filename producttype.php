@@ -21,41 +21,11 @@
 
     </head>
     <body  >
-       <div class="header_section header_bg ">
-          <div class="container-fluid">
-             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-             <a class="navbar-brand"href="index.html">HAPPY</a> 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                   <ul class="navbar-nav ml-auto">
-                      <li class="nav-item">
-                         <a class="nav-link" href="index.html">Home</a>
- 
- 
-                      </li>
-                      <li class="nav-item">
-                         <a class="nav-link" href="product.html">Product</a>
-                      </li>
-                      <li class="nav-item dropdown">
-                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                             Product type
-                         </a>
-                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                             <a class="dropdown-item" href="producttype.html">item 1</a>
-                             <a class="dropdown-item" href="producttype.html">item 2</a>
-                             <a class="dropdown-item" href="producttype.html">item 3</a>
-                         </div>
-                     </li>
-                      <li class="nav-item">
-                         <a class="nav-link" href="#address">address</a>
-                      </li>
-                   </ul>
-                </div>
-             </nav>
-          </div>
-       </div>
+      <div class="header_section header_bg ">
+         <div class="container-fluid">
+             <?php include 'nav.php'; ?>
+         </div>
+     </div>
 
     <!-- Product Section -->
     <div class="product_section layout_padding body-background">
@@ -135,15 +105,8 @@
      </div>
 
      <div class="copyright_section">
-        <div class="footer_social_icon">
-            <ul>
-                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-            </ul>
-        </div>
-    </div>
+        <?php include 'footer.php'; ?>
+     </div>
 
      <script src="js/jquery.min.js"></script>
      <script src="js/popper.min.js"></script>
