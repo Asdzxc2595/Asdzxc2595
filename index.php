@@ -19,55 +19,15 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-   <body>
-      <div class="header_section header_bg body-background ">
-         <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-               <a class="navbar-brand" href="index.html">HAPPY</a>
-               <button class="navbar-toggler" type="button"
-                  data-toggle="collapse" data-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent" aria-expanded="false"
-                  aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse"
-                  id="navbarSupportedContent">
-                  <ul class="navbar-nav ml-auto">
-                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="product.html">Product</a>
-                     </li>
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#"
-                           id="navbarDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
-                           Product type
-                        </a>
-                        <div class="dropdown-menu"
-                           aria-labelledby="navbarDropdown">
-                           <a class="dropdown-item" href="producttype.html">item
-                              1</a>
-                           <a class="dropdown-item" href="producttype.html">item
-                              2</a>
-                           <a class="dropdown-item" href="producttype.html">item
-                              3</a>
-                        </div>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="#address">address</a>
-                     </li>
-                  </ul>
-               </div>
-            </nav>
-         </div>
-      </div>
+<body>
+    <div class="header_section header_bg ">
+        <div class="container-fluid">
+            <?php include 'nav.php'; ?>
+        </div>
+    </div>
 
-      <div class="banner_section layout_padding client_section ">
+    <div class="banner_section layout_padding client_section ">
          <h6 class="text_titer_center">สินค้าใหม่</h6>
-
          <div class="container">
             <div id="banner_slider" class="carousel slide" data-ride="carousel">
                <div class="carousel-inner">
@@ -159,10 +119,7 @@
             </div>
          </div>
       </div>
-      <!-- banner section end -->
    </div>
-   <!-- header section end -->
-   <!-- product section start -->
    <div class="product_section layout_padding body-background">
       <div class="container">
          <div class="row">
@@ -295,62 +252,41 @@
          </div><p><p>
             </div>
 
-            <div id="address" class="footer_section layout_padding">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <h1 class="address_text">Address</h1>
-                        <p class="footer_text">i not know </p>
-                        <div class="location_text">
-                           <ul>
-                              <li>
 
-                                 <i class="fa fa-phone"
-                                    aria-hidden="true"></i><a
-                                    class="padding_left_10">09999999</a>
-                              </a>
-                           </li>
-                           <li>
-
-                              <i class="fa fa-envelope"></i><a
-                                 class="padding_left_10"> eee</a>
-                           </a>
-                        </li>
-                        <li>
-
-                           <i class="fas fa-map-marker-alt"></i><span
-                              class="padding_left_10">map</span>
-
-                        </li>
-                     </ul><p><p>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+    <div id="address" class="footer_section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="address_text">Address</h1>
+                    <p class="footer_text">I do not know</p>
+                    <div class="location_text">
+                        <ul>
+                            <li>
+                                <i class="fa fa-phone" aria-hidden="true"></i><a class="padding_left_10">09999999</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope"></i><a class="padding_left_10"> eee</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i><span class="padding_left_10">map</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="copyright_section">
-               <div class="footer_social_icon">
-                  <ul>
-                     <li><a href="#"><i class="fab fa-facebook"
-                              aria-hidden="true"></i></a></li>
-                     <li><a href="#"><i class="fab fa-twitter"
-                              aria-hidden="true"></i></a></li>
-                     <li><a href="#"><i class="fab fa-linkedin"
-                              aria-hidden="true"></i></a></li>
-                     <li><a href="#"><i class="fab fa-instagram"
-                              aria-hidden="true"></i></a></li>
-                  </ul>
-               </div>
-            </div>
+    <div class="copyright_section">
+        <?php include 'footer.php'; ?>
+    </div>
 
-            <script src="js/jquery.min.js"></script>
-            <script src="js/popper.min.js"></script>
-            <script src="js/bootstrap.bundle.min.js"></script>
-            <script src="js/jquery-3.0.0.min.js"></script>
-            <script src="js/plugin.js"></script>
-
-            <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-            <script src="js/custom.js"></script>
-         </body>
-      </html>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+</html>

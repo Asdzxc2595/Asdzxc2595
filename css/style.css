@@ -420,13 +420,12 @@ button {
 
 #banner_slider a.carousel-control-prev {
     left: -120px;
-    top: 455px;
+    top: 95px;
 }
 
 #banner_slider a.carousel-control-next {
-    right: 0px;
-    top: 400px;
-    left: -120px;
+    right: 95px;
+    top: 95px;
     color: #fefefd;
     background-color: #4a4949;
 }
