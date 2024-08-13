@@ -7,7 +7,7 @@ $dbname = "happy_product";
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully<br>";
+    //echo "Connected successfully<br>";
     
 
     $sql = "SELECT * FROM product";
@@ -15,11 +15,11 @@ try {
     $stmt->execute();
     
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($results as $row) {
-        echo "<pre>";
-        print_r($row);
-        echo "</pre>";
-    }
+    // foreach ($results as $row) {
+    //     echo "<pre>";
+    //     print_r($row);
+    //     echo "</pre>";
+    // }
     
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();

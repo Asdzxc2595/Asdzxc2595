@@ -25,20 +25,32 @@
 
 <body>
     <?php
-    include 'db_connect.php';
+require 'db_connect.php'; 
 
-    // Fetch product details from the database
+// ตรวจสอบค่า id_product จาก URL
+$id_product = isset($_GET['id_product']) ? (int)$_GET['id_product'] : 0;
+
+if ($id_product > 0) {
+    // ดึงข้อมูลสินค้าจากฐานข้อมูล
     $stmt = $pdo->prepare("SELECT * FROM product WHERE id_product = :id_product");
-    $stmt->execute(['id_product' => 1]); // Replace 1 with the desired product ID
+    $stmt->execute(['id_product' => $id_product]);
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
-    ?>
+
+    if (!$product) {
+        echo "<p>Product not found.</p>";
+        exit();
+    }
+} else {
+    echo "<p>Invalid product ID.</p>";
+    exit();
+}
+?>
 
     <div class="header_section header_bg">
         <div class="container-fluid">
-            <?php include 'nav.php';?>
+            <?php include 'nav.php'; ?>
         </div>
     </div>
-
     <div class="product_details_section layout_padding body-background">
         <div class="container">
             <div class="row">
@@ -52,43 +64,33 @@
                 <hr>
                 <p class="product_description"><?php echo htmlspecialchars($product['dtaill_product']); ?></p>
                 <hr>
+                <
                 <img src="images/<?php echo htmlspecialchars($product['dtaill_img_product']); ?>" class="img-fluid"
                     alt="Product Detail Image">
                 <hr>
+                <?php 
+                $video_id = isset($product['dtaill_vdo_product']) ? htmlspecialchars($product['dtaill_vdo_product']) : '';
+ 
+                if (!empty($video_id)) {
+                    ?>
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
+                                        allowfullscreen></iframe>
+                                </div>
+                                <?php
+                } else {
+    // แสดงข้อความหากไม่มีวิดีโอ
+    //echo '<p>Video not available.</p>';
+}
+?>
+
             </div>
+
         </div>
+    </div>
     </div>
 
-    <div id="address" class="footer_section layout_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="address_text">Address</h1>
-                    <p class="footer_text">i not know</p>
-                    <div class="location_text">
-                        <ul>
-                            <li>
-                                <a>
-                                    <i class="fa fa-phone" aria-hidden="true"></i><a
-                                        class="padding_left_10">09999999</a>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <i class="fa fa-envelope"></i><a class="padding_left_10">eee</a>
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <i class="fas fa-map-marker-alt"></i><span class="padding_left_10">map</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include 'address.php'; ?>
 
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
@@ -101,6 +103,7 @@
     <script src="js/plugin.js"></script>
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/custom.js"></script>
+
 </body>
 
 </html>

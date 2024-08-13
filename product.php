@@ -26,52 +26,39 @@
         </div>
     </div>
 
-    <!-- Product Section -->
     <div class="product_section layout_padding body-background">
         <div class="container">
-            <h1 class="product_title">Products all</h1>
-            <div class="col-md-6 text-right">
+            <h1 class="product_title">Products All</h1>
+            <div class="col-md-6 text-right mb-3">
                 <input type="text" id="searchInput" class="form-control" placeholder="Search for products...">
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card-item-product">
-                        <img src="images/1.png" class="card-img-top" alt="Product 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Product 1</h5>
-                            <p class="card-text">detail</p>
-                            <a href="detailproduct.php" class="card-button">Read More</a>
+                <?php
+                require 'db_connect.php';
+
+                $stmt = $pdo->query("SELECT * FROM product");
+                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach ($products as $product) {
+                    ?>
+                    <div class="col-md-4 mb-4">
+                        <div class="card-item-product">
+                            <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name_product']); ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
+                                <p class="card-text"><?php echo htmlspecialchars($product['dtaill_product']); ?></p>
+                                <a href="detailproduct.php?id_product=<?php echo htmlspecialchars($product['id_product']); ?>" class="card-button">Read More</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
-    <p></p>
     </div>
 
-    <div id="address" class="footer_section layout_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="address_text">Address</h1>
-                    <p class="footer_text">I do not know</p>
-                    <div class="location_text">
-                        <ul>
-                            <li>
-                                <i class="fa fa-phone" aria-hidden="true"></i><a class="padding_left_10">09999999</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i><a class="padding_left_10"> eee</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-map-marker-alt"></i><span class="padding_left_10">map</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include 'address.php'; ?>
 
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
