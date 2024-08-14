@@ -29,16 +29,14 @@
     <div class="product_section layout_padding body-background">
         <div class="container">
             <h1 class="product_title">Products All</h1>
-            <div class="col-md-6 text-right mb-3">
+            <!-- <div class="col-md-6 text-right mb-3">
                 <input type="text" id="searchInput" class="form-control" placeholder="Search for products...">
-            </div>
+            </div> -->
             <div class="row">
                 <?php
                 require 'db_connect.php';
-
                 $stmt = $pdo->query("SELECT * FROM product");
                 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
                 foreach ($products as $product) {
                     ?>
                     <div class="col-md-4 mb-4">

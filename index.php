@@ -1,3 +1,17 @@
+<?php
+include 'db_connect.php'; 
+
+// ดึงสินค้าขายดี
+$sqlBestSellers = "SELECT * FROM product ORDER BY view_count DESC LIMIT 8";
+$resultBestSellers = $pdo->query($sqlBestSellers);
+
+// ดึงสินค้าใหม่
+$sqlNewProducts = "SELECT id_product, name_product, img_product, dtaill_product 
+                    FROM product 
+                    WHERE DATE_ADD(date_product, INTERVAL 3 MONTH) >= NOW()";
+$resultNewProducts = $pdo->query($sqlNewProducts);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,96 +27,64 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Prompt', sans-serif;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="header_section header_bg ">
+    <div class="header_section header_bg">
         <div class="container-fluid">
             <?php include 'nav.php'; ?>
         </div>
     </div>
 
-    <div class="banner_section layout_padding client_section ">
+    <!-- สินค้าใหม่ -->
+    <div class="banner_section layout_padding client_section">
         <h6 class="text_titer_center">สินค้าใหม่</h6>
         <div class="container">
             <div id="banner_slider" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="banner_img"><img src="images/1.png"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="banner_taital_main">
-                                    <h5 class="tasty_text">Name Product</h5>
-                                    <p class="banner_text">More Detaill Product</p>
-                                    <div class="btn_main">
-                                        <div class="about_bt"><a href="detailproduct1.html">About
-                                                Us</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="banner_img"><img src="images/2.png"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="banner_taital_main">
-                                    <h5 class="tasty_text">Name Product</h5>
-                                    <p class="banner_text">More Detaill Product</p>
-                                    <div class="btn_main">
-                                        <div class="about_bt"><a href="detailproduct1.html">About
-                                                Us</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="banner_img"><img src="images/1.png"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="banner_taital_main">
-                                    <h5 class="tasty_text">Name Product</h5>
-                                    <p class="banner_text">More Detaill Product</p>
-                                    <div class="btn_main">
-                                        <div class="about_bt"><a href="detailproduct1.html">About
-                                                Us</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="banner_img"><img src="images/2.png"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="banner_taital_main">
-                                    <h5 class="tasty_text">Name Product</h5>
-                                    <p class="banner_text">More Detaill Product</p>
-                                    <div class="btn_main">
-                                        <div class="about_bt"><a href="detailproduct1.html">About
-                                                Us</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    if ($resultNewProducts->rowCount() > 0) {
+                        $first = true;
+                        while ($row = $resultNewProducts->fetch(PDO::FETCH_ASSOC)) {
+                            $activeClass = $first ? 'active' : '';
+                            $first = false;
+                            echo '<div class="carousel-item ' . $activeClass . '">';
+                            echo '<div class="row">';
+                            echo '<div class="col-md-6">';
+                            echo '<div class="banner_img"><img src="images/' . htmlspecialchars($row["img_product"]) . '" alt="Product Image"></div>';
+                            echo '</div>';
+                            echo '<div class="col-md-6">';
+                            echo '<div class="banner_taital_main">';
+                            echo '<h5 class="tasty_text">' . htmlspecialchars($row["name_product"]) . '</h5>';
+                            echo '<p class="banner_text">' . htmlspecialchars($row["dtaill_product"]) . '</p>';
+                            echo '<div class="btn_main">';
+                            echo '<div class="about_bt"><a href="detailproduct.php?id_product=' . htmlspecialchars($row["id_product"]) . '">About Us</a></div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    } else {
+                        echo '<p>No new products available</p>';
+                    }
+                    ?>
                 </div>
                 <a class="carousel-control-prev" href="#banner_slider" role="button" data-slide="prev">
                     <i class="fa fa-arrow-left"></i>
@@ -113,108 +95,51 @@
             </div>
         </div>
     </div>
-    </div>
+    <!-- ปิดสินค้าใหม่ -->
+    <!-- สินค้าขายดี -->
     <div class="product_section layout_padding body-background">
         <div class="container">
             <div class="row">
                 <h1 class="product_taital">สินค้าขายดี</h1>
-                <div class="bulit_icon"><img src="images/bulit-icon.png"></div>
+                <div class="bulit_icon"><img src="images/bulit-icon.png" alt="Bulit Icon"></div>
             </div>
         </div>
         <div class="product_section_2">
             <div id="main_slider" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/1.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="detailproduct1.html">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/2.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="detailproduct1.html">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/1.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="detailproduct1.html">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/2.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="detailproduct1.html">Read More</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/1.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="detailproduct1.html">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/2.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/1.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/2.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/1.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/2.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/1.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="product_img"><img src="images/2.png"></div>
-                                    <h3 class="types_text">PRODUCT</h3>
-                                    <p class="looking_text">DETAIL</p>
-                                    <div class="read_bt"><a href="#">Read More</a></div>
+                    <?php
+                    if ($resultBestSellers->rowCount() > 0) {
+                        $first = true;
+                        $itemCount = 0;
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        // Start a new carousel item
+                        echo '<div class="carousel-item ' . ($first ? 'active' : '') . '">';
+                        echo '<div class="container-fluid"><div class="row">';
+                        
+                        while ($row = $resultBestSellers->fetch(PDO::FETCH_ASSOC)) {
+                            if ($itemCount % 4 === 0 && $itemCount > 0) {
+                                echo '</div></div></div>'; // ปิด carousel-item ก่อนเปิดใหม่
+                                echo '<div class="carousel-item">';
+                                echo '<div class="container-fluid"><div class="row">';
+                            }
+
+                            echo '<div class="col-lg-3 col-md-6 card_oder">';
+                            echo '<div class="product_img"><img src="images/' . htmlspecialchars($row["img_product"]) . '" alt="Product Image"></div>';
+                            echo '<hr>';
+                            echo '<h3 class="types_text">' . htmlspecialchars($row["name_product"]) . '</h3>';
+                            echo '<p class="looking_text">' . htmlspecialchars($row["dtaill_product"]) . '</p>';
+                            echo '<div class="read_bt"><a href="detailproduct.php?id_product=' . htmlspecialchars($row["id_product"]) . '">Read More</a></div>';
+                            echo '<p><p></div>';
+
+                            $itemCount++;
+                        }
+
+                        // ปิด div สำหรับ carousel-item ที่ยังเปิดอยู่
+                        echo '</div></div></div>';
+                    } else {
+                        echo '<p>No best-selling products found.</p>';
+                    }
+                    ?>
                 </div>
                 <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
                     <i class="fa fa-arrow-left"></i>
@@ -223,26 +148,21 @@
                     <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
-            <div>
-            </div>
-            <p>
-            <p>
         </div>
+    </div>
 
+    <?php include 'address.php'; ?>
+    <div class="copyright_section">
+        <?php include 'footer.php'; ?>
+    </div>
 
-        <?php include 'address.php'?>
-
-        <div class="copyright_section">
-            <?php include 'footer.php'; ?>
-        </div>
-
-        <script src="js/jquery.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script src="js/jquery-3.0.0.min.js"></script>
-        <script src="js/plugin.js"></script>
-        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="js/custom.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
 </body>
 
 </html>

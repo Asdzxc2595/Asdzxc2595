@@ -52,7 +52,8 @@ if (isset($_GET['type'])) {
                             <a href="detailproduct.php?id_product=<?php echo $product['id_product']; ?>"
                                 class="card-button">Read More</a>
                         </div>
-                    </div>
+                        
+                    </div><p><p></p>
                 </div>
                 <?php endforeach; ?>
                 <?php else : ?>

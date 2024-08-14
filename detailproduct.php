@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -31,6 +32,10 @@ require 'db_connect.php';
 $id_product = isset($_GET['id_product']) ? (int)$_GET['id_product'] : 0;
 
 if ($id_product > 0) {
+    // อัปเดตการเข้าชมสินค้า
+    $updateStmt = $pdo->prepare("UPDATE product SET view_count = view_count + 1 WHERE id_product = :id_product");
+    $updateStmt->execute(['id_product' => $id_product]);
+
     // ดึงข้อมูลสินค้าจากฐานข้อมูล
     $stmt = $pdo->prepare("SELECT * FROM product WHERE id_product = :id_product");
     $stmt->execute(['id_product' => $id_product]);
@@ -44,6 +49,7 @@ if ($id_product > 0) {
     echo "<p>Invalid product ID.</p>";
     exit();
 }
+
 ?>
 
     <div class="header_section header_bg">
@@ -63,26 +69,36 @@ if ($id_product > 0) {
                 <h1 class="product_title"><?php echo htmlspecialchars($product['name_product']); ?></h1>
                 <hr>
                 <p class="product_description"><?php echo htmlspecialchars($product['dtaill_product']); ?></p>
+
+                <?php 
+$img_id = isset($product['dtaill_img_product']) ? htmlspecialchars($product['dtaill_img_product']) : '';
+
+        if (!empty($img_id)) {
+                    ?>
                 <hr>
-                <
-                <img src="images/<?php echo htmlspecialchars($product['dtaill_img_product']); ?>" class="img-fluid"
-                    alt="Product Detail Image">
+                <img src="images/<?php echo $img_id; ?>" class="img-fluid" alt="Product Detail Image">
+                <?php
+                }
+               
+                ?>
                 <hr>
                 <?php 
-                $video_id = isset($product['dtaill_vdo_product']) ? htmlspecialchars($product['dtaill_vdo_product']) : '';
- 
-                if (!empty($video_id)) {
-                    ?>
-                                <div class="embed-responsive embed-responsive-16by9">
-                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
-                                        allowfullscreen></iframe>
-                                </div>
-                                <?php
-                } else {
-    // แสดงข้อความหากไม่มีวิดีโอ
-    //echo '<p>Video not available.</p>';
+            $video_id = isset($product['dtaill_vdo_product']) ? htmlspecialchars($product['dtaill_vdo_product']) : '';
+
+if (!empty($video_id)) {
+    ?>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
+                        allowfullscreen></iframe>
+                </div>
+                <?php
+} else {
+    // Optional: Display a message if no video is available
+    // echo '<p>Video not available.</p>';
 }
 ?>
+
+
 
             </div>
 
