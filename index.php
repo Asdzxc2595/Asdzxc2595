@@ -96,11 +96,11 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         </div>
     </div>
     <!-- ปิดสินค้าใหม่ -->
-    <!-- สินค้าขายดี -->
+    <!-- สินค้านิยม -->
     <div class="product_section layout_padding body-background">
         <div class="container">
             <div class="row">
-                <h1 class="product_taital">สินค้าขายดี</h1>
+                <h1 class="product_taital">สินค้านิยม</h1>
                 <div class="bulit_icon"><img src="images/bulit-icon.png" alt="Bulit Icon"></div>
             </div>
         </div>

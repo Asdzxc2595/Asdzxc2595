@@ -19,6 +19,8 @@ try {
     //     echo "<pre>";
     //     print_r($row);
     //     echo "</pre>";
+    //     print_r($img_ids);
+
     // }
     
 } catch(PDOException $e) {

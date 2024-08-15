@@ -13,24 +13,32 @@ if (isset($_POST['submit'])) {
     // ลบ https://www.youtube.com/watch/?v= และ https://youtu.be/ ออกจากลิงก์
     $dtaill_vdo_product = preg_replace('/^https:\/\/(www\.youtube\.com\/(watch\?v=|shorts\/)|youtu\.be\/)/', '', $dtaill_vdo_product);
 
-
     // จัดการกับรูปภาพสินค้า
+    $img_product = null;
     if (isset($_FILES['img_product']) && $_FILES['img_product']['error'] == UPLOAD_ERR_OK) {
         $img_product = $_FILES['img_product']['name'];
         move_uploaded_file($_FILES['img_product']['tmp_name'], 'images/' . $img_product);
-    } else {
-        $img_product = null;
     }
 
-    if (isset($_FILES['dtaill_img_product']) && $_FILES['dtaill_img_product']['error'] == UPLOAD_ERR_OK) {
-        $dtaill_img_product = $_FILES['dtaill_img_product']['name'];
-        move_uploaded_file($_FILES['dtaill_img_product']['tmp_name'], 'images/' . $dtaill_img_product);
-    } else {
-        $dtaill_img_product = null;
+    // จัดการกับรูปภาพรายละเอียด (หลายรูป)
+    $dtaill_img_products = [];
+    if (isset($_FILES['dtaill_img_product'])) {
+        $file_count = count($_FILES['dtaill_img_product']['name']);
+        for ($i = 0; $i < $file_count; $i++) {
+            if ($_FILES['dtaill_img_product']['error'][$i] === UPLOAD_ERR_OK) {
+                $file_name = $_FILES['dtaill_img_product']['name'][$i];
+                move_uploaded_file($_FILES['dtaill_img_product']['tmp_name'][$i], 'images/' . $file_name);
+                $dtaill_img_products[] = $file_name; // เก็บชื่อไฟล์ใน array
+            }
+        }
     }
+
+    // ทำการเข้ารหัส (serialize) array เพื่อเก็บในฐานข้อมูล
+    $dtaill_img_product = serialize($dtaill_img_products);
 
     // สร้างคำสั่ง SQL เพื่อเพิ่มข้อมูล
-    $sql = "INSERT INTO product (name_product, img_product, type_product, dtaill_product, dtaill_img_product, date_product, dtaill_vdo_product) VALUES (:name_product, :img_product, :type_product, :dtaill_product, :dtaill_img_product, :date_product, :dtaill_vdo_product)";
+    $sql = "INSERT INTO product (name_product, img_product, type_product, dtaill_product, dtaill_img_product, date_product, dtaill_vdo_product) 
+            VALUES (:name_product, :img_product, :type_product, :dtaill_product, :dtaill_img_product, :date_product, :dtaill_vdo_product)";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute([

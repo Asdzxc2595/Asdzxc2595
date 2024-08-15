@@ -46,9 +46,11 @@ require("db_connect.php"); // เชื่อมต่อฐานข้อม�
                 <textarea class="form-control" id="dtaill_product" name="dtaill_product" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <label for="dtaill_img_product">ภาพรายละเอียด</label>
-                <input type="file" class="form-control" id="dtaill_img_product" name="dtaill_img_product">
-            </div>
+    <label for="dtaill_img_product">ภาพรายละเอียด</label>
+    <input type="file" class="form-control" id="dtaill_img_product" name="dtaill_img_product[]" multiple>
+</div>
+
+
             <div class="form-group">
                 <label for="date_product">วันที่</label>
                 <input type="date" class="form-control" id="date_product" name="date_product">
