@@ -3927,6 +3927,7 @@ input[type="button"].btn-block {
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+
 }
 
 .navbar > .container,
@@ -3949,6 +3950,7 @@ input[type="button"].btn-block {
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap;
+  
 }
 
 .navbar-brand:hover, .navbar-brand:focus {
@@ -3997,7 +3999,7 @@ input[type="button"].btn-block {
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: 0.25rem;
-  position: fixed;
+  margin-left: auto;
 }
 
 .navbar-toggler:hover, .navbar-toggler:focus {
@@ -4231,7 +4233,7 @@ input[type="button"].btn-block {
 }
 
 .navbar-light .navbar-brand {
-  color: rgba(0, 0, 0, 0.9);
+  color:#dee2e6;
 }
 
 .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
@@ -4260,6 +4262,7 @@ input[type="button"].btn-block {
 .navbar-light .navbar-toggler {
   color: rgba(0, 0, 0, 0.5);
   border-color: rgba(0, 0, 0, 0.1);
+
 }
 
 .navbar-light .navbar-toggler-icon {
@@ -5870,7 +5873,7 @@ button.close {
 
 .carousel-control-prev,
 .carousel-control-next {
-  position: absolute;
+
   top: 0;
   bottom: 0;
   display: -ms-flexbox;

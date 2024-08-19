@@ -226,7 +226,7 @@ button {
 .header_bg {
     width: 100%;
     float: left;
-    background-image: url(../images/header-bg.png);
+    background-image: url(../images/back.png);
     height: auto;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -236,7 +236,7 @@ button {
     z-index: 1000;
 }
 .header_bg .navbar-expand-lg .navbar-nav .nav-link {
-    color: #111111;
+    color: #FAF5F5;
     
 }
 
@@ -271,6 +271,7 @@ button {
 }
 
 .navbar-brand {
+        color: #dee2e6 !important;
     margin: 0px;
     float: right;
     position: fixed;
@@ -316,8 +317,14 @@ button {
 .banner_section {
     width: 100%;
     float: left;
-    padding: 90px 0px 100px 0px;
+    background-color: #FAF5F5;
+    /* background-image: url('../images/backbg.png');  */
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    padding: 90px 0 100px 0;
 }
+
 
 .banner_taital_main {
     width: 100%;
@@ -379,14 +386,14 @@ button {
     float: left;
 }
 .body-background{
-    background-color: #DCF3F3;
+    background-color: #FAF5F5 !important;
 }
 
 .about_bt a {
     width: 100%;
     float: left;
     font-size: 18px;
-    background-color: #d48272;
+    background-color: #4a4949;
     color: #fefefd;
     text-align: center;
     padding: 12px;
@@ -394,8 +401,9 @@ button {
 }
 
 .about_bt a:hover {
-    color: #fefefd;
-    background-color: #4a4949;
+    color:  #4a4949;
+    background-color: #fefefd;
+    border: 1px solid #4a4949;
 }
 
 .callnow_bt {
@@ -428,42 +436,69 @@ button {
 #banner_slider a.carousel-control-prev {
     left: -120px;
     top: 95px;
+    color: #4a4949;
 }
 
 #banner_slider a.carousel-control-next {
-    right: 95px;
+    right: 150px ;
     top: 95px;
-    color: #fefefd;
-    background-color: #4a4949;
+    color: #4a4949;
+     /* background-color: #fefefd ; */
+     border: #000 1px;
 }
 
 #banner_slider .carousel-control-next,
 #banner_slider .carousel-control-prev {
-    width: 55px;
-    height: 55px;
+    position: absolute;
+    width: 50px;
+    height: 50px;
     opacity: 1;
     font-size: 16px;
     color: #4a4949;
     background-color: #efefef;
+    transform: translateY(-50%);
+    
+                                                                                                                                                                                                                                                                                                                                                                                                      
 }
 
 #banner_slider .carousel-control-next:focus,
-#banner_slider .carousel-control-next:hover,
+#banner_slider .carousel-control-next:hover{
+    color:  #fefefd;
+    background-color: #4a4949 ;
+}
+
 #banner_slider .carousel-control-prev:focus,
 #banner_slider .carousel-control-prev:hover {
-    color: #fefefd;
-    background-color: #4a4949;
+    color:  #fefefd;
+    background-color: #4a4949 ;
 }
 
 .banner_img {
     width: 100%;
-    float: left;
-    text-align: center;
-}
-.banner_img img{
-    height: 350px;
+    height: 100%; /* กำหนดความสูงของคอนเทนเนอร์ตามความต้องการ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+    overflow: hidden; /* เพื่อซ่อนส่วนเกินของรูปภาพ */
 }
 
+.banner_img img {
+    max-width: 100%;
+    height: auto; /* หรือใช้ความสูงที่กำหนดตามต้องการ */
+    object-fit: cover; /* หรือใช้ contain ขึ้นอยู่กับการแสดงผลที่ต้องการ */
+}
+
+
+.banner_img img{
+    height: 350px;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.banner_img img:hover {
+    transform: scale(1.05); /* ซูมเข้ารูปภาพเมื่อวางเมาส์ */
+}
 /* banner section end */
 
 
@@ -532,7 +567,7 @@ button {
     float: left;
     color: #3b3b3b;
     margin: 0px;
-    -webkit-line-clamp: 3; /* Number of lines to show */
+    /* -webkit-line-clamp: 3; Number of lines to show */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -541,28 +576,33 @@ button {
 }
 
 .read_bt {
-    width: 170px;
-    margin: 0 auto;
-    text-align: center;
-    padding-top: 20px;
-    display: flex;
+    display: inline-block;
+    margin: 15px;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FAF5F5;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.8s;
 }
 
 .read_bt a {
     width: 100%;
     float: left;
-    font-size: 16px;
-    color: #d78373;
+    font-size: 18px;
+    background-color: #4a4949;
+    color: #fefefd;
     text-align: center;
+    padding: 12px;
     border-radius: 5px;
-    border: 1px solid #d78373;
-    text-transform: uppercase;
-    padding: 8px;
 }
 
 .read_bt a:hover {
     color: #3b3b3b;
-    border: 1px solid #3b3b3b;
+    border: 1px solid #fefefd;
 }
 
 #main_slider a.carousel-control-prev {
@@ -573,8 +613,7 @@ button {
 #main_slider a.carousel-control-next {
     right: -50px;
     top: 95px;
-    color: #fefefd;
-    background-color: #4a4949;
+    color: #4a4949;
 }
 
 #main_slider .carousel-control-next,
@@ -588,7 +627,10 @@ button {
 }
 
 #main_slider .carousel-control-next:focus,
-#main_slider .carousel-control-next:hover,
+#main_slider .carousel-control-next:hover{
+    color:  #fefefd;
+    background-color: #4a4949 ;
+}
 #main_slider .carousel-control-prev:focus,
 #main_slider .carousel-control-prev:hover {
     color: #fefefd;
@@ -692,9 +734,9 @@ button {
 .client_section {
     width: 100%;
     float: left;
-    background-image: url(../images/client-bg.png);
+    background-image: url(../images/popooo.jpg);
     height: auto;
-    background-size: 100% 100%;
+    background-size: cover;
     padding-bottom: 50px;
 }
 
@@ -911,7 +953,7 @@ textarea#comment.massage-bt::placeholder {
     width: 100%;
     float: left;
     height: auto;
-    background-image: url(../images/pink.png);
+background-color: #969696;
     background-size: 100% 100%;
     padding: 90px 0px 0px 0px;
 
@@ -922,7 +964,7 @@ textarea#comment.massage-bt::placeholder {
     float: left;
     text-align: center;
     font-size: 30px;
-    color: #000000;
+    color: #050505;
     font-weight: bold;
     padding-bottom: 20px;
 }
@@ -931,16 +973,15 @@ textarea#comment.massage-bt::placeholder {
     width: 60%;
     margin: 0 auto;
     font-size: 16px;
-    color: #000000;
+    color: #050505;
     text-align: center;
 }
 
 .location_text {
-    width: 100%;
     margin: 0 auto;
     text-align: center;
     padding-top: 50px;
-    color: #000;
+    color: #050505;
 }
 
 .location_text ul {
@@ -1027,11 +1068,14 @@ textarea#comment.update_mail::placeholder {
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 5rem;
     display: flex;
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
     text-align: center;
+    padding: 5px;
+    align-items: baseline;
+    justify-content: space-around;
 }
 
 .subscribe_bt {
@@ -1064,7 +1108,7 @@ textarea#comment.update_mail::placeholder {
     width: 100%;
     float: left;
     background-color: 
-    #ffffcc;
+    #050505 !important;
     height: auto;
 }
 
@@ -1119,23 +1163,25 @@ textarea#comment.update_mail::placeholder {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-.product_title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
+
 
 .detill-text {
     text-align: left;
     font-size: 15px;
     color: #333;
     margin-bottom: 20px;
-    
-    
+}
+.detill-text h1{
+    color: #050505;
+    font-size: 25px;
+}
+.detill-text img {
+border-radius: 8px;
 }
 .product_description {
     white-space: pre-wrap;
     text-align: left;
+    color: #606E76 !important;
 }
 
 .product_price {
@@ -1165,28 +1211,36 @@ textarea#comment.update_mail::placeholder {
     text-align: center;
 }
 .product-image-detaill {
-    display: block; /* แสดงเป็นบล็อก */
+    display: flex;
     margin-left: auto; /* จัดตำแหน่งให้กลาง */
     margin-right: auto; /* จัดตำแหน่งให้กลาง */
     max-width: 100%; /* ความกว้างสูงสุด 100% ของพื้นที่ที่ใช้ */
-    height: auto; /* ความสูงอัตโนมัติ */
-    border-radius: 8px; /* ขอบมุมโค้ง 8px */
+    height: 350px; /* ความสูงอัตโนมัติ */
+    border-radius: 10px; /* ขอบมุมโค้ง 8px */
     overflow: hidden; /* ซ่อนเนื้อหาที่เกินออกจากขอบมุม */
+    
 }
 
 /* Card Container */
 .card-item-product {
 
-    border: 1px solid #000000;
+    border: 1px solid #050505;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
-    background-color: #fff;
+    background-color: #FAF5F5;
     /* //margin: 20px; */
     max-width: 300px;
     max-height: 500px;
     text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.card-item-product.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Image */
@@ -1202,7 +1256,7 @@ textarea#comment.update_mail::placeholder {
     font-size: 1.25rem;
     font-weight: 600;
     margin: 15px 0;
-    color: #333;
+    color: #050505 !important;
   
 }
 
@@ -1212,7 +1266,7 @@ textarea#comment.update_mail::placeholder {
     font-size: 1rem;
     font-weight: 400;
     margin: 0 15px 15px 15px;
-    color: #777;
+    color: #050505 !important;
 }
 
 /* Button */
@@ -1223,19 +1277,20 @@ textarea#comment.update_mail::placeholder {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     font-weight: 600;
-    color: #fff;
-    background-color: #d78373;
-    border: none;
+    color: #FAF5F5;
+    background-color: #050505;
+    border: 1px solid #4a4949;
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.3s;
+    transition: background-color 0.8s;
 }
 
 /* Button Hover Effect */
 .card-item-product .card-button:hover {
-    background-color: #FAF9E1;
-    color: #000;
+    background-color: #FAF5F5;
+    color:  #050505;
+    
 }
 
 /* Card Hover Effect */
@@ -1282,12 +1337,61 @@ textarea#comment.update_mail::placeholder {
 .card_oder img{
     width: auto;
     height: 200px;
+    border-radius: 8px;
     padding-inline: 5px;
 }
 .card_oder hr{
     text-align: center;
     text-align: 35px;
     width: 350px  ;
+}
+/* กำหนดสไตล์สำหรับฟอร์มค้นหา */
+form {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 25px;
+    border: 1px solid #FAF5F5;
+    box-shadow: 0 2px 5px #050505;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 2px 10px #606E76;
+}
+
+.btn {
+    width: 100%;
+    max-width: 150px;
+    padding: 10px;
+    border-radius: 25px;
+    background-color: #050505;
+    border: none;
+    color: #FAF5F5;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #969696;;
+    box-shadow: 0 2px 10px #050505;
+    color: #050505;
+}
+
+.btn:active {
+    background-color: #050505;
+    box-shadow: 0 2px 5px #FAF5F5;
+}
+
+.mt-2 {
+    margin-top: 10px;
 }
 
 

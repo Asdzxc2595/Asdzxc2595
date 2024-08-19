@@ -29,16 +29,28 @@
     <div class="product_section layout_padding body-background">
         <div class="container">
             <h1 class="product_title">Products All</h1>
-            <!-- <div class="col-md-6 text-right mb-3">
-                <input type="text" id="searchInput" class="form-control" placeholder="Search for products...">
-            </div> -->
-            <div class="row">
-                <?php
-                require 'db_connect.php';
+            <div class="col-md-6 mb-3">
+            <form method="GET" action="">
+                <input type="text" name="search" class="form-control" placeholder="Search for products...">
+                <button type="submit" class="btn btn-primary mt-2">Search</button>
+            </form>
+        </div>
+        <div class="row">
+            <?php
+            require 'db_connect.php';
+            $search = isset($_GET['search']) ? $_GET['search'] : '';
+
+            if (!empty($search)) {
+                $stmt = $pdo->prepare("SELECT * FROM product WHERE name_product LIKE ?");
+                $stmt->execute(['%' . $search . '%']);
+            } else {
+                // ถ้าไม่มีคำค้นหา ให้แสดงสินค้าทั้งหมด
                 $stmt = $pdo->query("SELECT * FROM product");
-                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($products as $product) {
-                    ?>
+            }
+
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($products as $product) {
+                ?>
                     <div class="col-md-4 mb-4">
                         <div class="card-item-product">
                             <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name_product']); ?>">

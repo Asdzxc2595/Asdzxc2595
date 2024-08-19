@@ -359,7 +359,7 @@
         font-size: 15px;
     }
     .client_section {
-        background: rgb(208, 125, 107, 0.6);
+        background: #FAF5F5;
         background-size: cover;
     }
     .client_left {
@@ -430,8 +430,8 @@
     }
     #banner_slider a.carousel-control-next {
         right: 0px;
-        top: 585px;
-        left: 170px;
+        padding-bottom:  50%;
+        padding-top: 50%;
         display: none;
     }
     #banner_slider a.carousel-control-prev {

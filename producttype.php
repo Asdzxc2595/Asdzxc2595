@@ -73,7 +73,14 @@ if (isset($_GET['type'])) {
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
     </div>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cardItems = document.querySelectorAll('.card-item-product');
+            cardItems.forEach(function(item) {
+                item.classList.add('show');
+            });
+        });
+    </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>

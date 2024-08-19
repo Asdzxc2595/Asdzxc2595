@@ -42,10 +42,21 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         h1 {
             font-family: 'Prompt', sans-serif;
         }
+        .product_section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.product_section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
     </style>
 </head>
 
-<body>
+<>
     <div class="header_section header_bg">
         <div class="container-fluid">
             <?php include 'nav.php'; ?>
@@ -96,6 +107,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         </div>
     </div>
     <!-- ปิดสินค้าใหม่ -->
+     <hr >
     <!-- สินค้านิยม -->
     <div class="product_section layout_padding body-background">
         <div class="container">
@@ -155,7 +167,22 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
     </div>
+                    <script>document.addEventListener("DOMContentLoaded", function() {
+    const productSection = document.querySelector('.product_section');
 
+    // ตรวจสอบว่า productSection เข้าสู่ viewport แล้วหรือยัง
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');  // เพิ่มคลาส .show เพื่อเริ่มอนิเมชัน
+            }
+        });
+    });
+
+    // เริ่มตรวจสอบส่วนที่ต้องการ
+    observer.observe(productSection);
+});
+</script>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
