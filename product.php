@@ -44,7 +44,6 @@
                 $stmt = $pdo->prepare("SELECT * FROM product WHERE name_product LIKE ?");
                 $stmt->execute(['%' . $search . '%']);
             } else {
-                // ถ้าไม่มีคำค้นหา ให้แสดงสินค้าทั้งหมด
                 $stmt = $pdo->query("SELECT * FROM product");
             }
 
@@ -61,27 +60,30 @@
                             </div>
                         </div>
                     </div>
-                    <?php
-                }
-                ?>
-            </div>
+                <?php
+            }
+            ?>
         </div>
     </div>
+</div>
 
-    <?php include 'address.php'; ?>
+<?php include 'address.php'; ?>
 
-    <div class="copyright_section">
-        <?php include 'footer.php'; ?>
-    </div>
+<div class="copyright_section">
+    <?php include 'footer.php'; ?>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var cards = document.querySelectorAll('.card-item-product');
+        cards.forEach(function(card) {
+            card.classList.add('show');
+        });
+    });
+</script>
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="js/plugin.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/custom.js"></script>
-</body>
-
-</html>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/plugin.js"></script>
+<script
