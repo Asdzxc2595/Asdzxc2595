@@ -16,8 +16,8 @@ require("../db_connect.php"); // เชื่อมต่อฐานข้อ�
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>เพิ่มสินค้า</title>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -26,6 +26,11 @@ require("../db_connect.php"); // เชื่อมต่อฐานข้อ�
 </head>
 
 <body>
+    <div class="header_section header_bg">
+        <div class="container-fluid">
+            <?php include 'nav_admin.php'; ?>
+        </div>
+    </div>
     <div class="container">
         <h1 class="mt-5">เพิ่มสินค้าใหม่</h1>
         <form action="update.php" method="post" enctype="multipart/form-data">
@@ -50,11 +55,9 @@ require("../db_connect.php"); // เชื่อมต่อฐานข้อ�
                 <textarea class="form-control" id="dtaill_product" name="dtaill_product" rows="3"></textarea>
             </div>
             <div class="form-group">
-    <label for="dtaill_img_product">ภาพรายละเอียด</label>
-    <input type="file" class="form-control" id="dtaill_img_product" name="dtaill_img_product[]" multiple>
-</div>
-
-
+                <label for="dtaill_img_product">ภาพรายละเอียด</label>
+                <input type="file" class="form-control" id="dtaill_img_product" name="dtaill_img_product[]" multiple>
+            </div>
             <div class="form-group">
                 <label for="date_product">วันที่</label>
                 <input type="date" class="form-control" id="date_product" name="date_product">

@@ -1,6 +1,9 @@
 <?php
-
-require("db_connect.php"); // เชื่อมต่อฐานข้อมูล
+if (!isset($_SESSION['loggedin'])) {
+    header("Location: loginadmin.php");
+    exit;
+}
+require("../db_connect.php"); // เชื่อมต่อฐานข้อมูล
 
 if (isset($_POST['submit'])) {
     // รับข้อมูลจากฟอร์ม

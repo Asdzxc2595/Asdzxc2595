@@ -27,7 +27,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -35,33 +35,35 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        body {
-            font-family: 'Kanit', sans-serif;
-        }
+    body {
+        font-family: 'Kanit', sans-serif;
+    }
 
-        h1 {
-            font-family: 'Prompt', sans-serif;
-        }
-        .product_section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-}
+    h1 {
+        font-family: 'Prompt', sans-serif;
+    }
 
-.product_section.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+    .product_section {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
 
+    .product_section.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
     </style>
 </head>
 
-<>
-    <div class="header_section header_bg">
-        <div class="container-fluid">
-            <?php include 'nav.php'; ?>
-        </div>
+
+<div class="header_section header_bg">
+    <div class="container-fluid">
+        <?php include 'nav.php'; ?>
     </div>
+</div>
+
+<body>
 
     <!-- สินค้าใหม่ -->
     <div class="banner_section layout_padding client_section">
@@ -107,7 +109,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         </div>
     </div>
     <!-- ปิดสินค้าใหม่ -->
-     <hr >
+    <hr>
     <!-- สินค้านิยม -->
     <div class="product_section layout_padding body-background">
         <div class="container">
@@ -167,22 +169,23 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
     </div>
-                    <script>document.addEventListener("DOMContentLoaded", function() {
-    const productSection = document.querySelector('.product_section');
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const productSection = document.querySelector('.product_section');
 
-    // ตรวจสอบว่า productSection เข้าสู่ viewport แล้วหรือยัง
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');  // เพิ่มคลาส .show เพื่อเริ่มอนิเมชัน
-            }
+        // ตรวจสอบว่า productSection เข้าสู่ viewport แล้วหรือยัง
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show'); // เพิ่มคลาส .show เพื่อเริ่มอนิเมชัน
+                }
+            });
         });
-    });
 
-    // เริ่มตรวจสอบส่วนที่ต้องการ
-    observer.observe(productSection);
-});
-</script>
+        // เริ่มตรวจสอบส่วนที่ต้องการ
+        observer.observe(productSection);
+    });
+    </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>

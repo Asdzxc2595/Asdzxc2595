@@ -1,6 +1,10 @@
 <?php
+if (!isset($_SESSION['loggedin'])) {
+    header("Location: loginadmin.php");
+    exit;
+}
 // Database connection (assuming you have a file for this)
-include 'db_connection.php';
+include '../db_connection.php';
 
 // Get the current date
 $current_date = new DateTime();
