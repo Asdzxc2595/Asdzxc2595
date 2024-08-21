@@ -1,8 +1,5 @@
 <?php
-if (!isset($_SESSION['loggedin'])) {
-    header("Location: loginadmin.php");
-    exit;
-}
+
 require("../db_connect.php"); // เชื่อมต่อฐานข้อมูล
 
 if (isset($_POST['submit'])) {
@@ -20,7 +17,7 @@ if (isset($_POST['submit'])) {
     $img_product = null;
     if (isset($_FILES['img_product']) && $_FILES['img_product']['error'] == UPLOAD_ERR_OK) {
         $img_product = $_FILES['img_product']['name'];
-        move_uploaded_file($_FILES['img_product']['tmp_name'], 'images/' . $img_product);
+        move_uploaded_file($_FILES['img_product']['tmp_name'], '../images/' . $img_product);
     }
 
     // จัดการกับรูปภาพรายละเอียด (หลายรูป)
@@ -30,7 +27,7 @@ if (isset($_POST['submit'])) {
         for ($i = 0; $i < $file_count; $i++) {
             if ($_FILES['dtaill_img_product']['error'][$i] === UPLOAD_ERR_OK) {
                 $file_name = $_FILES['dtaill_img_product']['name'][$i];
-                move_uploaded_file($_FILES['dtaill_img_product']['tmp_name'][$i], 'images/' . $file_name);
+                move_uploaded_file($_FILES['dtaill_img_product']['tmp_name'][$i], '../images/' . $file_name);
                 $dtaill_img_products[] = $file_name; // เก็บชื่อไฟล์ใน array
             }
         }
@@ -55,5 +52,6 @@ if (isset($_POST['submit'])) {
     ]);
 
     echo "เพิ่มสินค้าเรียบร้อยแล้ว";
+     echo '<p><p><h1><a href="dashboard.php">กลับไปยังหน้าหลัก</a>';
 }
 ?>

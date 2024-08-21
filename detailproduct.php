@@ -39,9 +39,10 @@ if (isset($product['dtaill_img_product'])) {
 }
 ?>
 
-?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,30 +54,37 @@ if (isset($product['dtaill_img_product'])) {
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
-<div class="header_section header_bg">
-    <div class="container-fluid">
-        <?php include 'nav.php'; ?>
-    </div>
-</div>
-<div class="product_details_section layout_padding body-background">
-    <div class="container">
-        <div class="row">
-            <div class="product-image-detaill">
-                <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="img-fluid" alt="Product Image">
-            </div>
+    <div class="header_section header_bg">
+        <div class="container-fluid">
+            <?php include 'nav.php'; ?>
         </div>
-        <div class="detill-text">
-            <h1 class="product_title"><?php echo htmlspecialchars($product['name_product']); ?></h1>
-            <hr>
-            <pre class="product_description"><?php echo htmlspecialchars($product['dtaill_product']); ?></pre>
-            
-            <?php 
+    </div>
+    <div class="product_details_section layout_padding body-background">
+        <div class="container">
+            <div class="row">
+                <div class="product-image-detaill">
+                    <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="img-fluid"
+                        alt="Product Image">
+                </div>
+            </div>
+            <div class="detill-text">
+                <h1 class="product_title "><?php echo htmlspecialchars($product['name_product']); ?></h1>
+                <hr>
+                <div>
+                    <?php echo $product['dtaill_product']; // แสดง HTML ตามที่เก็บในฐานข้อมูล ?>
+                </div>
+
+                <hr>
+                <?php  
                 if ($img_ids !== false && !empty($img_ids)) {
                     echo '<hr>';
                     foreach ($img_ids as $img_id) {
@@ -90,37 +98,39 @@ if (isset($product['dtaill_img_product'])) {
                 }
             ?>
 
-            <hr>
-            <?php 
+                <hr>
+                <?php 
                 $video_id = isset($product['dtaill_vdo_product']) ? htmlspecialchars($product['dtaill_vdo_product']) : '';
 
                 if (!empty($video_id)) {
                     ?>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>" allowfullscreen></iframe>
-                    </div>
-                    <?php
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
+                        allowfullscreen></iframe>
+                </div>
+                <?php
                 } else {
                     // Optional: Display a message if no video is available
                     // echo '<p>Video not available.</p>';
                 }
             ?>
+            </div>
         </div>
     </div>
-</div>
 
-<?php include 'address.php'; ?>
+    <?php include 'address.php'; ?>
 
-<div class="copyright_section">
-    <?php include 'footer.php'; ?>
-</div>
+    <div class="copyright_section">
+        <?php include 'footer.php'; ?>
+    </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/jquery-3.0.0.min.js"></script>
-<script src="js/plugin.js"></script>
-<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="js/custom.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
 </body>
+
 </html>

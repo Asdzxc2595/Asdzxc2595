@@ -8,7 +8,7 @@ $resultBestSellers = $pdo->query($sqlBestSellers);
 // ดึงสินค้าใหม่
 $sqlNewProducts = "SELECT id_product, name_product, img_product, dtaill_product 
                     FROM product 
-                    WHERE DATE_ADD(date_product, INTERVAL 3 MONTH) >= NOW()";
+                    WHERE DATE_ADD(date_product, INTERVAL 3 MONTH) >= NOW() LIMIT 5 ";
 $resultNewProducts = $pdo->query($sqlNewProducts);
 ?>
 
@@ -26,8 +26,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="icon" href="images/fevicon.png" type="image/gif" />
-
+    <link rel="icon" href="images/cat.jpg" type="image/gif" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -35,14 +34,6 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-    body {
-        font-family: 'Kanit', sans-serif;
-    }
-
-    h1 {
-        font-family: 'Prompt', sans-serif;
-    }
-
     .product_section {
         opacity: 0;
         transform: translateY(20px);
@@ -55,23 +46,19 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     }
     </style>
 </head>
-
-
 <div class="header_section header_bg">
     <div class="container-fluid">
         <?php include 'nav.php'; ?>
     </div>
 </div>
-
 <body>
-
-    <!-- สินค้าใหม่ -->
-    <div class="banner_section layout_padding client_section">
-        <h6 class="text_titer_center">สินค้าใหม่</h6>
-        <div class="container">
-            <div id="banner_slider" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <?php
+<!-- สินค้าใหม่ -->
+<div class="banner_section layout_padding client_section">
+    <h6 class="text_titer_center">สินค้าใหม่</h6>
+    <div class="container">
+        <div id="banner_slider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+                <?php
                     if ($resultNewProducts->rowCount() > 0) {
                         $first = true;
                         while ($row = $resultNewProducts->fetch(PDO::FETCH_ASSOC)) {
@@ -85,7 +72,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                             echo '<div class="col-md-6">';
                             echo '<div class="banner_taital_main">';
                             echo '<h5 class="tasty_text">' . htmlspecialchars($row["name_product"]) . '</h5>';
-                            echo '<p class="banner_text">' . htmlspecialchars($row["dtaill_product"]) . '</p>';
+                            echo '<p class="banner_text">' . strip_tags($row["dtaill_product"]) . '</p>';
                             echo '<div class="btn_main">';
                             echo '<div class="about_bt"><a href="detailproduct.php?id_product=' . htmlspecialchars($row["id_product"]) . '">About Us</a></div>';
                             echo '</div>';
@@ -98,30 +85,34 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                         echo '<p>No new products available</p>';
                     }
                     ?>
-                </div>
-                <a class="carousel-control-prev" href="#banner_slider" role="button" data-slide="prev">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-                <a class="carousel-control-next" href="#banner_slider" role="button" data-slide="next">
-                    <i class="fa fa-arrow-right"></i>
-                </a>
             </div>
+            <a class="carousel-control-prev" href="#banner_slider" role="button" data-slide="prev">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#banner_slider" role="button" data-slide="next">
+                <i class="fa fa-arrow-right"></i>
+            </a>
         </div>
     </div>
-    <!-- ปิดสินค้าใหม่ -->
-    <hr>
-    <!-- สินค้านิยม -->
-    <div class="product_section layout_padding body-background">
-        <div class="container">
-            <div class="row">
-                <h1 class="product_taital">สินค้านิยม</h1>
-                <div class="bulit_icon"><img src="images/bulit-icon.png" alt="Bulit Icon"></div>
-            </div>
+</div>
+<!-- ปิดสินค้าใหม่ -->
+
+<img src="images/happy.png" style="width: 100%;" alt="Image">
+
+
+
+<!-- สินค้านิยม -->
+<div class="product_section layout_padding body-background">
+    <div class="container">
+        <div class="row">
+            <h1 class="product_taital">สินค้านิยม</h1>
+            <div class="bulit_icon"><img src="images/bulit-icon.png" alt="Bulit Icon"></div>
         </div>
-        <div class="product_section_2">
-            <div id="main_slider" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <?php
+    </div>
+    <div class="product_section_2">
+        <div id="main_slider" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <?php
                     if ($resultBestSellers->rowCount() > 0) {
                         $first = true;
                         $itemCount = 0;
@@ -141,7 +132,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                             echo '<div class="product_img"><img src="images/' . htmlspecialchars($row["img_product"]) . '" alt="Product Image"></div>';
                             echo '<hr>';
                             echo '<h3 class="types_text">' . htmlspecialchars($row["name_product"]) . '</h3>';
-                            echo '<p class="looking_text">' . htmlspecialchars($row["dtaill_product"]) . '</p>';
+                            echo '<p class="looking_text">' . strip_tags($row["dtaill_product"]) . '</p>';
                             echo '<div class="read_bt"><a href="detailproduct.php?id_product=' . htmlspecialchars($row["id_product"]) . '">Read More</a></div>';
                             echo '<p><p></div>';
 
@@ -154,45 +145,45 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                         echo '<p>No best-selling products found.</p>';
                     }
                     ?>
-                </div>
-                <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-                    <i class="fa fa-arrow-left"></i>
-                </a>
-                <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-                    <i class="fa fa-arrow-right"></i>
-                </a>
             </div>
+            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+                <i class="fa fa-arrow-right"></i>
+            </a>
         </div>
     </div>
+</div>
+<img src="images/happpy.png" style="width: 100%;" alt="Image">
+<?php include 'address.php'; ?>
+<div class="copyright_section">
+    <?php include 'footer.php'; ?>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const productSection = document.querySelector('.product_section');
 
-    <?php include 'address.php'; ?>
-    <div class="copyright_section">
-        <?php include 'footer.php'; ?>
-    </div>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const productSection = document.querySelector('.product_section');
-
-        // ตรวจสอบว่า productSection เข้าสู่ viewport แล้วหรือยัง
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show'); // เพิ่มคลาส .show เพื่อเริ่มอนิเมชัน
-                }
-            });
+    // ตรวจสอบว่า productSection เข้าสู่ viewport แล้วหรือยัง
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show'); // เพิ่มคลาส .show เพื่อเริ่มอนิเมชัน
+            }
         });
-
-        // เริ่มตรวจสอบส่วนที่ต้องการ
-        observer.observe(productSection);
     });
-    </script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <script src="js/plugin.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/custom.js"></script>
+
+    // เริ่มตรวจสอบส่วนที่ต้องการ
+    observer.observe(productSection);
+});
+</script>
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/plugin.js"></script>
+<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="js/custom.js"></script>
 </body>
 
 </html>

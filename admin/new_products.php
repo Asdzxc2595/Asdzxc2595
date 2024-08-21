@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION['loggedin'])) {
-    header("Location: loginadmin.php");
+    header("Location: ../login.php");
     exit;
 }
 // Database connection (assuming you have a file for this)

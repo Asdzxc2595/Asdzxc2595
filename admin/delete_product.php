@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-    header("Location: loginadmin.php");
+    header("Location: ../login.php");
     exit;
 }
 require("../db_connect.php");

@@ -1,11 +1,15 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-    header("Location: loginadmin.php");
+    header("Location: ../login.php");
     exit;
 }
-require("../db_connect.php"); // เชื่อมต่อฐานข้อมูล
+require("../db_connect.php");
 
+// ดึงข้อมูลจากฐานข้อมูล
+$sql = "SELECT * FROM product";
+$stmt = $pdo->query($sql);
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -23,10 +27,19 @@ require("../db_connect.php"); // เชื่อมต่อฐานข้อ�
     <link
         href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#dtaill_product',
+            plugins: 'advlist autolink lists link image charmap preview anchor textcolor',
+            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            menubar: false
+        });
+    </script>
 </head>
 
 <body>
-    <div class="header_section header_bg">
+<div class="header_section header_bg">
         <div class="container-fluid">
             <?php include 'nav_admin.php'; ?>
         </div>
@@ -34,37 +47,39 @@ require("../db_connect.php"); // เชื่อมต่อฐานข้อ�
     <div class="container">
         <h1 class="mt-5">เพิ่มสินค้าใหม่</h1>
         <form action="update.php" method="post" enctype="multipart/form-data">
-            <div class="form-group">
+            <div class="form-group-edit">
                 <label for="name_product">ชื่อสินค้า</label>
-                <input type="text" class="form-control" id="name_product" name="name_product" required>
             </div>
-            <div class="form-group">
+            <div class="form-group-edit">
+                <input type="text" class="form-edit" id="name_product" name="name_product" required>
+            </div>
+            <div class="form-group-edit">
                 <label for="img_product">รูปภาพสินค้า</label>
-                <input type="file" class="form-control" id="img_product" name="img_product" required>
+                <input type="file" class="form-edit" id="img_product" name="img_product" required>
             </div>
-            <div class="form-group">
+            <div class="form-group-edit">
                 <label for="type_product">ประเภทสินค้า</label>
-                <select class="form-control" id="type_product" name="type_product">
+                <select class="form-edit" id="type_product" name="type_product">
                     <option value="เครื่องสำอาง">เครื่องสำอาง</option>
                     <option value="อาหารเสริม">อาหารเสริม</option>
                     <option value="สินค้า">สินค้า</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group-edit">
                 <label for="dtaill_product">รายละเอียดสินค้า</label>
-                <textarea class="form-control" id="dtaill_product" name="dtaill_product" rows="3"></textarea>
+                <textarea class="form-edit" id="dtaill_product" name="dtaill_product" rows="3"></textarea>
             </div>
-            <div class="form-group">
-                <label for="dtaill_img_product">ภาพรายละเอียด</label>
-                <input type="file" class="form-control" id="dtaill_img_product" name="dtaill_img_product[]" multiple>
-            </div>
-            <div class="form-group">
+            <div class="form-group-edit">
+    <label for="dtaill_img_product">ภาพรายละเอียด</label>
+    <input type="file" class="form-edit" id="dtaill_img_product" name="dtaill_img_product[]" multiple>
+</div>
+            <div class="form-group-edit">
                 <label for="date_product">วันที่</label>
-                <input type="date" class="form-control" id="date_product" name="date_product">
+                <input type="date" class="form-edit" id="date_product" name="date_product">
             </div>
-            <div class="form-group">
+            <div class="form-group-edit">
                 <label for="dtaill_vdo_product">ลิงก์วิดีโอรายละเอียด YouTube </label>
-                <input type="text" class="form-control" id="dtaill_vdo_product" name="dtaill_vdo_product">
+                <input type="text" class="form-edit" id="dtaill_vdo_product" name="dtaill_vdo_product">
             </div>
             <button type="submit" name="submit" class="btn btn-primary">เพิ่มสินค้า</button>
         </form>

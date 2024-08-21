@@ -55,7 +55,7 @@
                             <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name_product']); ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($product['dtaill_product']); ?></p>
+                                <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
                                 <a href="detailproduct.php?id_product=<?php echo htmlspecialchars($product['id_product']); ?>" class="card-button">Read More</a>
                             </div>
                         </div>
