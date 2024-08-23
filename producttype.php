@@ -44,7 +44,7 @@ if (isset($_GET['type'])) {
     <!-- Product Section -->
     <div class="product_section layout_padding body-background">
         <div class="container">
-            <h1 class="product_title">Products : <?php echo htmlspecialchars($type_product); ?></h1>
+            <h1 class="product_hard_title">Products : <?php echo htmlspecialchars($type_product); ?></h1>
             <div class="row">
                 <?php if (!empty($products)) : ?>
                 <?php foreach ($products as $product) : ?>

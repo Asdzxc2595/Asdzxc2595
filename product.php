@@ -28,7 +28,7 @@
 
     <div class="product_section layout_padding body-background">
         <div class="container">
-            <h1 class="product_title">Products All</h1>
+            <h1 class="product_hard_title">Products All</h1>
             <div class="col-md-6 mb-3">
             <form method="GET" action="">
                 <input type="text" name="search" class="form-control" placeholder="Search for products...">

@@ -81,7 +81,7 @@ if (isset($product['dtaill_img_product'])) {
                 ?>
 
                 <?php  
-                if ($img_ids !== false && !empty($img_ids)) {
+                if (!empty($img_ids)) {
                     echo '<hr>';
                     foreach ($img_ids as $img_id) {
                         $img_id = trim($img_id);

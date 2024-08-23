@@ -6,9 +6,21 @@ if (!isset($_SESSION['loggedin'])) {
 }
 require("../db_connect.php");
 
-// ดึงข้อมูลจากฐานข้อมูล
+// ดึงประเภทสินค้าที่เลือกจาก query string
+$typeFilter = isset($_GET['type']) ? $_GET['type'] : '';
+
+// สร้าง SQL Query ตามประเภทที่เลือก
 $sql = "SELECT * FROM product";
-$stmt = $pdo->query($sql);
+if ($typeFilter) {
+    $sql .= " WHERE type_product = :type";
+}
+
+// เตรียม statement และ bind parameters
+$stmt = $pdo->prepare($sql);
+if ($typeFilter) {
+    $stmt->bindParam(':type', $typeFilter, PDO::PARAM_STR);
+}
+$stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -33,18 +45,39 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     #productTable {
         width: 100%;
         font-size: 1.2em;
-        /* เพิ่มขนาดฟอนต์ในตาราง */
     }
 
     #productTable img {
         width: 150px;
-        /* ปรับขนาดของภาพในตาราง */
     }
 
     #productTable td,
     #productTable th {
         padding: 12px;
-        /* เพิ่ม padding ในแต่ละ cell */
+    }
+
+    .dropdown-filter {
+        display: none;
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .dropdown-filter.show {
+        display: block;
+    }
+
+    .dropdown-toggle {
+        cursor: pointer;
+        font-size: 1.5em;
+    }
+
+    .dropdown-filter select {
+        width: 100%;
     }
     </style>
 </head>
@@ -54,8 +87,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="container mt-5">
         <h2>Product List</h2>
-        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search for products..."
-            class="form-control mb-3">
+
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search for products..." class="form-control mb-3">
 
         <table class="table table-striped" id="productTable">
             <thead>
@@ -63,7 +96,19 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>ID<i class="fa fa-filter" onclick="sortTable(0)"></i></th>
                     <th>Name<i class="fa fa-filter" onclick="sortTable(1)"></i></th>
                     <th>Image</th>
-                    <th>Type<i class="fa fa-filter" onclick="sortTable(3)"></i></th>
+                    <th>
+                        <span class="dropdown-toggle h3" onclick="toggleDropdown()">Type</span>
+                        <div id="typeDropdown" class="dropdown-filter">
+                            <form id="filterForm" method="GET" action="">
+                                <select id="test" name="type" class="form-control" onchange="document.getElementById('filterForm').submit()">
+                                    <option value="">Select Type</option>
+                                    <option value="เครื่องสำอาง" <?php echo ($typeFilter === 'เครื่องสำอาง') ? 'selected' : ''; ?>>เครื่องสำอาง</option>
+                                    <option value="อาหารเสริม" <?php echo ($typeFilter === 'อาหารเสริม') ? 'selected' : ''; ?>>อาหารเสริม</option>
+                                    <option value="สินค้า" <?php echo ($typeFilter === 'สินค้า') ? 'selected' : ''; ?>>สินค้า</option>
+                                </select>
+                            </form>
+                        </div>
+                    </th>
                     <th>Details</th>
                     <th>Details Image</th>
                     <th>Details Video</th>
@@ -78,11 +123,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($product['id_product']); ?></td>
                     <td><?php echo '<p class="banner_text">'.htmlspecialchars($product['name_product']).'</p>'; ?></td>
                     <td>
-                        <img src="../images/<?php echo htmlspecialchars($product['img_product']); ?>"
-                            alt="Product Image">
+                        <img src="../images/<?php echo htmlspecialchars($product['img_product']); ?>" alt="Product Image">
                     </td>
                     <td><?php echo htmlspecialchars($product['type_product']); ?></td>
-                    <td><?php  echo '<p class="banner_text">'.strip_tags($product['dtaill_product']) . '</p>'; ?></td>
+                    <td><?php echo '<p class="banner_text">'.strip_tags($product['dtaill_product']) . '</p>'; ?></td>
                     <td>
                         <?php
                         $detailsImages = json_decode($product['dtaill_img_product']);
@@ -101,11 +145,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($product['date_product']); ?></td>
                     <td><?php echo htmlspecialchars($product['view_count']); ?></td>
                     <td>
-                        <a href="edit_product.php?id=<?php echo $product['id_product']; ?>"
-                            class="active">Edit</a>
-                        <a href="delete_product.php?id=<?php echo $product['id_product']; ?>"
-                            class="active"
-                            onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                        <a href="edit_product.php?id=<?php echo $product['id_product']; ?>" class="active">Edit</a>
+                        <a href="delete_product.php?id=<?php echo $product['id_product']; ?>" class="active" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -114,6 +155,35 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
     <script src="../js/filtertable.js"></script>
+    <script>
+function toggleDropdown() {
+    var dropdown = document.getElementById('typeDropdown');
+    if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+    } else {
+        dropdown.classList.add('show');
+    }
+}
+
+// Close dropdown if clicked outside
+window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-toggle') && !event.target.closest('#typeDropdown')) {
+        var dropdowns = document.getElementsByClassName('dropdown-filter');
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
+
+// Prevent the dropdown from closing when clicking inside it
+document.getElementById('typeDropdown').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+</script>
+
 </body>
 
 </html>

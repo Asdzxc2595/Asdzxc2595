@@ -71,4 +71,22 @@ function sortTable(n) {
         }
     }
 }
+function filterTableByType() {
+    var typeFilter = document.getElementById("typeFilter").value.toLowerCase();
+    var table = document.getElementById("productTable");
+    var rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+
+    for (var i = 0; i < rows.length; i++) {
+        var typeCell = rows[i].getElementsByTagName("td")[3];
+        if (typeCell) {
+            var typeText = typeCell.textContent || typeCell.innerText;
+            if (typeText.toLowerCase().indexOf(typeFilter) > -1 || typeFilter === "") {
+                rows[i].style.display = "";
+            } else {
+                rows[i].style.display = "none";
+            }
+        }
+    }
+}
+
 
