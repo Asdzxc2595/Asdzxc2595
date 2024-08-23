@@ -1514,5 +1514,6 @@ form {
 
 .dtaill-title li::marker {
     color: #007bff; 
-    font-size: 18px; 
+    font-size: 18px; /*test*/
 }
+ 
