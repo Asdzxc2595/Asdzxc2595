@@ -8,8 +8,8 @@ function filterTable() {
 
     for (i = 1; i < tr.length; i++) {
         tr[i].style.display = "none";
-        tdId = tr[i].getElementsByTagName("td")[0];  // ID is in the first column
-        tdName = tr[i].getElementsByTagName("td")[1]; // Name is in the second column
+        tdId = tr[i].getElementsByTagName("td")[0];  
+        tdName = tr[i].getElementsByTagName("td")[1]; 
 
         if (tdId || tdName) {
             txtValueId = tdId.textContent || tdId.innerText;

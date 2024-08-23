@@ -1502,17 +1502,17 @@ form {
 
 }
 .dtaill-title ul {
-    list-style-type: disc; /* ใช้จุด (•) เป็นสัญลักษณ์ของรายการ */
+    list-style-type: auto; /* ใช้จุด (•) เป็นสัญลักษณ์ของรายการ */
     padding-left: 20px; /* เพิ่มระยะห่างทางซ้ายของรายการ */
 }
 
 .dtaill-title li {
     margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่างของแต่ละรายการ */
     font-size: 16px; /* กำหนดขนาดของฟอนต์ */
-    color: #333; /* กำหนดสีของข้อความ */
+    color: #333; 
 }
 
 .dtaill-title li::marker {
-    color: #007bff; /* เปลี่ยนสีของจุด (•) ของรายการ */
-    font-size: 18px; /* ขยายขนาดของจุด (•) */
+    color: #007bff; 
+    font-size: 18px; 
 }
