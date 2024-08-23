@@ -22,9 +22,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Product List</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link
         href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
@@ -113,92 +113,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </table>
     </div>
 
-    <script>
-    function filterTable() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("searchInput");
-        filter = input.value.toLowerCase();
-        table = document.getElementById("productTable");
-        tr = table.getElementsByTagName("tr");
-
-
-        for (i = 1; i < tr.length; i++) {
-            tr[i].style.display = "none"; // ซ่อนแถวเป็นค่าเริ่มต้น
-            td = tr[i].getElementsByTagName("td");
-
-            // หาชื่อ
-            if (td[1]) { 
-                txtValue = td[1].textContent || td[1].innerText;
-                if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                    tr[i].style.display = ""; /
-                }
-            }
-            //หาไอดี
-            if (td[0]) { 
-                txtValue = td[0].textContent || td[0].innerText;
-                if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                    tr[i].style.display = ""; 
-                }
-            }
-        }
-        
-    }
-
-    function sortTable(n) {
-        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-        table = document.getElementById("productTable");
-        switching = true;
-
-        dir = "asc";
-        while (switching) {
-
-            switching = false;
-            rows = table.rows;
-
-            for (i = 1; i < (rows.length - 1); i++) {
-                shouldSwitch = false;
-
-                x = rows[i].getElementsByTagName("TD")[n];
-                y = rows[i + 1].getElementsByTagName("TD")[n];
-
-                var xValue = x.innerHTML.toLowerCase();
-                var yValue = y.innerHTML.toLowerCase();
-                if (n === 0 || n === 8) { 
-                    xValue = parseFloat(x.innerHTML) || 0;
-                    yValue = parseFloat(y.innerHTML) || 0;
-                } else if (n === 7) { 
-                    xValue = new Date(x.innerHTML);
-                    yValue = new Date(y.innerHTML);
-                }
-
-                if (dir === "asc") {
-                    if (xValue > yValue) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                } else if (dir === "desc") {
-                    if (xValue < yValue) {
-                        shouldSwitch = true;
-                        break;
-                    }
-                }
-            }
-            if (shouldSwitch) {
-
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-                // Each time a switch is done, increase this count by 1:
-                switchcount++;
-            } else {
-
-                if (switchcount === 0 && dir === "asc") {
-                    dir = "desc";
-                    switching = true;
-                }
-            }
-        }
-    }
-    </script>
+    <script src="../js/filtertable.js"></script>
 </body>
 
 </html>

@@ -10,6 +10,8 @@ $sqlNewProducts = "SELECT id_product, name_product, img_product, dtaill_product
                     FROM product 
                     WHERE DATE_ADD(date_product, INTERVAL 3 MONTH) >= NOW() LIMIT 5 ";
 $resultNewProducts = $pdo->query($sqlNewProducts);
+
+
 ?>
 
 <!DOCTYPE html>

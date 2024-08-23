@@ -39,10 +39,8 @@ if (isset($product['dtaill_img_product'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,14 +52,12 @@ if (isset($product['dtaill_img_product'])) {
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
-
 <body>
     <div class="header_section header_bg">
         <div class="container-fluid">
@@ -72,18 +68,18 @@ if (isset($product['dtaill_img_product'])) {
         <div class="container">
             <div class="row">
                 <div class="product-image-detaill">
-                    <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="img-fluid"
-                        alt="Product Image">
+                    <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="img-fluid" alt="Product Image">
                 </div>
             </div>
             <div class="detill-text">
-                <h1 class="product_title "><?php echo htmlspecialchars($product['name_product']); ?></h1>
+                <h1 class="product_title"><?php echo htmlspecialchars($product['name_product']); ?></h1>
                 <hr>
-                <div>
-                    <?php echo $product['dtaill_product']; // แสดง HTML ตามที่เก็บในฐานข้อมูล ?>
-                </div>
+                
+                <?php
+                // แสดงรายละเอียดของสินค้า
+                echo '<p class="dtaill-title">' . ($product['dtaill_product']) . '</p>';
+                ?>
 
-                <hr>
                 <?php  
                 if ($img_ids !== false && !empty($img_ids)) {
                     echo '<hr>';
@@ -96,7 +92,7 @@ if (isset($product['dtaill_img_product'])) {
                 } else {
                     echo '<p>No additional images available.</p>';
                 }
-            ?>
+                ?>
 
                 <hr>
                 <?php 
@@ -105,15 +101,14 @@ if (isset($product['dtaill_img_product'])) {
                 if (!empty($video_id)) {
                     ?>
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>"
-                        allowfullscreen></iframe>
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>" allowfullscreen></iframe>
                 </div>
                 <?php
                 } else {
                     // Optional: Display a message if no video is available
                     // echo '<p>Video not available.</p>';
                 }
-            ?>
+                ?>
             </div>
         </div>
     </div>
@@ -132,5 +127,4 @@ if (isset($product['dtaill_img_product'])) {
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/custom.js"></script>
 </body>
-
 </html>
