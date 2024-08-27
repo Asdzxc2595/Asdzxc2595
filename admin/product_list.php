@@ -110,7 +110,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     </th>
                     <th>Details</th>
-                    <th>Details Image</th>
+                    <!-- <th>Details Image</th> -->
                     <th>Details Video</th>
                     <th>Date<i class="fa fa-filter" onclick="sortTable(7)"></i></th>
                     <th>View Count<i class="fa fa-filter" onclick="sortTable(8)"></i></th>
@@ -127,7 +127,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </td>
                     <td><?php echo htmlspecialchars($product['type_product']); ?></td>
                     <td><?php echo '<p class="banner_text">'.strip_tags($product['dtaill_product']) . '</p>'; ?></td>
-                    <td>
+                    <!-- <td>
                         <?php
                         $detailsImages = json_decode($product['dtaill_img_product']);
                         if (is_array($detailsImages) && !empty($detailsImages)) {
@@ -140,7 +140,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             echo "No images available";
                         }
                         ?>
-                    </td>
+                    </td> -->
                     <td><?php echo htmlspecialchars($product['dtaill_vdo_product']); ?></td>
                     <td><?php echo htmlspecialchars($product['date_product']); ?></td>
                     <td><?php echo htmlspecialchars($product['view_count']); ?></td>

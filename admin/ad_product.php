@@ -31,9 +31,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script>
         tinymce.init({
             selector: 'textarea#dtaill_product',
-            plugins: 'advlist autolink lists link image charmap preview anchor textcolor',
-            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
-            menubar: false
+           plugins: 'advlist anchor autolink autosave charmap code codesample directionality emoticons fullscreen help image imagetools insertdatetime link lists media nonbreaking pagebreak paste preview print save searchreplace spellchecker table template textcolor visualblocks visualchars wordcount',
+            toolbar: 'undo redo | formatselect | fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent  | table emoticons charmap | preview fullscreen code',
+            menubar: 'file edit view insert format tools table ',
         });
     </script>
 </head>

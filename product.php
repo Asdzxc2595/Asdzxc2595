@@ -30,60 +30,54 @@
         <div class="container">
             <h1 class="product_hard_title">Products All</h1>
             <div class="col-md-6 mb-3">
-            <form method="GET" action="">
-                <input type="text" name="search" class="form-control" placeholder="Search for products...">
-                <button type="submit" class="btn btn-primary mt-2">Search</button>
-            </form>
-        </div>
-        <div class="row">
-            <?php
-            require 'db_connect.php';
-            $search = isset($_GET['search']) ? $_GET['search'] : '';
+                <form method="GET" action="">
+                    <input type="text" name="search" class="form-control" placeholder="Search for products...">
+                    <button type="submit" class="btn btn-primary mt-2">Search</button>
+                </form>
+            </div>
+            <div class="row">
+                <?php
+                require 'db_connect.php';
+                $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-            if (!empty($search)) {
-                $stmt = $pdo->prepare("SELECT * FROM product WHERE name_product LIKE ?");
-                $stmt->execute(['%' . $search . '%']);
-            } else {
-                $stmt = $pdo->query("SELECT * FROM product");
-            }
+                if (!empty($search)) {
+                    $stmt = $pdo->prepare("SELECT * FROM product WHERE name_product LIKE ?");
+                    $stmt->execute(['%' . $search . '%']);
+                } else {
+                    $stmt = $pdo->query("SELECT * FROM product");
+                }
 
-            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($products as $product) {
-                ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card-item-product">
-                            <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name_product']); ?>">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
-                                <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
-                                <a href="detailproduct.php?id_product=<?php echo htmlspecialchars($product['id_product']); ?>" class="card-button">Read More</a>
+                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($products as $product) {
+                    ?>
+                        <div class="col-md-4 mb-4">
+                            <div class="card-item-product">
+                                <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name_product']); ?>">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
+                                    <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
+                                    <a href="detailproduct.php?id_product=<?php echo htmlspecialchars($product['id_product']); ?>" class="card-button">Read More</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php
-            }
-            ?>
+                    <?php
+                }
+                ?>
+            </div>
         </div>
     </div>
-</div>
 
-<?php include 'address.php'; ?>
+    <?php include 'address.php'; ?>
 
-<div class="copyright_section">
-    <?php include 'footer.php'; ?>
-</div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var cards = document.querySelectorAll('.card-item-product');
-        cards.forEach(function(card) {
-            card.classList.add('show');
-        });
-    });
-</script>
+    <div class="copyright_section">
+        <?php include 'footer.php'; ?>
+    </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/jquery-3.0.0.min.js"></script>
-<script src="js/plugin.js"></script>
-<script
+    <script src="js/script.js"> </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+</body>
+</html>

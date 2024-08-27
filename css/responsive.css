@@ -135,13 +135,14 @@
         padding-left: 15px;
     }
     #banner_slider a.carousel-control-prev {
-        left: 10px;
-        top: 380px;
+        left: 150px;
+        top: 561px;
     }
     #banner_slider a.carousel-control-next {
         right: 0px;
-        top: 380px;
-        left: 70px;
+        top: 561px;
+        left: 203px;
+        
     }
     .banner_section {
         padding: 90px 0px 20px 0px;
@@ -209,14 +210,14 @@
         padding: 15px 0px;
     }
     #banner_slider a.carousel-control-prev {
-        left: -41px;
-        top: 404px;
+        left: 90px;
+        top: 87%;
         color: #252525;
     }
     #banner_slider a.carousel-control-next {
         right: 0px;
-        top: 460px;
-        left: -40px;
+        top: 87%;
+        left: 150px;
     }
     .about_bt {
         width: 140px;

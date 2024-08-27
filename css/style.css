@@ -361,26 +361,29 @@ button {
     font-size: 24px;
     color: #050505;
     font-weight: bold;
+    padding-top: 100px;
 }
 
 .banner_text {
-    width: 100%;
+    width: 80%;
+    /* padding-top: 50px; */
     float: left;
+    padding-bottom: 70px;
     font-size: 16px;
     color: #4a4949;
     margin: 0px;
-    -webkit-line-clamp: 3; /* Number of lines to show */
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.5; /* Adjust based on your font size */
-    max-height: 4.5em; /
+    line-height: 1.5;
+    max-height: 4.5em;
 }
 
 .btn_main {
     width: 100%;
     float: left;
-    padding-top: 40px;
+    padding-top: 50px;
 }
 
 .about_bt {
@@ -436,14 +439,14 @@ button {
 }
 
 #banner_slider a.carousel-control-prev {
-    left: -120px;
-    top: 95px;
+    left: 1px;;
+    top: 306px;
     color: #4a4949;
 }
 
 #banner_slider a.carousel-control-next {
-    right: 150px ;
-    top: 95px;
+    right: -18px ;
+    top: 306px;
     color: #4a4949;
      /* background-color: #fefefd ; */
      border: #000 1px;
@@ -477,7 +480,7 @@ button {
 
 .banner_img {
     width: 100%;
-    height: 100%; 
+    height: 600px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -544,6 +547,11 @@ button {
     margin: 0 auto;
     text-align: center;
     padding-top: 40px;
+    /* opacity: 0; /* ซ่อนเนื้อหาจนกว่าจะเลื่อนเข้ามา 
+    transition: opacity 1s ease-in-out; อนิเมชันของการเปลี่ยนแปลงความโปร่งใส */
+}
+.product_section_2.show {
+    opacity: 1; /* แสดงเนื้อหา */
 }
 
 .bulit_icon {
@@ -1024,20 +1032,22 @@ background-color: #969696;
 }
 
 .footer_social_icon {
-    width: 100%;
     text-align: center; /* ใช้ text-align แทน float: center */
-    padding: 10px 0; /* เพิ่มการเว้นระยะบนและล่าง */
+    padding: 15px 0; /* เพิ่มการเว้นระยะบนและล่าง */
+
 }
 
 .footer_social_icon ul {
-    margin: 0;
-    padding: 0;
-    list-style: none; /* ลบสัญลักษณ์ของรายการ */
     display: inline-flex; /* ใช้ inline-flex เพื่อจัดเรียงรายการในแนวนอน */
 }
 
 .footer_social_icon li {
-    margin: 0 5px; /* เพิ่มระยะห่างระหว่างรายการ */
+    color: wheat;
+    font-size: 20px;
+    /* background-color: white; */
+    border-radius: 50%;
+    margin: 0 10px; /* เพิ่มระยะห่างระหว่างรายการ */
+    list-style: none;
 }
 
 .footer_social_icon a {
@@ -1519,4 +1529,59 @@ form {
     color: #007bff; 
     font-size: 18px; /*test*/
 }
- 
+ .layout-img{
+    width: 100%;
+    height: 50%;
+ }
+.visibility{
+    height: 500px !important;
+}
+.porduct_section_show.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.parallax {
+    position: relative;
+    display: flex;
+    text-align: center;
+    height: 100vh;
+    overflow: hidden;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #eee8e8;
+    z-index: -2;
+}
+
+.parallax img {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 1; /* ใช้ z-index เพื่อกำหนดลำดับการซ้อนทับ */
+}
+
+#city1 {
+    left: 0;
+    z-index: 2; 
+}
+
+#city2 {
+    left: 0;
+    /* transform: translateX(-50%);  */
+    z-index: 1; /* รูปนี้จะอยู่ด้านล่าง */
+}
+
+#text_logo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 5em;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+    z-index: -1; /* ข้อความจะอยู่ด้านบนสุด */
+}
+
+
+
+

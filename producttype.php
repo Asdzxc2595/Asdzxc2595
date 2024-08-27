@@ -58,8 +58,10 @@ if (isset($_GET['type'])) {
                             <a href="detailproduct.php?id_product=<?php echo $product['id_product']; ?>"
                                 class="card-button">Read More</a>
                         </div>
-                        
-                    </div><p><p></p>
+
+                    </div>
+                    <p>
+                    <p></p>
                 </div>
                 <?php endforeach; ?>
                 <?php else : ?>
@@ -73,14 +75,7 @@ if (isset($_GET['type'])) {
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const cardItems = document.querySelectorAll('.card-item-product');
-            cardItems.forEach(function(item) {
-                item.classList.add('show');
-            });
-        });
-    </script>
+    <script src="js/script.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>

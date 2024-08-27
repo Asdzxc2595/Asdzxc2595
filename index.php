@@ -36,16 +36,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-    .product_section {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
 
-    .product_section.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
     </style>
 </head>
 <div class="header_section header_bg">
@@ -53,14 +44,22 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         <?php include 'nav.php'; ?>
     </div>
 </div>
+<section class="parallax">
+<div id="text_logo">LOGO</div>
+        <img src="images/city2.png" id="city2">
+        <img src="images/city1.png" id="city1">
+        
+        
+    </section>
 <body>
-<!-- สินค้าใหม่ -->
-<div class="banner_section layout_padding client_section">
-    <h6 class="text_titer_center">สินค้าใหม่</h6>
-    <div class="container">
-        <div id="banner_slider" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-                <?php
+
+    <!-- สินค้าใหม่ -->
+    <div class="banner_section layout_padding client_section">
+        <h6 class="text_titer_center">สินค้าใหม่</h6>
+        <div class="container">
+            <div id="banner_slider" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <?php
                     if ($resultNewProducts->rowCount() > 0) {
                         $first = true;
                         while ($row = $resultNewProducts->fetch(PDO::FETCH_ASSOC)) {
@@ -87,34 +86,33 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                         echo '<p>No new products available</p>';
                     }
                     ?>
+                </div>
+                <a class="carousel-control-prev" href="#banner_slider" role="button" data-slide="prev">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+                <a class="carousel-control-next" href="#banner_slider" role="button" data-slide="next">
+                    <i class="fa fa-arrow-right"></i>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#banner_slider" role="button" data-slide="prev">
-                <i class="fa fa-arrow-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#banner_slider" role="button" data-slide="next">
-                <i class="fa fa-arrow-right"></i>
-            </a>
         </div>
     </div>
-</div>
-<!-- ปิดสินค้าใหม่ -->
+    <!-- ปิดสินค้าใหม่ -->
 
-<img src="images/happy.png" style="width: 100%;" alt="Image">
-
+    <img class="layout-img" src="images/happy.png" alt="Image">
 
 
-<!-- สินค้านิยม -->
-<div class="product_section layout_padding body-background">
-    <div class="container">
-        <div class="row">
-            <h1 class="product_taital">สินค้านิยม</h1>
-            <div class="bulit_icon"><img src="images/bulit-icon.png" alt="Bulit Icon"></div>
+    <!-- สินค้านิยม -->
+    <div class="product_section layout_padding body-background">
+        <div class="container">
+            <div class="row">
+                <h1 class="product_taital">สินค้านิยม</h1>
+                <div class="bulit_icon"><img src="images/bulit-icon.png" alt="Bulit Icon"></div>
+            </div>
         </div>
-    </div>
-    <div class="product_section_2">
-        <div id="main_slider" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <?php
+        <div class="product_section_2">
+            <div id="main_slider" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <?php
                     if ($resultBestSellers->rowCount() > 0) {
                         $first = true;
                         $itemCount = 0;
@@ -147,45 +145,35 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                         echo '<p>No best-selling products found.</p>';
                     }
                     ?>
+                </div>
+                <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
+                    <i class="fa fa-arrow-left"></i>
+                </a>
+                <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
+                    <i class="fa fa-arrow-right"></i>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-                <i class="fa fa-arrow-left"></i>
-            </a>
-            <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-                <i class="fa fa-arrow-right"></i>
-            </a>
         </div>
     </div>
-</div>
-<img src="images/happpy.png" style="width: 100%;" alt="Image">
-<?php include 'address.php'; ?>
-<div class="copyright_section">
-    <?php include 'footer.php'; ?>
-</div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const productSection = document.querySelector('.product_section');
-
-    // ตรวจสอบว่า productSection เข้าสู่ viewport แล้วหรือยัง
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show'); // เพิ่มคลาส .show เพื่อเริ่มอนิเมชัน
-            }
-        });
-    });
-
-    // เริ่มตรวจสอบส่วนที่ต้องการ
-    observer.observe(productSection);
+    <img src="images/happpy.png" style="width: 100%;" alt="Image">
+    <?php include 'address.php'; ?>
+    <div class="copyright_section">
+        <?php include 'footer.php'; ?>
+    </div>
+    <script>document.addEventListener('scroll', function() {
+    var scrollTop = window.pageYOffset;
+    document.getElementById('city1').style.transform = 'translateY(' + scrollTop * 0.5 + 'px)';
+    document.getElementById('city2').style.transform = 'translateY(' + scrollTop * 0.2 + 'px)';
 });
 </script>
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/jquery-3.0.0.min.js"></script>
-<script src="js/plugin.js"></script>
-<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="js/custom.js"></script>
+    <script src ="js/script.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
 </body>
 
 </html>
