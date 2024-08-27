@@ -1567,8 +1567,8 @@ form {
 
 #city2 {
     left: 0;
-    /* transform: translateX(-50%);  */
-    z-index: 1; /* รูปนี้จะอยู่ด้านล่าง */
+    /* transform: translateX(-50%);   */
+    z-index: -2; /* รูปนี้จะอยู่ด้านล่าง */
 }
 
 #text_logo {
@@ -1580,6 +1580,7 @@ form {
     color: white;
     text-shadow: 2px 2px 4px #000;
     z-index: -1; /* ข้อความจะอยู่ด้านบนสุด */
+    padding-bottom: 150px;
 }
 
 

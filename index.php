@@ -45,8 +45,9 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     </div>
 </div>
 <section class="parallax">
-<div id="text_logo">LOGO</div>
+
         <img src="images/city2.png" id="city2">
+        <div id="text_logo">LOGO</div>
         <img src="images/city1.png" id="city1">
         
         
@@ -162,8 +163,8 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     </div>
     <script>document.addEventListener('scroll', function() {
     var scrollTop = window.pageYOffset;
-    document.getElementById('city1').style.transform = 'translateY(' + scrollTop * 0.5 + 'px)';
-    document.getElementById('city2').style.transform = 'translateY(' + scrollTop * 0.2 + 'px)';
+    document.getElementById('city1').style.transform = 'translateY(' + scrollTop * 0+ 'px)';
+    document.getElementById('city2').style.transform = 'translateY(' + scrollTop * 0.3 + 'px)';
 });
 </script>
     <script src ="js/script.js"></script>
