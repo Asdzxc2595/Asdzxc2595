@@ -31,7 +31,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Product List</title>
+    <title>รายการสินค้า</title>
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,43 +42,17 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         rel="stylesheet">
 
     <style>
-    #productTable {
-        width: 100%;
-        font-size: 1.2em;
-    }
+.dropdown-filter.show {
+    display:flex;
+} 
+.dropdown-toggle {
+    cursor: pointer;
+    font-size: 26px;
+}
 
-    #productTable img {
-        width: 150px;
-    }
+.dropdown-filter select {
 
-    #productTable td,
-    #productTable th {
-        padding: 12px;
-    }
-
-    .dropdown-filter {
-        display: none;
-        position: absolute;
-        background-color: white;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-    }
-
-    .dropdown-filter.show {
-        display: block;
-    }
-
-    .dropdown-toggle {
-        cursor: pointer;
-        font-size: 1.5em;
-    }
-
-    .dropdown-filter select {
-        width: 100%;
-    }
+}
     </style>
 </head>
 
@@ -86,22 +60,22 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php include 'nav_admin.php'; ?>
 
     <div class="container mt-5">
-        <h2>Product List</h2>
+        <h2>รายการสินค้า</h2>
 
-        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search for products..." class="form-control mb-3">
+        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="ค้นหารายการ" class="form-control mb-3">
 
         <table class="table table-striped" id="productTable">
             <thead>
                 <tr>
-                    <th>ID<i class="fa fa-filter" onclick="sortTable(0)"></i></th>
-                    <th>Name<i class="fa fa-filter" onclick="sortTable(1)"></i></th>
-                    <th>Image</th>
+                    <th>รหัสสินค้า<i class="fa fa-filter" onclick="sortTable(0)"></i></th>
+                    <th>ชื่อ<i class="fa fa-filter" onclick="sortTable(1)"></i></th>
+                    <th>รูปสินค้า</th>
                     <th>
-                        <span class="dropdown-toggle h3" onclick="toggleDropdown()">Type</span>
-                        <div id="typeDropdown" class="dropdown-filter">
+                        <span class="dropdown-toggle " onclick="toggleDropdown()">ประเภทสินค้า</span>
+                        <div id="typeDropdown" class="dropdown-filter ">
                             <form id="filterForm" method="GET" action="">
                                 <select id="test" name="type" class="form-control" onchange="document.getElementById('filterForm').submit()">
-                                    <option value="">Select Type</option>
+                                    <option value="">ประเภท</option>
                                     <option value="เครื่องสำอาง" <?php echo ($typeFilter === 'เครื่องสำอาง') ? 'selected' : ''; ?>>เครื่องสำอาง</option>
                                     <option value="อาหารเสริม" <?php echo ($typeFilter === 'อาหารเสริม') ? 'selected' : ''; ?>>อาหารเสริม</option>
                                     <option value="สินค้า" <?php echo ($typeFilter === 'สินค้า') ? 'selected' : ''; ?>>สินค้า</option>
@@ -109,12 +83,12 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             </form>
                         </div>
                     </th>
-                    <th>Details</th>
+                    <th>รายละเอียด</th>
                     <!-- <th>Details Image</th> -->
-                    <th>Details Video</th>
-                    <th>Date<i class="fa fa-filter" onclick="sortTable(7)"></i></th>
-                    <th>View Count<i class="fa fa-filter" onclick="sortTable(8)"></i></th>
-                    <th>Actions</th>
+                    <th>คลิปรายละเอียดสินค้า</th>
+                    <th>วันที่นำเข้า<i class="fa fa-filter" onclick="sortTable(7)"></i></th>
+                    <th>ยอดคนดู<i class="fa fa-filter" onclick="sortTable(8)"></i></th>
+                    <th>แก้ไข</th>
                 </tr>
             </thead>
             <tbody>

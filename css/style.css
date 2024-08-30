@@ -344,7 +344,7 @@ button {
     text-align: center;
     width: 100%;
     float: left;
-    font-size: 24px;
+    font-size: 35px;
     color: #050505;
     font-weight: bold;
     
@@ -1515,13 +1515,13 @@ form {
 
 }
 .dtaill-title ul {
-    list-style-type: auto; /* ใช้จุด (•) เป็นสัญลักษณ์ของรายการ */
-    padding-left: 20px; /* เพิ่มระยะห่างทางซ้ายของรายการ */
+    list-style-type: auto; 
+    padding-left: 20px; 
 }
 
 .dtaill-title li {
-    margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่างของแต่ละรายการ */
-    font-size: 16px; /* กำหนดขนาดของฟอนต์ */
+    margin-bottom: 10px; 
+    font-size: 16px; 
     color: #333; 
 }
 
@@ -1557,7 +1557,7 @@ form {
     bottom: 0;
     width: 100%;
     pointer-events: none;
-    z-index: 1; /* ใช้ z-index เพื่อกำหนดลำดับการซ้อนทับ */
+    z-index: 1;
 }
 
 #city1 {
@@ -1567,9 +1567,8 @@ form {
 
 #city2 {
     left: 0;
-    /* transform: translateX(-50%);   */
-    z-index: -2; /* รูปนี้จะอยู่ด้านล่าง */
-    padding-bottom: 80px;
+    z-index: -2;
+    padding-bottom: 70px;
 }
 
 #text_logo {
@@ -1584,6 +1583,127 @@ form {
     padding-bottom: 150px;
 }
 
+#productTable {
+    width: 150%;
+    font-size: 15px;
+}
+
+#productTable img {
+    width: 150px;
+}
+
+#productTable td,
+#productTable th {
+    padding: 12px;
+}
+
+.dropdown-filter {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    width: 110%;
+    padding: 0;
+    margin: 0;
+}
+.dropdown-toggle{
+    font-size: 16px;
+}
 
 
 
+.scroll-btn {
+    position: fixed;
+    right: 20px;
+    z-index: 1000;
+    background-color: #f57c00;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    border-color: 1px #000;
+}
+
+#scrollUp {
+    bottom: 80px;
+}
+
+#scrollDown {
+    bottom: 20px; 
+}
+
+.scroll-btn:hover {
+    background-color: #ff9800;
+}
+/* nav admin*/
+    .sidebar {
+        height: 100%;
+        width: 250px;
+        position: fixed;
+        top: 0;
+        left: -250px;
+        background-color: #343a40;
+        padding-top: 20px;
+        transition: left 0.3s ease;
+        padding-left: 10px;
+    }
+
+    .sidebar.active {
+        left: 10px;
+        padding-left: 10px;
+    }
+
+    .sidebar a {
+        padding: 20px;
+        text-decoration: none;
+        font-size: 14px;
+        color: #f8f9fa;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #495057;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+    }
+
+    .sidebar a i {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .sidebar a:hover {
+        background-color: #495057;
+    }
+
+    .menu-btn {
+        font-size: 30px;
+        cursor: pointer;
+        padding: 15px;
+        background-color: #343a40;
+        color: #f8f9fa;
+        border: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        height: 60px;
+        width: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100%;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 20px;
+        transition: margin-left 0.3s ease;
+    }
+
+    .content.shift {
+        margin-left: 250px;
+    }
+    .adminicon{
+        color: #f8f9fa;
+    }
+  /*สินสุด navadmin*/

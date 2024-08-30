@@ -8,10 +8,8 @@ $resultBestSellers = $pdo->query($sqlBestSellers);
 // ดึงสินค้าใหม่
 $sqlNewProducts = "SELECT id_product, name_product, img_product, dtaill_product 
                     FROM product 
-                    WHERE DATE_ADD(date_product, INTERVAL 3 MONTH) >= NOW() LIMIT 5 ";
+                    WHERE DATE_ADD(date_product, INTERVAL 3 MONTH) >= NOW() LIMIT 5";
 $resultNewProducts = $pdo->query($sqlNewProducts);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -36,27 +34,34 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-
+        /* เพิ่ม CSS ถ้าจำเป็น */
     </style>
 </head>
-<div class="header_section header_bg">
-    <div class="container-fluid">
-        <?php include 'nav.php'; ?>
-    </div>
-</div>
-<section class="parallax">
 
+<body>
+    <div class="header_section header_bg">
+        <div  class="container-fluid">
+            <?php include 'nav.php'; ?>
+        </div>
+    </div>
+
+    <section class="parallax" id="parallax">
         <img src="images/city2.png" id="city2">
         <div id="text_logo">LOGO</div>
         <img src="images/city1.png" id="city1">
-        
-        
     </section>
-<body>
+
+    <button id="scrollUp" class="scroll-btn">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <button id="scrollDown" class="scroll-btn">
+        <i class="fas fa-chevron-down"></i>
+    </button>
 
     <!-- สินค้าใหม่ -->
-    <div class="banner_section layout_padding client_section">
-        <h6 class="text_titer_center">สินค้าใหม่</h6>
+    <div id="newProducts" class="banner_section layout_padding client_section">
+        <h1 class="text_titer_center">สินค้าใหม่</h1>
         <div class="container">
             <div id="banner_slider" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
@@ -101,9 +106,9 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
 
     <img class="layout-img" src="images/happy.png" alt="Image">
 
-
     <!-- สินค้านิยม -->
-    <div class="product_section layout_padding body-background">
+     
+    <div id="bestSellers" class="product_section layout_padding body-background">
         <div class="container">
             <div class="row">
                 <h1 class="product_taital">สินค้านิยม</h1>
@@ -135,7 +140,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                             echo '<h3 class="types_text">' . htmlspecialchars($row["name_product"]) . '</h3>';
                             echo '<p class="looking_text">' . strip_tags($row["dtaill_product"]) . '</p>';
                             echo '<div class="read_bt"><a href="detailproduct.php?id_product=' . htmlspecialchars($row["id_product"]) . '">Read More</a></div>';
-                            echo '<p><p></div>';
+                            echo '</div>';
 
                             $itemCount++;
                         }
@@ -157,24 +162,55 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         </div>
     </div>
     <img src="images/happpy.png" style="width: 100%;" alt="Image">
-    <?php include 'address.php'; ?>
+    <div id="address">
+        <?php include 'address.php'; ?>
+    </div>
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
     </div>
-    <script>document.addEventListener('scroll', function() {
-    var scrollTop = window.pageYOffset;
-    document.getElementById('city1').style.transform = 'translateY(' + scrollTop * 0+ 'px)';
-    document.getElementById('city2').style.transform = 'translateY(' + scrollTop * 0.3 + 'px)';
-});
-</script>
-    <script src ="js/script.js"></script>
+
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery-3.0.0.min.js"></script>
+    <script src="js/script.js"></script>
     <script src="js/plugin.js"></script>
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/custom.js"></script>
-</body>
+    <script>
+        $(document).ready(function() {
+            // ปรับปรุง scroll buttons
+            const sections = [ 'parallax', 'newProducts', 'bestSellers', 'address'];
+            let currentSection = 0;
 
+            $('#scrollUp').click(function() {
+                if (currentSection > 0) {
+                    currentSection--;
+                    scrollToSection(currentSection);
+                }
+            });
+
+            $('#scrollDown').click(function() {
+                if (currentSection < sections.length - 1) {
+                    currentSection++;
+                    scrollToSection(currentSection);
+                }
+            });
+
+            function scrollToSection(index) {
+                const targetSection = $('#' + sections[index]);
+                if (targetSection.length) {
+                    $('html, body').animate({
+                        scrollTop: targetSection.offset().top
+                    }, 1);
+                }
+            }
+        });
+
+        document.addEventListener('scroll', function() {
+            var scrollTop = window.pageYOffset;
+            document.getElementById('city1').style.transform = 'translateY(' + scrollTop * 0 + 'px)';
+            document.getElementById('city2').style.transform = 'translateY(' + scrollTop * 0.3 + 'px)';
+        });
+    </script>
+</body>
 </html>
