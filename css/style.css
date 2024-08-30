@@ -1569,6 +1569,7 @@ form {
     left: 0;
     /* transform: translateX(-50%);   */
     z-index: -2; /* รูปนี้จะอยู่ด้านล่าง */
+    padding-bottom: 80px;
 }
 
 #text_logo {
