@@ -1,5 +1,4 @@
 <?php
-
 require("../db_connect.php"); // เชื่อมต่อฐานข้อมูล
 
 if (isset($_POST['submit'])) {
@@ -17,7 +16,11 @@ if (isset($_POST['submit'])) {
     $img_product = null;
     if (isset($_FILES['img_product']) && $_FILES['img_product']['error'] == UPLOAD_ERR_OK) {
         $img_product = $_FILES['img_product']['name'];
-        move_uploaded_file($_FILES['img_product']['tmp_name'], '../images/' . $img_product);
+        $target_path = '../images/' . $img_product;
+        if (!move_uploaded_file($_FILES['img_product']['tmp_name'], $target_path)) {
+            echo "เกิดข้อผิดพลาดในการอัปโหลดรูปภาพสินค้า";
+            exit;
+        }
     }
 
     // จัดการกับรูปภาพรายละเอียด (หลายรูป)
@@ -27,8 +30,16 @@ if (isset($_POST['submit'])) {
         for ($i = 0; $i < $file_count; $i++) {
             if ($_FILES['dtaill_img_product']['error'][$i] === UPLOAD_ERR_OK) {
                 $file_name = $_FILES['dtaill_img_product']['name'][$i];
-                move_uploaded_file($_FILES['dtaill_img_product']['tmp_name'][$i], '../images/' . $file_name);
-                $dtaill_img_products[] = $file_name; // เก็บชื่อไฟล์ใน array
+                $target_path = '../images/' . $file_name;
+                if (move_uploaded_file($_FILES['dtaill_img_product']['tmp_name'][$i], $target_path)) {
+                    $dtaill_img_products[] = $file_name; // เก็บชื่อไฟล์ใน array หากอัปโหลดสำเร็จ
+                } else {
+                    echo "การย้ายไฟล์ล้มเหลว: " . $file_name;
+                    exit;
+                }
+            } else {
+                echo "เกิดข้อผิดพลาดในการอัปโหลดไฟล์: " . $_FILES['dtaill_img_product']['name'][$i];
+                exit;
             }
         }
     }
@@ -41,7 +52,8 @@ if (isset($_POST['submit'])) {
             VALUES (:name_product, :img_product, :type_product, :dtaill_product, :dtaill_img_product, :date_product, :dtaill_vdo_product)";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([
+
+    if ($stmt->execute([
         'name_product' => $name_product,
         'img_product' => $img_product,
         'type_product' => $type_product,
@@ -49,9 +61,11 @@ if (isset($_POST['submit'])) {
         'dtaill_img_product' => $dtaill_img_product,
         'date_product' => $date_product,
         'dtaill_vdo_product' => $dtaill_vdo_product
-    ]);
-
-    echo "เพิ่มสินค้าเรียบร้อยแล้ว";
-     echo '<p><p><h1><a href="dashboard.php">กลับไปยังหน้าหลัก</a>';
+    ])) {
+        header("Location: product_list.php");
+        exit;
+    } else {
+        echo "เกิดข้อผิดพลาดในการเพิ่มข้อมูลสินค้า";
+    }
 }
 ?>

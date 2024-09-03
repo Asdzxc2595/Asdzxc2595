@@ -34,7 +34,26 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* เพิ่ม CSS ถ้าจำเป็น */
+       .carousel-item .col-md-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* จัดตรงกลางในแนวตั้ง */
+}
+
+.carousel-item .banner_img {
+    order: -1; /* ทำให้รูปภาพอยู่ด้านบน */
+}
+
+.carousel-item img {
+    max-width: 100%;
+    height: auto;
+    min-width: 280px;
+}
+
+.tasty_text {
+    margin-top: 10px;
+}
+
     </style>
 </head>
 
@@ -176,41 +195,8 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <script src="js/plugin.js"></script>
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/custom.js"></script>
-    <script>
-        $(document).ready(function() {
-            // ปรับปรุง scroll buttons
-            const sections = [ 'parallax', 'newProducts', 'bestSellers', 'address'];
-            let currentSection = 0;
-
-            $('#scrollUp').click(function() {
-                if (currentSection > 0) {
-                    currentSection--;
-                    scrollToSection(currentSection);
-                }
-            });
-
-            $('#scrollDown').click(function() {
-                if (currentSection < sections.length - 1) {
-                    currentSection++;
-                    scrollToSection(currentSection);
-                }
-            });
-
-            function scrollToSection(index) {
-                const targetSection = $('#' + sections[index]);
-                if (targetSection.length) {
-                    $('html, body').animate({
-                        scrollTop: targetSection.offset().top
-                    }, 1);
-                }
-            }
-        });
-
-        document.addEventListener('scroll', function() {
-            var scrollTop = window.pageYOffset;
-            document.getElementById('city1').style.transform = 'translateY(' + scrollTop * 0 + 'px)';
-            document.getElementById('city2').style.transform = 'translateY(' + scrollTop * 0.3 + 'px)';
-        });
-    </script>
+    <script src="js/updow.js"></script>
+    
+    
 </body>
 </html>

@@ -57,8 +57,19 @@ if (isset($product['dtaill_img_product'])) {
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" referrerpolicy="origin"></script>
+    <style>
+        .img-fluid-detail {
+    display: flex;  /* ทำให้รูปภาพเป็น block element */
+    margin: 0 auto;  
+    border-radius: 5px;
+    max-width: 100%;  /* ทำให้รูปภาพไม่เกินขนาด container */
+    height: 600px;    
+}
+
+
+    </style>
 </head>
-<body>
+<body >
     <div class="header_section header_bg">
         <div class="container-fluid">
             <?php include 'nav.php'; ?>
@@ -86,19 +97,21 @@ if (isset($product['dtaill_img_product'])) {
                     foreach ($img_ids as $img_id) {
                         $img_id = trim($img_id);
                         if (!empty($img_id)) {
-                            echo '<img src="images/' . htmlspecialchars($img_id) . '" class="img-fluid" alt="Product Detail Image" style="margin-bottom: 10px;">';
+                            echo '<img src="images/' . htmlspecialchars($img_id) . '" class="img-fluid-detail" alt="Product Detail Image">';
                         }
                     }
+                   
                 } else {
-                    echo '<p>No additional images available.</p>';
+                    // echo '<p>No additional images available.</p>';
                 }
                 ?>
 
-                <hr>
+              
                 <?php 
                 $video_id = isset($product['dtaill_vdo_product']) ? htmlspecialchars($product['dtaill_vdo_product']) : '';
 
                 if (!empty($video_id)) {
+                    echo '<hr>';
                     ?>
                 <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $video_id; ?>" allowfullscreen></iframe>
@@ -110,6 +123,7 @@ if (isset($product['dtaill_img_product'])) {
                 }
                 ?>
             </div>
+            <button class="back-button" onclick="goBack()">ย้อนกลับ</button>
         </div>
     </div>
 
@@ -120,11 +134,10 @@ if (isset($product['dtaill_img_product'])) {
     </div>
 
     <script src="js/jquery.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/plugin.js"></script>
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

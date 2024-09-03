@@ -41,7 +41,13 @@ if (isset($_GET['id'])) {
         toolbar: 'undo redo | formatselect | fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent  | table emoticons charmap | preview fullscreen code',
         menubar: 'file edit view insert format tools table ',
     });
+
     </script>
+    <style>
+            .body{
+        padding-left: 50px;
+    }
+    </style>
 </head>
 
 <body>
@@ -90,29 +96,30 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="form-group-edit">
-                <label for="dtaill_img_product">Product Detail Images</label>
-                <input type="file" class="form-edit" id="dtaill_img_product" name="dtaill_img_product[]" multiple>
+    <label for="dtaill_img_product">Product Detail Images</label>
+    <input type="file" class="form-edit" id="dtaill_img_product" name="dtaill_img_product[]" multiple>
 
-                <?php
-                $img_data = $product['dtaill_img_product'];
-                $images = json_decode($img_data, true) ?: [];
+    <?php
+    // แปลงข้อมูลจาก serialize กลับมาเป็น array
+    $images = unserialize($product['dtaill_img_product']) ?: [];
 
-                if (!empty($images)) {
-                    echo '<div class="row mt-3">';
-                    foreach ($images as $img) {
-                        $img = trim($img);
-                        if (!empty($img)) {
-                            echo '<div class="col-md-3 mb-3">';
-                            echo '<img src="../images/' . htmlspecialchars($img) . '" alt="Product Detail Image" class="img-fluid" style="width: 100%;">';
-                            echo '</div>';
-                        }
-                    }
-                    echo '</div>';
-                } else {
-                    echo '<p>No images available.</p>';
-                }
-                ?>
-            </div>
+    if (!empty($images)) {
+        echo '<div class="row mt-3">';
+        foreach ($images as $img) {
+            $img = trim($img);
+            if (!empty($img)) {
+                echo '<div class="col-md-3 mb-3">';
+                echo '<img src="../images/' . htmlspecialchars($img) . '" alt="Product Detail Image" class="img-fluid" style="width: 100%;">';
+                echo '</div>';
+            }
+        }
+        echo '</div>';
+    } else {
+        echo '<p>No images available.</p>';
+    }
+    ?>
+</div>
+
 
             <div class="form-group-edit">
                 <label for="date_product">Date</label>

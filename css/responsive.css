@@ -125,6 +125,9 @@
     .mean-container .mean-nav ul li a.mean-expand {
         top: 0;
     }
+    .banner_img{
+        width: top;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -310,8 +313,8 @@
         display: none;
     }
     .banner_section .row {
-        display: flex;
-        flex-direction: column-reverse;
+        /* display: flex;
+        flex-direction: column-reverse; */
     }
     .banner_taital_main {
         padding-top: 0px;
@@ -467,14 +470,14 @@
     }
     #main_slider a.carousel-control-next {
         right: 0;
-        display: none;
+        /* display: none; */
     }
     #main_slider a.carousel-control-prev {
         left: 0;
-        display: none;
+        /* display: none; */
     }
     .about_taital_box {
-        position: inherit;
+        /* position: inherit; */
     }
     .about_taital {
         font-size: 30px;
@@ -495,9 +498,9 @@
         /* background: rgb(208, 125, 107, 0.6); */
         background-size: cover;
     }
-    /* .banner_img{
+     .banner_img{
         width: top;
-    } */
+    }
     .client_left {
         width: 100%;
         padding-left: 0px;

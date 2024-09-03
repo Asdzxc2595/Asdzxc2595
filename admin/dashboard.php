@@ -64,6 +64,10 @@ unset($data); // Unset reference to avoid issues
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
     <style>
+        .body{
+            padding-left: 290px;
+            padding-top: 130px;
+        }
         .chart-container {
             position: relative;
             width: 100%;
@@ -76,44 +80,17 @@ unset($data); // Unset reference to avoid issues
                 width: 80%;
             }
         }
-
-        .card-container {
-            margin-top: 20px;
-        }
-
-        .card {
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-
-        .card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
         .card-body {
             padding: 20px;
         }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .card-text {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
+        
     </style>
 </head>
 <body>
-<?php include 'nav_admin.php'; ?>
+
+<?php include 'nav_admin.php'; ?> 
     <div class="container mt-5">
-        <h2>Dashboard: ยอดการดูสินค้าตามประเภท</h2>
+        <h2>Dashboard: ยอดคนดู</h2>
 
         <div class="row card-container">
             <!-- แสดงข้อมูลยอดเข้าชมรวมทั้งหมด -->

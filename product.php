@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+    .search-from {
+        text-align: right;
+    }
+    </style>
 </head>
 
 <body>
@@ -27,14 +32,13 @@
     </div>
 
     <div class="product_section layout_padding body-background">
-        <div class="container">
+        <div class="container_product_lits">
             <h1 class="product_hard_title">Products All</h1>
-            <div class="col-md-6 mb-3">
-                <form method="GET" action="">
-                    <input type="text" name="search" class="form-control" placeholder="Search for products...">
-                    <button type="submit" class="btn btn-primary mt-2">Search</button>
-                </form>
-            </div>
+            <form method="GET" class="search-from">
+
+                <input type="text" name="search" class="form-control-search-lis" placeholder="Search for products...">
+                <button type="submit" class="btn btn-primary mt-2">Search</button>
+            </form>
             <div class="row">
                 <?php
                 require 'db_connect.php';
@@ -50,17 +54,19 @@
                 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($products as $product) {
                     ?>
-                        <div class="col-md-4 mb-4">
-                            <div class="card-item-product">
-                                <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($product['name_product']); ?>">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
-                                    <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
-                                    <a href="detailproduct.php?id_product=<?php echo htmlspecialchars($product['id_product']); ?>" class="card-button">Read More</a>
-                                </div>
-                            </div>
+                <div class="col-lg-3 col-md-4 col-sm-5 col-15">
+                    <div class="card-item-product">
+                        <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="card-img-top"
+                            alt="<?php echo htmlspecialchars($product['name_product']); ?>">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
+                            <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
+                            <a href="detailproduct.php?id_product=<?php echo htmlspecialchars($product['id_product']); ?>"
+                                class="card-button">Read More</a>
                         </div>
-                    <?php
+                    </div>
+                </div>
+                <?php
                 }
                 ?>
             </div>
@@ -80,4 +86,5 @@
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/plugin.js"></script>
 </body>
+
 </html>

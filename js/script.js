@@ -5,3 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
         item.classList.add('show');
     });
 });
+
+function goBack() {
+    window.history.back();
+  }
+  

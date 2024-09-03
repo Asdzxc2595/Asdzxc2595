@@ -35,39 +35,30 @@ if (isset($_GET['type'])) {
 </head>
 
 <body>
-    <div class="header_section header_bg">
-        <div class="container-fluid">
-            <?php include 'nav.php'; ?>
-        </div>
-    </div>
-
-    <!-- Product Section -->
+    <?php include 'nav.php'; ?>
     <div class="product_section layout_padding body-background">
-        <div class="container">
+        <div class="container_product_lits">
             <h1 class="product_hard_title">Products : <?php echo htmlspecialchars($type_product); ?></h1>
             <div class="row">
-                <?php if (!empty($products)) : ?>
-                <?php foreach ($products as $product) : ?>
-                <div class="col-md-4">
-                    <div class="card-item-product">
-                        <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>"
-                            alt="<?php echo htmlspecialchars($product['name_product']); ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
-                            <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
-                            <a href="detailproduct.php?id_product=<?php echo $product['id_product']; ?>"
-                                class="card-button">Read More</a>
-                        </div>
-
-                    </div>
-                    <p>
-                    <p></p>
-                </div>
-                <?php endforeach; ?>
-                <?php else : ?>
-                <p>ไม่มีสินค้าที่ตรงกับประเภทนี้</p>
-                <?php endif; ?>
+    <?php if (!empty($products)) : ?>
+    <?php foreach ($products as $product) : ?>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-15">
+        <div class="card-item-product">
+            <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>"
+                alt="<?php echo htmlspecialchars($product['name_product']); ?>">
+            <div class="card-body">
+                <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
+                <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
+                <a href="detailproduct.php?id_product=<?php echo $product['id_product']; ?>"
+                    class="card-button">Read More</a>
             </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+
+
         </div>
     </div>
     <?php include 'address.php'; ?>
@@ -75,14 +66,12 @@ if (isset($_GET['type'])) {
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
     </div>
-    <script src="js/script.js"></script>
+    <script src="js/script.js"> </script>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/plugin.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/custom.js"></script>
 </body>
 
 </html>

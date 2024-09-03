@@ -36,6 +36,10 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             menubar: 'file edit view insert format tools table ',
         });
     </script>
+       <style>.body{
+        padding-left: 50px;
+       }
+    </style>
 </head>
 
 <body>
@@ -44,7 +48,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php include 'nav_admin.php'; ?>
         </div>
     </div>
-    <div class="container">
+    <div class="container mt-5">
         <h1 class="mt-5">เพิ่มสินค้าใหม่</h1>
         <form action="update.php" method="post" enctype="multipart/form-data">
             <div class="form-group-edit">

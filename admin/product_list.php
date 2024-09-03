@@ -36,23 +36,26 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
     <link
         href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
 
     <style>
-.dropdown-filter.show {
-    display:flex;
-} 
-.dropdown-toggle {
-    cursor: pointer;
-    font-size: 26px;
-}
+        .body {
+            padding-left: 50px;
+        }
 
-.dropdown-filter select {
+        .dropdown-filter.show {
+            display: flex;
+        }
 
-}
+        .dropdown-toggle {
+            cursor: pointer;
+            font-size: 26px;
+        }
+
+
     </style>
 </head>
 
@@ -62,32 +65,36 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container mt-5">
         <h2>รายการสินค้า</h2>
 
-        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="ค้นหารายการ" class="form-control mb-3">
-
         <table class="table table-striped" id="productTable">
             <thead>
                 <tr>
-                    <th>รหัสสินค้า<i class="fa fa-filter" onclick="sortTable(0)"></i></th>
-                    <th>ชื่อ<i class="fa fa-filter" onclick="sortTable(1)"></i></th>
+                    <th>รหัสสินค้า</th>
+                    <th>ชื่อ</th>
                     <th>รูปสินค้า</th>
                     <th>
-                        <span class="dropdown-toggle " onclick="toggleDropdown()">ประเภทสินค้า</span>
-                        <div id="typeDropdown" class="dropdown-filter ">
+                        <span class="dropdown-toggle" onclick="toggleDropdown()">ประเภทสินค้า</span>
+                        <div id="typeDropdown" class="dropdown-filter">
                             <form id="filterForm" method="GET" action="">
-                                <select id="test" name="type" class="form-control" onchange="document.getElementById('filterForm').submit()">
+                                <select id="test" name="type" class="form-control"
+                                    onchange="document.getElementById('filterForm').submit()">
                                     <option value="">ประเภท</option>
-                                    <option value="เครื่องสำอาง" <?php echo ($typeFilter === 'เครื่องสำอาง') ? 'selected' : ''; ?>>เครื่องสำอาง</option>
-                                    <option value="อาหารเสริม" <?php echo ($typeFilter === 'อาหารเสริม') ? 'selected' : ''; ?>>อาหารเสริม</option>
-                                    <option value="สินค้า" <?php echo ($typeFilter === 'สินค้า') ? 'selected' : ''; ?>>สินค้า</option>
+                                    <option value="เครื่องสำอาง"
+                                        <?php echo ($typeFilter === 'เครื่องสำอาง') ? 'selected' : ''; ?>>เครื่องสำอาง
+                                    </option>
+                                    <option value="อาหารเสริม"
+                                        <?php echo ($typeFilter === 'อาหารเสริม') ? 'selected' : ''; ?>>อาหารเสริม
+                                    </option>
+                                    <option value="สินค้า" <?php echo ($typeFilter === 'สินค้า') ? 'selected' : ''; ?>>
+                                        สินค้า
+                                    </option>
                                 </select>
                             </form>
                         </div>
                     </th>
                     <th>รายละเอียด</th>
-                    <!-- <th>Details Image</th> -->
                     <th>คลิปรายละเอียดสินค้า</th>
-                    <th>วันที่นำเข้า<i class="fa fa-filter" onclick="sortTable(7)"></i></th>
-                    <th>ยอดคนดู<i class="fa fa-filter" onclick="sortTable(8)"></i></th>
+                    <th>วันที่นำเข้า</i></th>
+                    <th>ยอดคนดู</i></th>
                     <th>แก้ไข</th>
                 </tr>
             </thead>
@@ -101,26 +108,13 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </td>
                     <td><?php echo htmlspecialchars($product['type_product']); ?></td>
                     <td><?php echo '<p class="banner_text">'.strip_tags($product['dtaill_product']) . '</p>'; ?></td>
-                    <!-- <td>
-                        <?php
-                        $detailsImages = json_decode($product['dtaill_img_product']);
-                        if (is_array($detailsImages) && !empty($detailsImages)) {
-                            foreach ($detailsImages as $image) {
-                                if (!empty($image)) {
-                                    echo '<img src="../images/' . htmlspecialchars($image) . '" alt="Detail Image" style="width: 150px; margin-right: 5px;">';
-                                }
-                            }
-                        } else {
-                            echo "No images available";
-                        }
-                        ?>
-                    </td> -->
                     <td><?php echo htmlspecialchars($product['dtaill_vdo_product']); ?></td>
                     <td><?php echo htmlspecialchars($product['date_product']); ?></td>
                     <td><?php echo htmlspecialchars($product['view_count']); ?></td>
                     <td>
                         <a href="edit_product.php?id=<?php echo $product['id_product']; ?>" class="active">Edit</a>
-                        <a href="delete_product.php?id=<?php echo $product['id_product']; ?>" class="active" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                        <a href="delete_product.php?id=<?php echo $product['id_product']; ?>" class="active"
+                            onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -128,35 +122,24 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </table>
     </div>
 
-    <script src="../js/filtertable.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
     <script>
-function toggleDropdown() {
-    var dropdown = document.getElementById('typeDropdown');
-    if (dropdown.classList.contains('show')) {
-        dropdown.classList.remove('show');
-    } else {
-        dropdown.classList.add('show');
-    }
-}
+        $(document).ready(function () {
+            $('#productTable').DataTable({
+                autoFill: false,
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "info": true
+            });
+        });
 
-// Close dropdown if clicked outside
-window.onclick = function(event) {
-    if (!event.target.matches('.dropdown-toggle') && !event.target.closest('#typeDropdown')) {
-        var dropdowns = document.getElementsByClassName('dropdown-filter');
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
+        function toggleDropdown() {
+            document.getElementById('typeDropdown').classList.toggle('show');
         }
-    }
-}
-
-// Prevent the dropdown from closing when clicking inside it
-document.getElementById('typeDropdown').addEventListener('click', function(event) {
-    event.stopPropagation();
-});
-</script>
+    </script>
 
 </body>
 
