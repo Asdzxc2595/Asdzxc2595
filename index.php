@@ -34,6 +34,9 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        body {
+    padding-top: 70px;
+}
        .carousel-item .col-md-1 {
     display: flex;
     flex-direction: column;
@@ -53,22 +56,51 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
 .tasty_text {
     margin-top: 10px;
 }
+.ad-banner{
+    width: 100%;
+}.ad-banner li{
+    list-style:none;
+}
+.ad-banner i{
+    font-size: 50px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    height: cover; /* ตั้งค่า height เป็น auto เพื่อให้รูปภาพรักษาสัดส่วน */
+}
+
+
+@media (max-width: 768px) {
+    .carousel-inner img {
+        height: 350px; 
+    }
+}
+
+
+@media (max-width: 576px) {
+    .carousel-inner img {
+        height: 200px; 
+    }
+} 
+
+
 
     </style>
 </head>
 
 <body>
     <div class="header_section header_bg">
-        <div  class="container-fluid">
+        <div class="container-fluid">
             <?php include 'nav.php'; ?>
         </div>
     </div>
 
-    <section class="parallax" id="parallax">
+     <section class="parallax" id="parallax">
         <img src="images/city2.png" id="city2">
         <div id="text_logo">LOGO</div>
         <img src="images/city1.png" id="city1">
-    </section>
+    </section> 
 
     <button id="scrollUp" class="scroll-btn">
         <i class="fas fa-chevron-up"></i>
@@ -78,11 +110,47 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         <i class="fas fa-chevron-down"></i>
     </button>
 
+<!-- เพิ่มแบนเนอร์โฆษณา -->
+<div id="adBannerSlider" class="carousel slide ad-banner" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#adBannerSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#adBannerSlider" data-slide-to="1"></li>
+        <li data-target="#adBannerSlider" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="images/advert1.png" alt="New Products Ad Banner">
+        </div>
+        <div class="carousel-item">
+            <img src="images/advert2.png" alt="New Products Ad Banner" >
+        </div>
+        <div class="carousel-item">
+            <img src="images/advert3.png" alt="New Products Ad Banner" >
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="carousel-control-prev" href="#adBannerSlider" role="button" data-slide="prev">
+        <i class="fa fa-chevron-left"></i>
+    </a>
+    <a class="carousel-control-next" href="#adBannerSlider" role="button" data-slide="next">
+        <i class="fa fa-chevron-right"></i>
+    </a>
+</div>
+
+
     <!-- สินค้าใหม่ -->
     <div id="newProducts" class="banner_section layout_padding client_section">
         <h1 class="text_titer_center">สินค้าใหม่</h1>
+        
+       
+
         <div class="container">
             <div id="banner_slider" class="carousel slide" data-ride="carousel">
+                <!-- carousel ของสินค้าใหม่ -->
                 <div class="carousel-inner">
                     <?php
                     if ($resultNewProducts->rowCount() > 0) {
@@ -126,7 +194,6 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <img class="layout-img" src="images/happy.png" alt="Image">
 
     <!-- สินค้านิยม -->
-     
     <div id="bestSellers" class="product_section layout_padding body-background">
         <div class="container">
             <div class="row">
@@ -153,7 +220,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                                 echo '<div class="container-fluid"><div class="row">';
                             }
 
-                            echo '<div class="col-lg-3 col-md-6 card_oder">';
+                            echo '<div class="col-lg-3 col-md-6 card_oder ">';
                             echo '<div class="product_img"><img src="images/' . htmlspecialchars($row["img_product"]) . '" alt="Product Image"></div>';
                             echo '<hr>';
                             echo '<h3 class="types_text">' . htmlspecialchars($row["name_product"]) . '</h3>';
@@ -180,6 +247,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
             </div>
         </div>
     </div>
+    
     <img src="images/happpy.png" style="width: 100%;" alt="Image">
     <div id="address">
         <?php include 'address.php'; ?>
@@ -188,6 +256,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         <?php include 'footer.php'; ?>
     </div>
 
+    <!-- Scripts -->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -196,7 +265,5 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/updow.js"></script>
-    
-    
 </body>
 </html>

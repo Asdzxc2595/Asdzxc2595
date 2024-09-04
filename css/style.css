@@ -326,7 +326,7 @@ button {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 90px 0 100px 0;
+    padding: 10px;
 }
 
 
@@ -366,7 +366,7 @@ button {
     font-size: 24px;
     color: #050505;
     font-weight: bold;
-    padding-top: 100px;
+    padding-top: 10px;
 }
 
 .banner_text {
@@ -492,22 +492,12 @@ button {
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)); */
-    overflow: hidden;
-    /* เพื่อซ่อนส่วนเกินของรูปภาพ */
+    /* overflow: hidden; */
 }
 
 .banner_img img {
-    /* max-width: 100%; */
     height: auto;
-    /* หรือใช้ความสูงที่กำหนดตามต้องการ */
     object-fit: cover;
-    /* หรือใช้ contain ขึ้นอยู่กับการแสดงผลที่ต้องการ */
-}
-
-
-.banner_img img {
-    height: 350px;
     display: block;
     transition: transform 0.5s ease;
 }
@@ -577,8 +567,8 @@ button {
 }
 
 .product_img img {
-
     width: 200px;
+    height: auto;
     float: center;
 
 }

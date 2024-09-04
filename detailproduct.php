@@ -63,9 +63,11 @@ if (isset($product['dtaill_img_product'])) {
     margin: 0 auto;  
     border-radius: 5px;
     max-width: 100%;  /* ทำให้รูปภาพไม่เกินขนาด container */
-    height: 600px;    
+    height: 600px;
+    width: COVER;    
+}.back-button{
+    text-align: center;
 }
-
 
     </style>
 </head>

@@ -42,7 +42,7 @@ if (isset($_GET['type'])) {
             <div class="row">
     <?php if (!empty($products)) : ?>
     <?php foreach ($products as $product) : ?>
-        <div class="col-lg-2 col-md-3 col-sm-4 col-15">
+        <div class="order-lg-3 col-md-3 col-sm-4 col-15">
         <div class="card-item-product">
             <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>"
                 alt="<?php echo htmlspecialchars($product['name_product']); ?>">
