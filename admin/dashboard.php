@@ -73,6 +73,7 @@ unset($data); // Unset reference to avoid issues
             width: 100%;
             height: 400px;
             margin: auto;
+            
         }
 
         @media (min-width: 768px) {
@@ -88,7 +89,7 @@ unset($data); // Unset reference to avoid issues
 </head>
 <body>
 
-<?php include 'nav_admin.php'; ?> 
+<?php include 'sidebar.php'; ?> 
     <div class="container mt-5">
         <h2>Dashboard: ยอดคนดู</h2>
 

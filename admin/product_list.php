@@ -60,7 +60,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <?php include 'nav_admin.php'; ?>
+    <?php include 'sidebar.php'; ?>
 
     <div class="container mt-5">
         <h2>รายการสินค้า</h2>

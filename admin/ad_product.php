@@ -45,7 +45,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 <div class="header_section header_bg">
         <div class="container-fluid">
-            <?php include 'nav_admin.php'; ?>
+            <?php include 'sidebar.php'; ?>
         </div>
     </div>
     <div class="container mt-5">
