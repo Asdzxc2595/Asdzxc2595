@@ -47,6 +47,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#address" id="address-text">address</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about_us.php" id="address-text">about us</a>
+                        </li>
                     </ul>
                     <!-- <div class="nav-item dropdown ml-3">
                         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

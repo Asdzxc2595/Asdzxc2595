@@ -32,47 +32,42 @@
     </div>
 
     <div class="product_section layout_padding body-background">
+        <h1 class="product_hard_title">Products All</h1>
+        <form method="GET" class="search-from">
+            <input type="text" name="search" class="form-control-search-lis" placeholder="Search for products...">
+            <button type="submit" class="btn btn-primary mt-2">Search</button>
+        </form>
+
         <div class="container_product_lits">
-            <h1 class="product_hard_title">Products All</h1>
-            <form method="GET" class="search-from">
+            <?php
+            require 'db_connect.php';
+            $search = isset($_GET['search']) ? $_GET['search'] : '';
 
-                <input type="text" name="search" class="form-control-search-lis" placeholder="Search for products...">
-                <button type="submit" class="btn btn-primary mt-2">Search</button>
-            </form>
-            <div class="row">
-                <?php
-                require 'db_connect.php';
-                $search = isset($_GET['search']) ? $_GET['search'] : '';
+            if (!empty($search)) {
+                $stmt = $pdo->prepare("SELECT * FROM product WHERE name_product LIKE ?");
+                $stmt->execute(['%' . $search . '%']);
+            } else {
+                $stmt = $pdo->query("SELECT * FROM product");
+            }
 
-                if (!empty($search)) {
-                    $stmt = $pdo->prepare("SELECT * FROM product WHERE name_product LIKE ?");
-                    $stmt->execute(['%' . $search . '%']);
-                } else {
-                    $stmt = $pdo->query("SELECT * FROM product");
-                }
-
-                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($products as $product) {
-                    ?>
-                <div class="col-lg-3 col-md-4 col-sm-5 col-15">
-                    <div class="card-item-product">
-                        <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="card-img-top"
-                            alt="<?php echo htmlspecialchars($product['name_product']); ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
-                            <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
-                            <a href="detailproduct.php?id_product=<?php echo htmlspecialchars($product['id_product']); ?>"
-                                class="card-button">Read More</a>
-                        </div>
-                    </div>
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($products as $product) {
+        ?>
+            <div class="card-item-product">
+                <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="card-img-top"
+                    alt="<?php echo htmlspecialchars($product['name_product']); ?>">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
+                    <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
+                    <a href="detailproduct.php?id_product=<?php echo htmlspecialchars($product['id_product']); ?>"
+                        class="card-button">Read More</a>
                 </div>
-                <?php
-                }
-                ?>
             </div>
+            <?php
+            }
+        ?>
         </div>
     </div>
-
     <?php include 'address.php'; ?>
 
     <div class="copyright_section">

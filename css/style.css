@@ -445,15 +445,14 @@ button {
 }
 
 #banner_slider a.carousel-control-prev {
-    left: 1px;
-    ;
-    top: 306px;
+    left: 589px;
+    top: 421px;
     color: #4a4949;
 }
 
 #banner_slider a.carousel-control-next {
-    right: -18px;
-    top: 306px;
+    right: 410px;
+    top: 421px;
     color: #4a4949;
     /* background-color: #fefefd ; */
     border: #000 1px;
@@ -513,7 +512,7 @@ button {
 /* product section start */
 
 .product_section {
-    width: auto;
+    /* width: auto; */
 }
 
 .product_title {
@@ -555,6 +554,11 @@ button {
     /* opacity: 0; /* ซ่อนเนื้อหาจนกว่าจะเลื่อนเข้ามา 
     transition: opacity 1s ease-in-out; อนิเมชันของการเปลี่ยนแปลงความโปร่งใส */
 }
+.product_section_2 img{
+    width: auto;
+    max-width: 350px;
+    height: 350px;
+}
 
 .product_section_2.show {
     opacity: 1;
@@ -567,10 +571,9 @@ button {
 }
 
 .product_img img {
-    width: 200px;
-    height: auto;
-    float: center;
-
+    max-width: 250px;
+    width: cover;
+    height: 350px;
 }
 
 .types_text {
@@ -1254,34 +1257,24 @@ textarea#comment.update_mail::placeholder {
 .product-image-detaill {
     display: flex;
     margin-left: auto;
-    /* จัดตำแหน่งให้กลาง */
     margin-right: auto;
-    /* จัดตำแหน่งให้กลาง */
     max-width: 100%;
-    /* ความกว้างสูงสุด 100% ของพื้นที่ที่ใช้ */
-    height: 350px;
-    /* ความสูงอัตโนมัติ */
+    height: 450px;
     border-radius: 10px;
-    /* ขอบมุมโค้ง 8px */
     overflow: hidden;
-    /* ซ่อนเนื้อหาที่เกินออกจากขอบมุม */
     padding-top: 20px;
 
 }
 
 /* Card Container */
 .card-item-product {
-    display: block;
     border: 1px solid #050505;
     border-radius: 8px;
-    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     background-color: #FAF5F5;
     margin: 20px;
-    margin-bottom: 20px;
     min-width: 200px;
-    max-width: 100%;
     text-align: center;
     opacity: 0;
     transform: translateY(20px);
@@ -1295,29 +1288,34 @@ textarea#comment.update_mail::placeholder {
 
 /* Image */
 .card-item-product img {
-    width: auto;
     height: 225px;
+    width: auto;
 
 }
 
 /* Title */
 .card-item-product .card-title {
-
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 14px 0;
+    /* font-size: 1.2rem; */
+    /* font-weight: 600;
+    margin: 14px 0; */
     color: #050505;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    overflow: hidden;
+    /* overflow: hidden; */
     text-overflow: ellipsis;
     max-height: 3em;
 }
 
+.container_product_lits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 3fr));
+    gap: 15px;
+}
+
 .card-body {
-    -ms-flex: 0 0 auto;
-    flex: 0 0 auto;
+    -ms-flex: auto;
+    flex: auto;
 
 }
 
@@ -1351,7 +1349,6 @@ textarea#comment.update_mail::placeholder {
 .card-item-product .card-button:hover {
     background-color: #FAF5F5;
     color: #050505;
-
 }
 
 .card-text {
@@ -1437,7 +1434,7 @@ form {
 }
 
 .form-control-search-lis {
-    width: 100%;
+    width: 80%;
     max-width: 400px;
     padding-right: 30px;
     border-radius: 2px !important;

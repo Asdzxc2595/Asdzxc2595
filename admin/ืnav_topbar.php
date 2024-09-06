@@ -60,9 +60,6 @@
         <div class="admin-name">Welcome admin: <?php echo $_SESSION['username']; ?> <i class="fas fa-user-circle"></i></div>
         <a href="logout.php" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </div>
-
-    <!-- Your content goes here -->
-
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>

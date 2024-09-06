@@ -32,12 +32,15 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         tinymce.init({
             selector: 'textarea#dtaill_product',
            plugins: 'advlist anchor autolink autosave charmap code codesample directionality emoticons fullscreen help image imagetools insertdatetime link lists media nonbreaking pagebreak paste preview print save searchreplace spellchecker table template textcolor visualblocks visualchars wordcount',
-            toolbar: 'undo redo | formatselect | fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent  | table emoticons charmap | preview fullscreen code',
+            toolbar: 'undo redo | formatselect |link image| fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent  | table emoticons charmap | preview fullscreen code',
             menubar: 'file edit view insert format tools table ',
         });
     </script>
        <style>.body{
         padding-left: 50px;
+       }
+       .form-group-edit a{
+        color:red ;
        }
     </style>
 </head>
@@ -70,7 +73,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </select>
             </div>
             <div class="form-group-edit">
-                <label for="dtaill_product">รายละเอียดสินค้า</label>
+                <label for="dtaill_product">รายละเอียดสินค้า <a><i class="fas fa-exclamation-circler"></i>การที่เพิ่มรูปในนี้ควรเป็นรูปในเว็บไม่งันรูปจะไม่แสดง</a></label>
                 <textarea class="form-edit" id="dtaill_product" name="dtaill_product" rows="3"></textarea>
             </div>
             <div class="form-group-edit">

@@ -36,30 +36,28 @@ if (isset($_GET['type'])) {
 
 <body>
     <?php include 'nav.php'; ?>
-    <div class="product_section layout_padding body-background">
+
+    <div class="product_section layout_padding ">
+        <h1 class="product_hard_title">Products : <?php echo htmlspecialchars($type_product); ?></h1>
         <div class="container_product_lits">
-            <h1 class="product_hard_title">Products : <?php echo htmlspecialchars($type_product); ?></h1>
-            <div class="row">
-    <?php if (!empty($products)) : ?>
-    <?php foreach ($products as $product) : ?>
-        <div class="order-lg-3 col-md-3 col-sm-4 col-15">
-        <div class="card-item-product">
-            <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>"
-                alt="<?php echo htmlspecialchars($product['name_product']); ?>">
-            <div class="card-body">
-                <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
-                <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
-                <a href="detailproduct.php?id_product=<?php echo $product['id_product']; ?>"
-                    class="card-button">Read More</a>
+            <?php if (!empty($products)) : ?>
+            <?php foreach ($products as $product) : ?>
+            <div class="card-item-product">
+                <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>"
+                    alt="<?php echo htmlspecialchars($product['name_product']); ?>">
+                <div class="card-body">
+                    <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
+                    <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
+                    <a href="detailproduct.php?id_product=<?php echo $product['id_product']; ?>"
+                        class="card-button">Read
+                        More</a>
+                </div>
             </div>
+            <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
-    <?php endforeach; ?>
-    <?php endif; ?>
-</div>
-
-
-        </div>
+    </div>
     </div>
     <?php include 'address.php'; ?>
 

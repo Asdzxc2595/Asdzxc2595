@@ -73,6 +73,7 @@ unset($data); // Unset reference to avoid issues
             width: 100%;
             height: 400px;
             margin: auto;
+            padding-bottom: 12px;
             
         }
 
@@ -104,8 +105,6 @@ unset($data); // Unset reference to avoid issues
                     </div>
                 </div>
             </div>
-
-            <!-- แสดงข้อมูลยอดเข้าชมตามประเภทสินค้า -->
             <?php foreach ($view_by_type as $type => $views): ?>
                 <div class="col-md-3">
                     <div class="card">
