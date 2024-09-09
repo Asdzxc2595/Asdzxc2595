@@ -1116,7 +1116,7 @@ textarea#comment.update_mail::placeholder {
     padding: 5px;
     align-items: baseline;
     justify-content: space-around;
-    flex-direction: column;
+
 
 }
 

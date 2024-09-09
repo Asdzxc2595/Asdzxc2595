@@ -79,6 +79,8 @@
         width: 100%;
         border-radius: 8;
 
+    }.contact-info{
+        display: flex;
     }
     </style>
 </head>
@@ -171,7 +173,7 @@
                 <!-- Right side: Contact Info -->
                 <div class="col-sd">
                     <div class="contact-info">
-                        <p><i class="fas fa-phone"></i> โทร: 123-456-7890</p>
+                    <p><i class="fas fa-phone"></i> โทร: 123-456-7890</p>
                         <p><i class="fas fa-envelope"></i> อีเมล: email@email.com</p>
                         <p><i class="fas fa-map-marker-alt"></i> ที่อยู่: 123 ถนนธุรกิจ กรุงเทพมหานคร, ประเทศไทย</p>
                         <p><i class="fab fa-facebook-f"></i> facebook: facebook</p>

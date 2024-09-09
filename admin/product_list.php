@@ -42,8 +42,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         rel="stylesheet">
 
     <style>
-    .body {
-        padding-left: 50px;
+    .container-lg {
+        padding: 50px 50px 50px 50px;
     }
 
     .dropdown-filter.show {
@@ -60,7 +60,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <?php include 'sidebar.php'; ?>
 
-    <div class="container mt-5">
+    <div class="container-lg mt-5">
         <h2>รายการสินค้า</h2>
 
         <table class="table table-striped" id="productTable">
