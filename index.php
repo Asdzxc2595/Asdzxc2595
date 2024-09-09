@@ -85,11 +85,11 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         </div>
     </div>
 
-    <section class="parallax" id="parallax">
+    <!-- <section class="parallax" id="parallax">
         <img src="images/city2.png" id="city2">
         <div id="text_logo">LOGO</div>
         <img src="images/city1.png" id="city1">
-    </section>
+    </section> -->
 
     <button id="scrollUp" class="scroll-btn">
         <i class="fas fa-chevron-up"></i>
@@ -238,9 +238,6 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     </div>
 
     <img src="images/happpy.png" style="width: 100%;" alt="Image">
-    <div id="address">
-        <?php include 'address.php'; ?>
-    </div>
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
     </div>

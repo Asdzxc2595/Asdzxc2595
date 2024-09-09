@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,28 +35,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+    .login-container {
+        padding-left: 30px;
+        padding-right: 30px;
+        /* align-items: center; */
+        /* text-align: center; */
+    }
 
+
+    .admin_login{
+        text-align: center; 
+    }
+    .back-button{
+        background-color: red;
+        color: aliceblue;
+    }
+    </style>
 </head>
+
 <body>
-    <div class="login-container">
-        <h2>Admin Login</h2>
-        <form method="post" action="">
-            <div class="form-group-admin">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group-admin">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group-admin">
-                <input type="submit" value="Login">
-            </div>
-            <?php if (isset($error)): ?>
-                <p class="error"><?php echo htmlspecialchars($error); ?></p>
-            <?php endif; ?>
-        </form>
+<section class="login-container">
+    <div class = "col-sm-3 admin_login">
+    <h2>Admin Login</h2>
     </div>
+    <form method="post" action="">
+        <div class="row mb-2">
+            <label for="username" class="col-sm-1 col-form-label">Username</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="inputEmail3" name="username" required>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label for="password" class="col-sm-1 col-form-label">Password</label>
+            <div class="col-sm-3">
+                <input type="password" class="form-control" id="inputPassword3" name="password" required>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-3">
+                <button type="submit" class="btn btn-primary">Sign in</button>
+                <a href="index.php" class="btn btn-primary back-button">กลับหน้าหลัก</a>
+            </div>
+        </div>
+    </form>
+</section>
+<script src="js/script.js"></script>
 </body>
+
 </html>

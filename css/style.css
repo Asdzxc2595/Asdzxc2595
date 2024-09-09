@@ -35,6 +35,10 @@ body {
     overflow-x: hidden;
     font-family: 'Kanit', sans-serif;
     background-color: #FAF5F5;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
@@ -571,9 +575,8 @@ button {
 }
 
 .product_img img {
-    max-width: 250px;
-    width: cover;
-    height: 350px;
+    width: auto;
+    height: 250px;
 }
 
 .types_text {
@@ -1046,15 +1049,14 @@ textarea#comment.massage-bt::placeholder {
 
 .footer_social_icon {
     text-align: center;
-    /* ใช้ text-align แทน float: center */
     padding: 15px 0;
-    /* เพิ่มการเว้นระยะบนและล่าง */
+
 
 }
 
 .footer_social_icon ul {
     display: inline-flex;
-    /* ใช้ inline-flex เพื่อจัดเรียงรายการในแนวนอน */
+    color: wheat;
 }
 
 .footer_social_icon li {
@@ -1114,6 +1116,8 @@ textarea#comment.update_mail::placeholder {
     padding: 5px;
     align-items: baseline;
     justify-content: space-around;
+    flex-direction: column;
+
 }
 
 .subscribe_bt {
@@ -1148,6 +1152,7 @@ textarea#comment.update_mail::placeholder {
     background-color:
         #050505;
     height: auto;
+   margin-top: auto;
 }
 
 .copyright_text {
@@ -1295,7 +1300,7 @@ textarea#comment.update_mail::placeholder {
 
 /* Title */
 .card-item-product .card-title {
-    /* font-size: 1.2rem; */
+    font-size: 1.2rem; 
     /* font-weight: 600;
     margin: 14px 0; */
     color: #050505;
@@ -1309,7 +1314,7 @@ textarea#comment.update_mail::placeholder {
 
 .container_product_lits {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 3fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 3fr));
     gap: 15px;
 }
 
@@ -1333,7 +1338,6 @@ textarea#comment.update_mail::placeholder {
     display: inline-block;
     margin: 15px;
     padding: 10px 20px;
-    font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     color: #FAF5F5;

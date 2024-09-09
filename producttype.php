@@ -37,8 +37,10 @@ if (isset($_GET['type'])) {
 <body>
     <?php include 'nav.php'; ?>
 
+
+    
     <div class="product_section layout_padding ">
-        <h1 class="product_hard_title">Products : <?php echo htmlspecialchars($type_product); ?></h1>
+        <h1 class="product_hard_title">ประเภทสินค้า: <?php echo htmlspecialchars($type_product); ?></h1>
         <div class="container_product_lits">
             <?php if (!empty($products)) : ?>
             <?php foreach ($products as $product) : ?>
@@ -49,8 +51,7 @@ if (isset($_GET['type'])) {
                     <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
                     <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
                     <a href="detailproduct.php?id_product=<?php echo $product['id_product']; ?>"
-                        class="card-button">Read
-                        More</a>
+                        class="card-button">เพิ่มเติม</a>
                 </div>
             </div>
             <?php endforeach; ?>
@@ -59,7 +60,7 @@ if (isset($_GET['type'])) {
     </div>
     </div>
     </div>
-    <?php include 'address.php'; ?>
+
 
     <div class="copyright_section">
         <?php include 'footer.php'; ?>

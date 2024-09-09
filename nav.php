@@ -29,14 +29,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php" id="home-text">Home</a>
+                            <a class="nav-link" href="index.php" id="home-text">หน้าหลัก</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="product.php" id="product-text">Product</a>
+                            <a class="nav-link" href="product.php" id="product-text">รายการสินค้า</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="product-type-text">
-                                Product type
+                                ประเภทสินค้า
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="producttype.php?type=เครื่องสำอาง" id="cosmetics-text">เครื่องสำอาง</a>
@@ -44,11 +44,11 @@
                                 <a class="dropdown-item" href="producttype.php?type=สินค้า" id="goods-text">สินค้า</a>
                             </div>
                         </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="#address" id="address-text">ที่อยู่</a>
+                        </li> -->
                         <li class="nav-item">
-                            <a class="nav-link" href="#address" id="address-text">address</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about_us.php" id="address-text">about us</a>
+                            <a class="nav-link" href="about_us.php" id="address-text">เกี่ยวกับเรา</a>
                         </li>
                     </ul>
                     <!-- <div class="nav-item dropdown ml-3">
@@ -70,70 +70,6 @@
     <script src="https://unpkg.com/i18next@21.6.15/i18next.min.js"></script>
     <script src="https://unpkg.com/i18next-browser-languagedetector@6.1.3/i18nextBrowserLanguageDetector.min.js"></script>
 
-    <script>
-        // Initialize i18next
-        i18next.use(i18nextBrowserLanguageDetector).init({
-            debug: true,
-            fallbackLng: 'en',
-            resources: {
-                en: {
-                    translation: {
-                        "brand": "HAPPY",
-                        "home": "Home",
-                        "product": "Product",
-                        "product_type": "Product type",
-                        "cosmetics": "Cosmetics",
-                        "supplements": "Supplements",
-                        "goods": "Goods",
-                        "address": "Address"
-                    }
-                },
-                th: {
-                    translation: {
-                        "brand": "HAPPY",
-                        "home": "หน้าหลัก",
-                        "product": "สินค้า",
-                        "product_type": "ประเภทสินค้า",
-                        "cosmetics": "เครื่องสำอาง",
-                        "supplements": "อาหารเสริม",
-                        "goods": "สินค้า",
-                        "address": "ที่อยู่"
-                    }
-                },
-                zh: {
-                    translation: {
-                        "brand": "HAPPY",
-                        "home": "首页",
-                        "product": "产品",
-                        "product_type": "产品类型",
-                        "cosmetics": "化妆品",
-                        "supplements": "保健品",
-                        "goods": "商品",
-                        "address": "地址"
-                    }
-                }
-            }
-        }, function(err, t) {
-            // Update the text content after initialization
-            updateContent();
-        });
-
-        // Function to update content based on the selected language
-        function updateContent() {
-            document.getElementById('brand-text').textContent = i18next.t('brand');
-            document.getElementById('home-text').textContent = i18next.t('home');
-            document.getElementById('product-text').textContent = i18next.t('product');
-            document.getElementById('product-type-text').textContent = i18next.t('product_type');
-            document.getElementById('cosmetics-text').textContent = i18next.t('cosmetics');
-            document.getElementById('supplements-text').textContent = i18next.t('supplements');
-            document.getElementById('goods-text').textContent = i18next.t('goods');
-            document.getElementById('address-text').textContent = i18next.t('address');
-        }
-
-        // Function to change language
-        function changeLanguage(language) {
-            i18next.changeLanguage(language, updateContent);
-        }
-    </script>
+   
 </body>
 </html>

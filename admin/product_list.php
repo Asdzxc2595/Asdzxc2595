@@ -42,20 +42,18 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         rel="stylesheet">
 
     <style>
-        .body {
-            padding-left: 50px;
-        }
+    .body {
+        padding-left: 50px;
+    }
 
-        .dropdown-filter.show {
-            display: flex;
-        }
+    .dropdown-filter.show {
+        display: flex;
+    }
 
-        .dropdown-toggle {
-            cursor: pointer;
-            font-size: 26px;
-        }
-
-
+    .dropdown-toggle {
+        cursor: pointer;
+        font-size: 26px;
+    }
     </style>
 </head>
 
@@ -104,7 +102,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($product['id_product']); ?></td>
                     <td><?php echo '<p class="banner_text">'.htmlspecialchars($product['name_product']).'</p>'; ?></td>
                     <td>
-                        <img src="../images/<?php echo htmlspecialchars($product['img_product']); ?>" alt="Product Image">
+                        <img src="../images/<?php echo htmlspecialchars($product['img_product']); ?>"
+                            alt="Product Image">
                     </td>
                     <td><?php echo htmlspecialchars($product['type_product']); ?></td>
                     <td><?php echo '<p class="banner_text">'.strip_tags($product['dtaill_product']) . '</p>'; ?></td>
@@ -126,19 +125,19 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('#productTable').DataTable({
-                autoFill: false,
-                "paging": true,
-                "searching": true,
-                "ordering": true,
-                "info": true
-            });
+    $(document).ready(function() {
+        $('#productTable').DataTable({
+            autoFill: false,
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true
         });
+    });
 
-        function toggleDropdown() {
-            document.getElementById('typeDropdown').classList.toggle('show');
-        }
+    function toggleDropdown() {
+        document.getElementById('typeDropdown').classList.toggle('show');
+    }
     </script>
 
 </body>

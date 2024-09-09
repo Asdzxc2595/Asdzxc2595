@@ -32,10 +32,10 @@
     </div>
 
     <div class="product_section layout_padding body-background">
-        <h1 class="product_hard_title">Products All</h1>
+        <h1 class="product_hard_title">รายการสินค้า</h1>
         <form method="GET" class="search-from">
-            <input type="text" name="search" class="form-control-search-lis" placeholder="Search for products...">
-            <button type="submit" class="btn btn-primary mt-2">Search</button>
+            <input type="text" name="search" class="form-control-search-lis" placeholder="ค้นหาสินค้า">
+            <button type="submit" class="btn btn-primary mt-2">ค้นหา</button>
         </form>
 
         <div class="container_product_lits">
@@ -60,7 +60,7 @@
                     <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
                     <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
                     <a href="detailproduct.php?id_product=<?php echo htmlspecialchars($product['id_product']); ?>"
-                        class="card-button">Read More</a>
+                        class="card-button">เพิ่มเติม</a>
                 </div>
             </div>
             <?php
@@ -68,7 +68,7 @@
         ?>
         </div>
     </div>
-    <?php include 'address.php'; ?>
+
 
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
