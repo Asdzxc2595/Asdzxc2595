@@ -60,6 +60,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     }
 
     .ad-banner {
+        padding-top: 27px;
         width: 100%;
     }
 

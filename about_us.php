@@ -9,105 +9,81 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
     <style>
-    .about-section {
-        padding: 60px 0;
-        background-color: #f8f9fa;
-        padding-top: 120px;
-    }
-
-    .about-title {
-        font-size: 36px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .about-content {
-        text-align: center;
-        font-size: 18px;
-        line-height: 1.8;
-        color: #333;
-    }
-
-    .team-section {
-        padding: 60px 0;
-        background-color: #fff;
-    }
-
-    .team-title {
-        font-size: 30px;
-        font-weight: center;
-        text-align: center;
-        margin-bottom: 40px;
-    }
-
-    .team-card {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    .team-card img {
-        border-radius: 50%;
-        width: 150px;
-        height: 150px;
-    }
-
-    .team-card h5 {
-        font-size: 20px;
-        margin-top: 15px;
-    }
-
-    .team-card p {
-        color: #777;
-    }
-
-    .about-banner {
-        padding-top: 70px;
-    }
-
-    .about-banner img {
-        width: 100%;
-    }
-
-    .form-group-contact {
-        padding: 3px;
-        width: 100%;
-    }
-
-    .form-control-contact {
-        width: 100%;
-        border-radius: 8;
-
-    }.contact-info{
+    .contact-info {
         display: flex;
+        flex-wrap: wrap;
+        /* ให้รายการใน contact-info ห่อเมื่อเกินพื้นที่ */
+        justify-content: space-around;
+        /* กระจายช่องว่างระหว่างรายการ */
+        gap: 20px;
+        /* เพิ่มระยะห่างระหว่างแต่ละรายการ */
+    }
+
+    .contact-info p {
+        width: 30%;
+        /* กำหนดความกว้างของแต่ละรายการให้ประมาณ 1 ใน 3 ของแถว */
+        text-align: left;
+        /* จัดข้อความให้อยู่ตรงกลาง */
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        /* เรียงข้อมูลในแนวตั้ง */
+        gap: 15px;
+        /* เพิ่มระยะห่างระหว่างข้อมูลแต่ละบรรทัด */
+    }
+
+    .contact-info p {
+        display: flex;
+        align-items: left;
+        /* จัดไอคอนและข้อความให้อยู่ในแนวเดียวกัน */
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .contact-info p i {
+        margin-right: 10px;
+        /* เว้นช่องว่างระหว่างไอคอนและข้อความ */
+    }
+
+    .contact-info a {
+        text-decoration: none;
+        color: inherit;
+        /* ใช้สีของข้อความปัจจุบัน */
+    }
+
+    .contact-info a:hover {
+        color: #007bff;
+        /* เปลี่ยนสีเมื่อ hover */
     }
     </style>
 </head>
 <?php include 'nav.php'; ?>
 
 <body>
-
-
-
     <div class="about-banner">
         <img src="images/aboutus.jpg">
     </div>
     <div class="about-section">
         <div class="container">
             <h1 class="about-title">เกี่ยวกับเรา</h1>
-            <p class="about-content">
-                บริษัทของเราเริ่มต้นด้วยความมุ่งมั่นที่จะสร้างสรรค์นวัตกรรมใหม่ ๆ ในวงการธุรกิจ
-                เราเป็นกลุ่มผู้เชี่ยวชาญที่มีประสบการณ์ยาวนานในหลากหลายด้าน เช่น การพัฒนาซอฟต์แวร์ การตลาด
-                การจัดการโครงการ และการให้บริการลูกค้าด้วยความเป็นมืออาชีพ ตลอดหลายปีที่ผ่านมา
-                เราได้สร้างผลิตภัณฑ์และบริการที่ตอบสนองต่อความต้องการของตลาดที่เปลี่ยนแปลงไปอย่างรวดเร็ว
-                <br><br>
-                เป้าหมายของเราคือการเป็นผู้นำในตลาดที่เราให้บริการ โดยเน้นการพัฒนาผลิตภัณฑ์ที่มีคุณภาพสูง
-                และการให้บริการที่ยอดเยี่ยมเพื่อให้ลูกค้าได้รับประสบการณ์ที่ดีที่สุด นอกจากนี้
-                เรายังให้ความสำคัญกับการเติบโตอย่างยั่งยืนและความรับผิดชอบต่อสังคม
-                ด้วยการใช้ทรัพยากรอย่างมีประสิทธิภาพและลดผลกระทบต่อสิ่งแวดล้อม
-                <br><br>
-                การร่วมมือกับคู่ค้าและลูกค้าของเราเป็นสิ่งสำคัญที่สุดในการสร้างสรรค์สิ่งใหม่ ๆ ที่มีคุณค่า
+            <p class="thai-distributed">
+                บริษัท แฮ็ปปี้ เอ็มพีเอ็ม จำกัด ก่อตั้งขึ้นเมื่อวันที่ 10 มิถุนายน 2542 โดยมี คุณสุกิจ สัตย์เพริศพราย
+                เป็นประธานและกรรมการผู้จัดการ
+                โดยบริษัทก่อกำเนิดมาจากปณิธานอันมุ่งมั่นและแน่วแน่ของประธานกรรมการและคณะผู้บริหารที่ต้องการจะนำเสนอผลิตภัณฑ์ที่ดีและมีประโยชน์<br>
+            </p>
+
+            <p class="thai-distributed">
+                ตลอดจนเจตนารมณ์ที่จะนำธุรกิจขายตรงในรูปแบบเครือข่ายที่มีประสิทธิภาพมาสู่ผู้คนในอาเซียน
+                โดยทางบริษัทมีนโยบายมุ่งเน้นการทำธุรกิจในระยะยาวและมุ่งเน้นในการพัฒนาผลิตภัณฑ์ให้ดีและมีคุณภาพเป็นหลัก<br>
+            </p>
+
+            <p class="thai-distributed">การร่วมมือกับคู่ค้าและลูกค้าของเราเป็นสิ่งสำคัญที่สุดในการสร้างสรรค์สิ่งใหม่ ๆ
+                ที่มีคุณค่า
                 เรามีความยินดีที่ได้ทำงานร่วมกับบริษัทและองค์กรต่าง ๆ
                 ทั่วโลกเพื่อสร้างเครือข่ายที่เข้มแข็งและส่งเสริมการพัฒนาธุรกิจในทุกระดับ บริษัทของเรามีความเชื่อว่า
                 ความสำเร็จของเราไม่ได้มาจากเพียงการทำงานอย่างหนัก
@@ -115,7 +91,6 @@
             </p>
         </div>
     </div>
-
     <div class="team-section">
         <div class="container">
             <h2 class="team-title">ทีมงานของเรา</h2>
@@ -145,8 +120,7 @@
         <div class="container">
             <h2 class="contact-title">ติดต่อเรา</h2>
             <div class="row g-3">
-                <!-- Left side: Contact Form -->
-                <div class="col-sm-7">
+                <div class="col-sm-6">
                     <div class="contact-form">
                         <form action="contact_process.php" method="POST">
                             <div class="form-group-contact">
@@ -166,38 +140,42 @@
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">ส่งข้อความ</button>
                         </form>
-
                     </div>
                 </div>
-
                 <!-- Right side: Contact Info -->
-                <div class="col-sd">
+                <div class="col-md-3">
                     <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> โทร: 123-456-7890</p>
-                        <p><i class="fas fa-envelope"></i> อีเมล: email@email.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> ที่อยู่: 123 ถนนธุรกิจ กรุงเทพมหานคร, ประเทศไทย</p>
-                        <p><i class="fab fa-facebook-f"></i> facebook: facebook</p>
-                        <p><i class="fab fa-tiktok"></i> tiktok: tiktok</p>
-                        <p><i class="fab fa-youtube"></i> youtube: youtube</p>
-                        <p><i class="fab fa-instagram"></i> instagram: instagram</p>
+                        <p><i class="fas fa-phone"></i> โทร: 02-642-5425</p>
+                        <p><i class="fas fa-envelope"></i> อีเมล: info@happympm.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> ที่อยู่: โนเบิลเฮ้าส์พญาไท คอนโดมิเนียม 35/30 อาคาร ถ.
+                            พญาไท แขวงถนนพญาไท เขตราชเทวี กรุงเทพมหานคร 10400</p>
+                        <a href="https://www.facebook.com/happympmofficial/?_rdc=2&_rdr">
+                            <p><i class="fab fa-facebook-f"></i> facebook: Happy MPM </p>
+                        </a>
+                        <a href="https://www.tiktok.com/@happympm.official">
+                            <p><i class="fab fa-tiktok"></i> tiktok: happympm.official</p>
+                        </a>
+                        <a href="https://www.youtube.com/@happympmofficial/featured">
+                            <p><i class="fab fa-youtube"></i> youtube: Happy MPM Official</p>
+                        </a>
+                        <a href="https://page.line.me/happympm?openQrModal=true">
+                            <p><i class="fab fa-line"></i> LINE : @happympm</p>
+                        </a>
                     </div>
                 </div>
-                <div class="col-sd">
-                <iframe src="https://www.google.com/maps/embed?pb=YOUR_GOOGLE_MAP_EMBED_CODE" >
-    </iframe>
+                <div class="col-md-3">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4864.352046048093!2d100.53505!3d13.758695999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29eb5e0814139%3A0xfa73f7aeb1dd7276!2zSGFwcHkgTVBNIOC5geC4ruC5h-C4m-C4m-C4teC5iSDguYDguK3guYfguKHguJ7guLXguYDguK3guYfguKEg4Liq4Liz4LiZ4Lix4LiB4LiH4Liy4LiZ4LmD4Lir4LiN4LmI!5e1!3m2!1sth!2sth!4v1725940736225!5m2!1sth!2sth"
+                        width="auto" height="100%" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
+
             </div>
         </div>
     </div>
-
-
-
-
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
     </div>
-
-    <!-- Scripts -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
 </body>

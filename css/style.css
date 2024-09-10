@@ -39,6 +39,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
+
 }
 
 a {
@@ -515,9 +516,6 @@ button {
 
 /* product section start */
 
-.product_section {
-    /* width: auto; */
-}
 
 .product_title {
     text-align: center;
@@ -1790,3 +1788,83 @@ form {
 .container_product_list {
     max-width: fit-content;
 }
+/*about us*/
+.about-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+    padding-top: 120px;
+}
+
+.about-title {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about-content {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.team-section {
+    padding: 60px 0;
+    background-color: #fff;
+}
+
+.team-title {
+    font-size: 30px;
+    font-weight: center;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.team-card {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.team-card img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.team-card h5 {
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.team-card p {
+    color: #777;
+}
+
+.about-banner {
+    padding-top: 29px;
+    
+}
+
+.about-banner img {
+    width: 100%;
+}
+
+.form-group-contact {
+    padding: 3px;
+    width: 100%;
+}
+
+.form-control-contact {
+    width: 100%;
+    border-radius: 8;
+
+}
+.thai-distributed {
+text-align: justify; /* จัดข้อความให้ชิดขอบทั้งสองข้าง */
+line-height: 1.8; /* เพิ่มระยะห่างระหว่างบรรทัด */
+text-indent: 2em; /* ย่อบรรทัดแรก */
+margin-bottom: 20px; /* เพิ่มระยะห่างระหว่างย่อหน้า */
+font-size: 20px;
+}
+/*off about us*/

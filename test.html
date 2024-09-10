@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <div id="google_translate_element">
+  </head>
+  <body>
+    
+  <div>
+      <p>
+        Once you have your API key, you can add the Google Translate code to
+        your HTML site. There are a few ways to do this, but the easiest is to
+        use the Google Translate Widget. To add the widget to your site, simply
+        copy and paste the following code into your HTML:
+      </p>
 
+    </div>
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'ko'}, 'google_translate_element');
+      }
+      </script>
 
-    <p>
-                    Once you have your API key, you can add the Google Translate code to your HTML site. There are a few ways to do this, but the easiest is to use the Google Translate Widget. To add the widget to your site, simply copy and paste the following code into your HTML:
-    </p>
-
-
-
-
-
-
-
-</div>
-
-<script>
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
-</script>
-<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-</body>
+    <script
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </body>
 </html>
