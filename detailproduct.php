@@ -59,10 +59,8 @@ if (isset($product['dtaill_img_product'])) {
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" referrerpolicy="origin"></script>
-    
+
     <style>
     .img-fluid-detail {
         display: flex;
@@ -74,6 +72,83 @@ if (isset($product['dtaill_img_product'])) {
 
     .back-button {
         text-align: center;
+    }
+
+    .container {
+        position: relative;
+    }
+
+    .mySlides {
+        display: none;
+        text-align: center;
+    }
+
+    .mySlides img {
+        height: 600px;
+        
+    }
+
+    .cursor {
+        cursor: pointer;
+    }
+
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 40%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .next {
+        right: 0;
+        height: auto;
+
+    }
+
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    .caption-container {
+        display: none;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .column {
+        float: left;
+        width: 16.66%;
+    }
+
+    .demo {
+        opacity: 0.6;
+    }
+
+    .active,
+    .demo:hover {
+        opacity: 1;
     }
     </style>
 </head>
@@ -101,21 +176,49 @@ if (isset($product['dtaill_img_product'])) {
                 echo '<p class="dtaill-title">' . ($product['dtaill_product']) . '</p>';
                 ?>
 
-                <?php  
-                if (!empty($img_ids)) {
-                    echo '<hr>';
-                    foreach ($img_ids as $img_id) {
-                        $img_id = trim($img_id);
-                        if (!empty($img_id)) {
-                            echo '<img src="images/' . htmlspecialchars($img_id) . '" class="img-fluid-detail" alt="Product Detail Image">';
+                <!-- Slideshow Gallery -->
+                <div class="container">
+                    <?php
+                    if (!empty($img_ids)) {
+                        $slideIndex = 1;
+                        foreach ($img_ids as $img_id) {
+                            $img_id = trim($img_id);
+                            if (!empty($img_id)) {
+                                echo '<div class="mySlides">';
+                                echo '<div class="numbertext">' . $slideIndex . ' / ' . count($img_ids) . '</div>';
+                                echo '<img src="images/' . htmlspecialchars($img_id) . '" style="width:auto">';
+                                echo '</div>';
+                                $slideIndex++;
+                            }
                         }
                     }
-                   
-                } else {
-                    // echo '<p>No additional images available.</p>';
-                }
-                ?>
+                    ?>
 
+                    <a class="prev" onclick="plusSlides(-1)">❮</a>
+                    <a class="next" onclick="plusSlides(1)">❯</a>
+
+                    <div class="caption-container">
+                        <p id="caption"></p>
+                    </div>
+
+                    <div class="row">
+                        <?php
+                        $slideIndex = 1;
+                        if (!empty($img_ids)) {
+                            foreach ($img_ids as $img_id) {
+                                $img_id = trim($img_id);
+                                if (!empty($img_id)) {
+                                    echo '<div class="column">';
+                                    echo '<img class="demo cursor" src="images/' . htmlspecialchars($img_id) . '" style="width:100%" onclick="currentSlide(' . $slideIndex . ')">';
+                                    echo '</div>';
+                                    $slideIndex++;
+                                }
+                            }
+                        }
+                        ?>
+                    </div>
+                </div>
+                <!-- End Slideshow Gallery -->
 
                 <?php 
                 $video_id = isset($product['dtaill_vdo_product']) ? htmlspecialchars($product['dtaill_vdo_product']) : '';
@@ -134,7 +237,7 @@ if (isset($product['dtaill_img_product'])) {
                 }
                 ?>
             </div>
-            <button class="back-button" onclick="goBack()">ย้อนกลับ</button>
+            <button class="back-button" onclick="goBack()"><i class='fas fa-reply'></i>ย้อนกลับ</button>
         </div>
     </div>
 
@@ -150,6 +253,40 @@ if (isset($product['dtaill_img_product'])) {
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/script.js"></script>
+    <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("demo");
+        let captionText = document.getElementById("caption");
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        captionText.innerHTML = dots[slideIndex - 1].alt;
+    }
+    </script>
 </body>
 
 </html>

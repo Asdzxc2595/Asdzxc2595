@@ -1790,9 +1790,9 @@ form {
 }
 /*about us*/
 .about-section {
-    padding: 60px 0;
+    padding: 0px;
     background-color: #f8f9fa;
-    padding-top: 120px;
+    padding-top: px;
 }
 
 .about-title {
@@ -1842,7 +1842,7 @@ form {
 }
 
 .about-banner {
-    padding-top: 29px;
+    padding-top: 30px;
     
 }
 
@@ -1864,7 +1864,20 @@ form {
 text-align: justify; /* จัดข้อความให้ชิดขอบทั้งสองข้าง */
 line-height: 1.8; /* เพิ่มระยะห่างระหว่างบรรทัด */
 text-indent: 2em; /* ย่อบรรทัดแรก */
-margin-bottom: 20px; /* เพิ่มระยะห่างระหว่างย่อหน้า */
+margin-bottom: 1px; /* เพิ่มระยะห่างระหว่างย่อหน้า */
 font-size: 20px;
 }
 /*off about us*/
+/* lis product */
+.edit-button{
+    background-color: #007bff;
+    color: white;
+    border-radius:8px ;
+    padding: 4px 4px 4px 4px;
+}
+.delete-button{
+    background-color: red;
+    color: white;
+    border-radius:8px ;
+    padding: 4px 4px 4px 4px;
+}

@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     $dtaill_vdo_product = preg_replace('/^https:\/\/(www\.youtube\.com\/(watch\?v=|shorts\/)|youtu\.be\/)/', '', $dtaill_vdo_product);
 
     // จัดการกับรูปภาพสินค้า
-    $img_product = null;
+    $img_product = '';
     if (isset($_FILES['img_product']) && $_FILES['img_product']['error'] == UPLOAD_ERR_OK) {
         $img_product = $_FILES['img_product']['name'];
         $target_path = '../images/' . $img_product;

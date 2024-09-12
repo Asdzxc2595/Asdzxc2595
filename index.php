@@ -34,9 +34,9 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-    /* body {
-        padding-top: 70px;
-    } */
+    body {
+        padding-top: 40px;
+    }
 
     .carousel-item .col-md-1 {
         display: flex;
@@ -60,7 +60,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     }
 
     .ad-banner {
-        padding-top: 27px;
+        /* padding-top: 27px; */
         width: 100%;
     }
 
@@ -86,11 +86,11 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         </div>
     </div>
 
-    <!-- <section class="parallax" id="parallax">
+    <section class="parallax" id="parallax">
         <img src="images/city2.png" id="city2">
         <div id="text_logo">LOGO</div>
         <img src="images/city1.png" id="city1">
-    </section> -->
+    </section>
 
     <button id="scrollUp" class="scroll-btn">
         <i class="fas fa-chevron-up"></i>
@@ -171,11 +171,12 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                     ?>
                 </div>
                 <a class="carousel-control-prev" href="#banner_slider" role="button" data-slide="prev">
-                    <i class="fa fa-arrow-left"></i>
+                    <i class="fa fa-chevron-left"></i>
                 </a>
                 <a class="carousel-control-next" href="#banner_slider" role="button" data-slide="next">
-                    <i class="fa fa-arrow-right"></i>
+                    <i class="fa fa-chevron-right"></i>
                 </a>
+
             </div>
         </div>
     </div>
@@ -187,7 +188,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <div id="bestSellers" class="product_section layout_padding body-background">
         <div class="container">
             <div class="row">
-                <h1 class="product_taital">สินค้านิยม</h1>
+                <h1 class="product_taital" ID="hitproduct">สินค้านิยม</h1>
                 <div class="bulit_icon"><img src="images/bulit-icon.png" alt="Bulit Icon"></div>
             </div>
         </div>
@@ -211,7 +212,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                             }
 
                             echo '<div class="col-lg-3 col-md-6 mb-4 ">';
-                            echo '<div class="product_img"><img src="images/' . htmlspecialchars($row["img_product"]) . '" alt="Product Image"></div>';
+                            echo '<div class="product_img "><img src="images/' . htmlspecialchars($row["img_product"]) . '" alt="Product Image" class="img-thumbnail"></div>';
                             echo '<hr>';
                             echo '<h3 class="types_text">' . htmlspecialchars($row["name_product"]) . '</h3>';
                             echo '<p class="looking_text">' . strip_tags($row["dtaill_product"]) . '</p>';
@@ -228,12 +229,13 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                     }
                     ?>
                 </div>
-                <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-                    <i class="fa fa-arrow-left"></i>
+                <a class="carousel-control-prev" href="#banner_slider" role="button" data-slide="prev">
+                    <i class="fa fa-chevron-left"></i>
                 </a>
-                <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-                    <i class="fa fa-arrow-right"></i>
+                <a class="carousel-control-next" href="#banner_slider" role="button" data-slide="next">
+                    <i class="fa fa-chevron-right"></i>
                 </a>
+
             </div>
         </div>
     </div>

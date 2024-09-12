@@ -28,10 +28,6 @@
         display: none !important; /* ซ่อนแถบ Google Translate */
     }
     
-    body {
-        top: 0 !important;
-    }
-
     </style>
 </head>
 

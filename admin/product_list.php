@@ -42,8 +42,9 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         rel="stylesheet">
 
     <style>
-    .container-lg {
-        padding: 50px 50px 50px 50px;
+    .container {
+        padding: 50px;
+        flex-direction: column;
     }
 
     .dropdown-filter.show {
@@ -54,15 +55,20 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         cursor: pointer;
         font-size: 26px;
     }
+
+    .list-product {
+        text-align: center;
+    }
     </style>
 </head>
 
 <body>
     <?php include 'sidebar.php'; ?>
 
-    <div class="container-lg mt-5">
-        <h2>รายการสินค้า</h2>
-
+    <div class="container mt-9">
+    <div class="list-product"><h2>รายการสินค้า</h2></a>
+        </div>
+            <a href="ad_product.php" class="btn btn-primary mb-3">เพิ่มสินค้าใหม่</a>
         <table class="table table-striped" id="productTable">
             <thead>
                 <tr>
@@ -94,6 +100,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th>วันที่นำเข้า</i></th>
                     <th>ยอดคนดู</i></th>
                     <th>แก้ไข</th>
+                    <th>ลบรายการ</th>
                 </tr>
             </thead>
             <tbody>
@@ -111,9 +118,11 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($product['date_product']); ?></td>
                     <td><?php echo htmlspecialchars($product['view_count']); ?></td>
                     <td>
-                        <a href="edit_product.php?id=<?php echo $product['id_product']; ?>" class="active">Edit</a>
-                        <a href="delete_product.php?id=<?php echo $product['id_product']; ?>" class="active"
-                            onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                        <a href="edit_product.php?id=<?php echo $product['id_product']; ?>" class="edit-button">Edit</a>
+                        
+                    </td>
+                    <td><a href="delete_product.php?id=<?php echo $product['id_product']; ?>" class="delete-button"
+                            onclick="return confirm('จะลบรายการนี้ใช่ไหม');">Delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

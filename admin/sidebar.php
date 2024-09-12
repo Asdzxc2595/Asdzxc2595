@@ -109,6 +109,7 @@
         <a href="dashboard.php"> Dashboard<i class="fas fa-chart-pie"></i></a>
         <a href="ad_product.php">เพิ่มสินค้า <i class="fas fa-plus-circle"></i> </a>
         <a href="product_list.php"> รายการสินค้า <i class="fas fa-list"></i></a>
+        <a href="list_banner.php">banner<i class="fa fa-ad"></i> </a>
         <a href="logout.php"> ล็อกเอาต์ <i class="fas fa-sign-out-alt"></i></a>
     </div>
 
