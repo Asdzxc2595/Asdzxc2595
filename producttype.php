@@ -33,9 +33,9 @@ if (isset($_GET['type'])) {
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
-
+<?php include 'nav.php'; ?>
 <body>
-    <?php include 'nav.php'; ?>
+   
 
 
     
@@ -71,6 +71,7 @@ if (isset($_GET['type'])) {
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/plugin.js"></script>
+    
 </body>
 
 </html>

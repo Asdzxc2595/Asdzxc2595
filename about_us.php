@@ -80,25 +80,25 @@
     </div>
     <div class="team-section">
         <div class="container">
-            <h2 class="team-title">ทีมงานของเรา</h2>
+            <h2 class="team-title">รีวิว</h2>
             <div class="row">
                 <!-- Team Member 1 -->
                 <div class="col-md-4 team-card">
                     <img src="images/cat.jpg"  alt="สมาชิกทีม 1">
                     <h5>จอห์น โด</h5>
-                    <p>ผู้ก่อตั้งและประธานกรรมการบริหาร</p>
+                    <p>สุดยอดมากๆเลยครับ</p>
                 </div>
                 <!-- Team Member 2 -->
                 <div class="col-md-4 team-card">
                     <img src="images/cat.jpg" alt="สมาชิกทีม 2">
                     <h5>เจน สมิธ</h5>
-                    <p>ประธานฝ่ายการตลาด</p>
+                    <p>สุดยอดมากๆเลยครับ</p>
                 </div>
                 <!-- Team Member 3 -->
                 <div class="col-md-4 team-card">
                     <img src="images/cat.jpg" alt="สมาชิกทีม 3">
                     <h5>ไมเคิล ลี</h5>
-                    <p>หัวหน้าฝ่ายพัฒนา</p>
+                    <p>สุดยอดมากๆเลยครับ</p>
                 </div>
             </div>
         </div>

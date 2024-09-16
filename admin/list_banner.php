@@ -28,7 +28,7 @@ $banners = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         .container {
-            padding: 50px;
+            padding: 40px;
             flex-direction: column;
         }
 
@@ -82,18 +82,19 @@ $banners = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><?php echo htmlspecialchars($banner['id_banner']); ?></td>
                     <td><?php echo htmlspecialchars($banner['title']); ?></td>
                     <td>
-                        <img src="../images/<?php echo htmlspecialchars($banner['banner_image']); ?>" alt="Banner Image">
+                    <img src="../images/banner/<?php echo htmlspecialchars($banner['id_banner']) . '/' . htmlspecialchars($banner['banner_image']); ?>" alt="Banner Image">
+
                     </td>
                     <td><?php echo '<p>'.strip_tags($banner['description']).'</p>'; ?></td>
                     <td><?php echo htmlspecialchars($banner['display_start_date']); ?></td>
                     <td><?php echo htmlspecialchars($banner['display_end_date']); ?></td>
                     <td><?php echo ($banner['is_active']) ? 'แสดง' : 'ไม่แสดง'; ?></td>
                     <td>
-                        <a href="edit_banner.php?id_banner=<?php echo $banner['id_banner']; ?>" class="edit-button">Edit</a>
+                        <a href="edit_banner.php?id=<?php echo $banner['id_banner']; ?>" class="edit-button">Edit</a>
                         
                     </td>
                     <td>
-                    <a href="delete_banner.php?id_banner=<?php echo $banner['id_banner']; ?>" class="delete-button "
+                    <a href="delete_banner.php?id=<?php echo $banner['id_banner']; ?>" class="delete-button "
                     onclick="return confirm('จะลบรายการนี้ใช่ไหม');">Delete</a>
                     </td>
                 </tr>

@@ -237,11 +237,9 @@ if (isset($product['dtaill_img_product'])) {
                 }
                 ?>
             </div>
-            <button class="back-button" onclick="goBack()"><i class='fas fa-reply'></i>ย้อนกลับ</button>
+            <button class="back-button" onclick="goBack()"><i class='fas fa-reply'></i> ย้อนกลับ</button>
         </div>
     </div>
-
-    <?php include 'address.php'; ?>
 
     <div class="copyright_section">
         <?php include 'footer.php'; ?>

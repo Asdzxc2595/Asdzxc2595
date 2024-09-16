@@ -104,11 +104,11 @@ if (isset($_GET['id'])) {
     $images = unserialize($product['dtaill_img_product']) ?: [];
 
     if (!empty($images)) {
-        echo '<div class="row mt-3">';
+        echo '<div class="row ">';
         foreach ($images as $img) {
             $img = trim($img);
             if (!empty($img)) {
-                echo '<div class="col-md-3 mb-3">';
+                echo '<div class="col-md-2 col-sm-3 mb-4">';
                 echo '<img src="../images/' . htmlspecialchars($img) . '" alt="Product Detail Image" class="img-fluid" style="width: 100%;">';
                 echo '</div>';
             }

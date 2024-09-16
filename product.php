@@ -25,12 +25,7 @@
 </head>
 
 <body>
-    <div class="header_section header_bg ">
-        <div class="container-fluid">
             <?php include 'nav.php'; ?>
-        </div>
-    </div>
-
     <div class="product_section layout_padding body-background">
         <h1 class="product_hard_title">รายการสินค้า</h1>
         <form method="GET" class="search-from">
@@ -55,7 +50,7 @@
         ?>
             <div class="card-item-product">
                 <img src="images/<?php echo htmlspecialchars($product['img_product']); ?>" class="card-img-top"
-                    alt="<?php echo htmlspecialchars($product['name_product']); ?>">
+                    alt="<?php echo htmlspecialchars($product['name_product']); ?>"loading="lazy">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo htmlspecialchars($product['name_product']); ?></h5>
                     <p class="card-text"><?php echo strip_tags($product['dtaill_product']); ?></p>
@@ -80,6 +75,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery-3.0.0.min.js"></script>
     <script src="js/plugin.js"></script>
+    
 </body>
 
 </html>

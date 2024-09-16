@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php'; 
+include 'db_connect.php';
 
 // ดึงสินค้าขายดี
 $sqlBestSellers = "SELECT * FROM product ORDER BY view_count DESC LIMIT 8";
@@ -10,7 +10,15 @@ $sqlNewProducts = "SELECT id_product, name_product, img_product, dtaill_product
                     FROM product 
                     WHERE DATE_ADD(date_product, INTERVAL 3 MONTH) >= NOW() LIMIT 5";
 $resultNewProducts = $pdo->query($sqlNewProducts);
+
+// ดึงแบนเนอร์ที่แสดงตามวันที่กำหนดและสถานะ
+$sqlBanners = "SELECT * FROM banner 
+                WHERE (display_start_date <= NOW() AND display_end_date >= NOW()) 
+                AND is_active = 1 
+                ORDER BY display_start_date DESC";
+$resultBanners = $pdo->query($sqlBanners);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +34,8 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="icon" href="images/cat.jpg" type="image/gif" />
+    <link rel="icon" href="images/cat.jpg" type="image/gif">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -49,12 +58,6 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         order: -1;
     }
 
-    .carousel-item img {
-        max-width: 100%;
-        height: auto;
-        min-width: 280px;
-    }
-
     .tasty_text {
         margin-top: 10px;
     }
@@ -72,25 +75,30 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
         font-size: 50px;
     }
 
+.carousel-inner-banner{
+    padding-top:28px ;
+}
     .carousel-inner img {
         width: 100%;
-        height: auto;
+    height: auto; /* ให้ความสูงปรับตามอัตราส่วน */
+    object-fit: cover; /* ให้ภาพครอบตัดเต็มพื้นที่ */
+    }
+
+    .adBannerSlider img {
+        width: 100%;
+        height: 600px;
     }
     </style>
 </head>
-
+<?php include 'nav.php'; ?>
 <body>
-    <div class="header_section header_bg">
-        <div class="container-fluid">
-            <?php include 'nav.php'; ?>
-        </div>
-    </div>
+       
 
-    <section class="parallax" id="parallax">
+    <!-- <section class="parallax" id="parallax">
         <img src="images/city2.png" id="city2">
         <div id="text_logo">LOGO</div>
         <img src="images/city1.png" id="city1">
-    </section>
+    </section> -->
 
     <button id="scrollUp" class="scroll-btn">
         <i class="fas fa-chevron-up"></i>
@@ -99,35 +107,50 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <button id="scrollDown" class="scroll-btn">
         <i class="fas fa-chevron-down"></i>
     </button>
-
-    <!-- เพิ่มแบนเนอร์โฆษณา -->
+    <!-- แบนเนอร์โฆษณา -->
     <div id="adBannerSlider" class="carousel slide ad-banner" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#adBannerSlider" data-slide-to="0" class="active"></li>
-            <li data-target="#adBannerSlider" data-slide-to="1"></li>
-            <li data-target="#adBannerSlider" data-slide-to="2"></li>
+            <?php
+        // ดึงข้อมูลแบนเนอร์จากฐานข้อมูล
+        $sqlBanners = "SELECT * FROM banner WHERE NOW() BETWEEN display_start_date AND display_end_date AND is_active = 1 ORDER BY display_start_date LIMIT 3";
+        $resultBanners = $pdo->query($sqlBanners);
+        $bannerCount = $resultBanners->rowCount();
+        
+        // วนลูปสร้าง indicators สำหรับแต่ละแบนเนอร์
+        for ($i = 0; $i < $bannerCount; $i++) {
+            echo '<li data-target="#adBannerSlider" data-slide-to="' . $i . '" class="' . ($i === 0 ? 'active' : '') . '"></li>';
+        }
+        ?>
         </ol>
 
         <!-- Slides -->
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="images/advert1.png" alt="New Products Ad Banner">
-            </div>
-            <div class="carousel-item">
-                <img src="images/advert2.png" alt="New Products Ad Banner">
-            </div>
-            <div class="carousel-item">
-                <img src="images/advert3.png" alt="New Products Ad Banner">
-            </div>
+        <div class="carousel-inner-banner">
+            <?php
+        $first = true;
+        while ($row = $resultBanners->fetch(PDO::FETCH_ASSOC)) {
+            // ตรวจสอบว่าภาพแรกเป็น active
+            $activeClass = $first ? 'active' : '';
+            $first = false;
+
+            // แสดงแบนเนอร์และลิงก์ไปยังหน้ารายละเอียด
+            echo '<div class="carousel-item ' . $activeClass . '">';
+            echo '<a href="banner_detail.php?id_banner=' . htmlspecialchars($row['id_banner']) . '">';
+            echo '<img src="images/banner/' . htmlspecialchars($row['id_banner']) . '/' . htmlspecialchars($row['banner_image']) . '" class="d-block w-100" alt="Banner Image" style="max-height: 500px; object-fit: cover;">';
+            echo '</a>';
+            echo '</div>';
+        }
+        ?>
         </div>
 
-        <!-- Controls -->
+        <!-- ปุ่มควบคุมการเลื่อนแบนเนอร์ -->
         <a class="carousel-control-prev" href="#adBannerSlider" role="button" data-slide="prev">
-            <i class="fa fa-chevron-left"></i>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
         </a>
         <a class="carousel-control-next" href="#adBannerSlider" role="button" data-slide="next">
-            <i class="fa fa-chevron-right"></i>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
         </a>
     </div>
 
@@ -135,8 +158,6 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <!-- สินค้าใหม่ -->
     <div id="newProducts" class="banner_section layout_padding client_section">
         <h1 class="text_titer_center">สินค้าใหม่</h1>
-
-
 
         <div class="container">
             <div id="banner_slider" class="carousel slide" data-ride="carousel">
@@ -166,7 +187,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                             echo '</div>';
                         }
                     } else {
-                        echo '<p>No new products available</p>';
+                        echo '<p>ไม่มีสินค้าหมายใหม่</p>';
                     }
                     ?>
                 </div>
@@ -176,7 +197,6 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                 <a class="carousel-control-next" href="#banner_slider" role="button" data-slide="next">
                     <i class="fa fa-chevron-right"></i>
                 </a>
-
             </div>
         </div>
     </div>
@@ -200,7 +220,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                         $first = true;
                         $itemCount = 0;
 
-                        // Start a new carousel item
+                        // เริ่มต้น carousel-item ใหม่
                         echo '<div class="carousel-item ' . ($first ? 'active' : '') . '">';
                         echo '<div class="container-fluid"><div class="row">';
                         
@@ -225,17 +245,16 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
                         // ปิด div สำหรับ carousel-item ที่ยังเปิดอยู่
                         echo '</div></div></div>';
                     } else {
-                        echo '<p>No best-selling products found.</p>';
+                        echo '<p>ไม่มีสินค้านิยม</p>';
                     }
                     ?>
                 </div>
-                <a class="carousel-control-prev" href="#banner_slider" role="button" data-slide="prev">
+                <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
                     <i class="fa fa-chevron-left"></i>
                 </a>
-                <a class="carousel-control-next" href="#banner_slider" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
                     <i class="fa fa-chevron-right"></i>
                 </a>
-
             </div>
         </div>
     </div>
@@ -244,6 +263,7 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
     </div>
+    
 
     <!-- Scripts -->
     <script src="js/jquery.min.js"></script>
@@ -254,6 +274,9 @@ $resultNewProducts = $pdo->query($sqlNewProducts);
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/updow.js"></script>
+    <script src="js/mouse_move.js"></script>
+    
 </body>
+
 
 </html>

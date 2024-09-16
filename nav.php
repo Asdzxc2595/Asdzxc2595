@@ -19,19 +19,48 @@
         href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
     <style>
-      #google_translate_element {
-        display: none; /* ซ่อน Google Translate element */
-    }
-    
-    .goog-te-banner-frame.skiptranslate,.skiptranslate,
-    .goog-te-gadget-icon {
-        display: none !important; /* ซ่อนแถบ Google Translate */
-    }
+    /* ซ่อน Google Translate banner */
+#goog-gt-banner-frame {
+    display: none !important;
+}
+
+/* ซ่อน Google Translate gadget icon */
+body {
+    top: 0px !important;
+}
+
+body > .skiptranslate {
+    display: none !important;
+}
+
+#goog-gt-vt {
+    display: none !important;
+}
+
+#goog-gt-tc {
+    display: none !important;
+}
+
+.goog-te-banner-frame,
+.goog-te-gadget-icon,
+.goog-te-menu-frame {
+    display: none !important;
+}
+
+.skiptranslate {
+    display: none !important;
+}
+
+#google_translate_element {
+    display: none !important;
+}
+
     
     </style>
 </head>
-
+<div class="circle" id="circle"></div>
 <body >
+
     <div class="header_section header_bg body-background">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg bg-light navbar-light" id="main-navbar">
@@ -96,6 +125,7 @@
             </nav>
         </div>
     </div>
+   
     <script>window.addEventListener('load', function() {
     // ตรวจสอบและปรับแต่งการตั้งค่าตำแหน่งของ <body>
     document.body.style.top = '0';
@@ -103,6 +133,7 @@
 </script>
     <script src="js/script.js"></script>
     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="js/mouse_move.js"></script>
 </body>
 
 </html>
