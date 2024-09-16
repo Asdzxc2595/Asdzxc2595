@@ -39,7 +39,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-
+    overflow: visible;
 }
 
 a {
@@ -556,7 +556,8 @@ button {
     /* opacity: 0; /* ซ่อนเนื้อหาจนกว่าจะเลื่อนเข้ามา 
     transition: opacity 1s ease-in-out; อนิเมชันของการเปลี่ยนแปลงความโปร่งใส */
 }
-.product_section_2 img{
+
+.product_section_2 img {
     width: auto;
     max-width: 350px;
     height: 350px;
@@ -1150,7 +1151,7 @@ textarea#comment.update_mail::placeholder {
     background-color:
         #050505;
     height: auto;
-   margin-top: auto;
+    margin-top: auto;
 }
 
 .copyright_text {
@@ -1269,7 +1270,7 @@ textarea#comment.update_mail::placeholder {
 
 }
 
-/* Card Container */
+
 .card-item-product {
     border: 1px solid #050505;
     border-radius: 8px;
@@ -1293,12 +1294,12 @@ textarea#comment.update_mail::placeholder {
 .card-item-product img {
     height: 225px;
     width: auto;
-
+    object-fit: cover;
 }
 
 /* Title */
 .card-item-product .card-title {
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     /* font-weight: 600;
     margin: 14px 0; */
     color: #050505;
@@ -1783,11 +1784,22 @@ form {
 .adminicon {
     color: #f8f9fa;
 }
+.back-button{
+    background-color: #000;
+    color: white;
+    padding: 10px;
+    border-radius: 9px;
+    text-align: center; /* จัดข้อความให้อยู่ตรงกลางภายในปุ่ม */
+    display: block;
+    margin: 0 auto; /* จัดปุ่มให้อยู่ตรงกลาง */
+    width: fit-content; /* ขนาดของปุ่มตามขนาดเนื้อหา */
+}
 
 /*สินสุด navadmin*/
 .container_product_list {
     max-width: fit-content;
 }
+
 /*about us*/
 .about-section {
     padding: 0px;
@@ -1842,12 +1854,13 @@ form {
 }
 
 .about-banner {
-    padding-top: 30px;
-    
+    padding-top: 65px;
+
 }
 
 .about-banner img {
     width: 100%;
+    height: 500px;
 }
 
 .form-group-contact {
@@ -1860,24 +1873,41 @@ form {
     border-radius: 8;
 
 }
+
 .thai-distributed {
-text-align: justify; /* จัดข้อความให้ชิดขอบทั้งสองข้าง */
-line-height: 1.8; /* เพิ่มระยะห่างระหว่างบรรทัด */
-text-indent: 2em; /* ย่อบรรทัดแรก */
-margin-bottom: 1px; /* เพิ่มระยะห่างระหว่างย่อหน้า */
-font-size: 20px;
+    text-align: justify;
+    line-height: 1.8;
+    text-indent: 2em;
+    margin-bottom: 1px;
+    font-size: 20px;
 }
+
 /*off about us*/
 /* lis product */
-.edit-button{
+.edit-button {
     background-color: #007bff;
     color: white;
-    border-radius:8px ;
-    padding: 4px 4px 4px 4px;
+    border-radius: 8px;
+    padding: 5px
 }
-.delete-button{
+
+.delete-button {
     background-color: red;
     color: white;
-    border-radius:8px ;
-    padding: 4px 4px 4px 4px;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+/* mouse move  */
+.circle {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background-color: #00bfff00;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: transform 0.05s ease-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    opacity: 0.5;
+    z-index: 999;
 }
