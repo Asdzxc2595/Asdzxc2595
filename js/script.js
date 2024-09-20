@@ -46,9 +46,10 @@ function showOriginalText() {
 }
 //ปิดแปลภาษา
 // edittor
+document.addEventListener('DOMContentLoaded', function() {
 tinymce.init({
-    selector: 'textarea#dtaill_product textarea#banner_description',
+    selector: 'textarea#textarea_detail',
     plugins: 'advlist anchor autolink autosave charmap code codesample directionality emoticons fullscreen help image imagetools insertdatetime link lists media nonbreaking pagebreak paste preview print save searchreplace spellchecker table template textcolor visualblocks visualchars wordcount',
     toolbar: 'undo redo | formatselect | fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent  | table emoticons charmap | preview fullscreen code',
     menubar: 'file edit view insert format tools table ',
-});
+});});

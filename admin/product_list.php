@@ -107,16 +107,16 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php foreach ($products as $product): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($product['id_product']); ?></td>
-                    <td><?php echo '<p class="banner_text">'.htmlspecialchars($product['name_product']).'</p>'; ?></td>
+                    <td><?php echo '<p class="product_text">'.htmlspecialchars($product['name_product']).'</p>'; ?></td>
                     <td>
                         <img src="../images/<?php echo htmlspecialchars($product['img_product']); ?>"
                             alt="Product Image">
                     </td>
                     <td><?php echo htmlspecialchars($product['type_product']); ?></td>
-                    <td><?php echo '<p class="banner_text">'.strip_tags($product['dtaill_product']) . '</p>'; ?></td>
-                    <td><?php echo htmlspecialchars($product['dtaill_vdo_product']); ?></td>
+                    <td><?php echo '<p class="product_text">'.strip_tags($product['detail_product']) . '</p>'; ?></td>
+                    <td><?php echo htmlspecialchars($product['vdo_detail_product']); ?></td>
                     <td><?php echo htmlspecialchars($product['date_product']); ?></td>
-                    <td><?php echo htmlspecialchars($product['view_count']); ?></td>
+                    <td><?php echo htmlspecialchars($product['view_product']); ?></td>
                     <td>
                         <a href="edit_product.php?id=<?php echo $product['id_product']; ?>" class="edit-button">Edit</a>
                         

@@ -47,6 +47,8 @@ if (isset($banner['additional_image'])) {
     <title>รายละเอียด Banner</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+   
 
     <style>
     .about-banner img {
@@ -76,10 +78,12 @@ if (isset($banner['additional_image'])) {
         text-align: justify;
         margin-bottom: 20px;
     }
+    .additional-images{
+        width: 100%;
+    }
 
     .additional-images img {
-        width: 100%;
-        max-width: 300px;
+        width: 1110px;
         height: auto;
         margin-bottom: 10px;
         border: 1px solid #ddd;
@@ -102,27 +106,36 @@ if (isset($banner['additional_image'])) {
             <?php echo '<p class="banner-description">' . ($banner['description']) . '</p>';?>
         </div>
         <!-- แสดงรูปภาพเพิ่มเติม -->
-        <div class="additional-images">
-            <?php
-            if (!empty($img_ids) && is_array($img_ids)) {
-                foreach ($img_ids as $image) {
-                    $imagePath = 'images/banner/' . htmlspecialchars($id_banner) . '/' . htmlspecialchars($image);
-                    if (file_exists($imagePath)) {
-                        echo '<img src="' . $imagePath . '" alt="Additional Image">';
-                    } else {
-                        echo '<p>Image not found: ' . htmlspecialchars($image) . '</p>';
-                    }
-                }
+        <div class="container additional-images">
+    <?php
+    if (!empty($img_ids) && is_array($img_ids)) {
+        $slideIndex = 1;
+        foreach ($img_ids as $image) {
+            $imagePath = 'images/banner/' . htmlspecialchars($id_banner) . '/' . htmlspecialchars($image);
+            if (file_exists($imagePath)) {
+                echo '<a href="' . $imagePath . '" data-lightbox="banner-images" data-title="additional-images-img' . $slideIndex . '">';
+                echo '<img src="' . $imagePath . '" alt="additional-images-img' . $slideIndex . '">';
+                echo '</a>';
+                $slideIndex++;
             } else {
-                echo '<p>No additional images available.</p>';
+                echo '<p>Image not found: ' . htmlspecialchars($image) . '</p>';
             }
-            ?>
-        </div>
+        }
+    } else {
+        echo '<p>No additional images available.</p>';
+    }
+    ?>
+</div>
+
+
     </div>
 
     <!-- Scripts -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/lightbox.js"></script>
+
+
 </body>
 
 </html>

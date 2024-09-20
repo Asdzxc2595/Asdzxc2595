@@ -1912,3 +1912,15 @@ form {
     opacity: 0.5;
     z-index: 999;
 }
+.additional-images{
+    width: 100%;
+}
+
+.additional-images img {
+    width: 1110px;
+    height: auto;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+   
+}

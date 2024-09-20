@@ -177,7 +177,7 @@ if (isset($product['dtaill_img_product'])) {
                 ?>
 
                 <!-- Slideshow Gallery -->
-                <div class="container">
+                <div class="container additional-images ">
                     <?php
                     if (!empty($img_ids)) {
                         $slideIndex = 1;
@@ -193,30 +193,6 @@ if (isset($product['dtaill_img_product'])) {
                         }
                     }
                     ?>
-
-                    <a class="prev" onclick="plusSlides(-1)">❮</a>
-                    <a class="next" onclick="plusSlides(1)">❯</a>
-
-                    <div class="caption-container">
-                        <p id="caption"></p>
-                    </div>
-
-                    <div class="row">
-                        <?php
-                        $slideIndex = 1;
-                        if (!empty($img_ids)) {
-                            foreach ($img_ids as $img_id) {
-                                $img_id = trim($img_id);
-                                if (!empty($img_id)) {
-                                    echo '<div class="column">';
-                                    echo '<img class="demo cursor" src="images/' . htmlspecialchars($img_id) . '" style="width:100%" onclick="currentSlide(' . $slideIndex . ')">';
-                                    echo '</div>';
-                                    $slideIndex++;
-                                }
-                            }
-                        }
-                        ?>
-                    </div>
                 </div>
                 <!-- End Slideshow Gallery -->
 

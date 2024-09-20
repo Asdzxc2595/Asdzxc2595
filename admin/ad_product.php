@@ -6,58 +6,34 @@ if (!isset($_SESSION['loggedin'])) {
 }
 require("../db_connect.php");
 
-// ดึงข้อมูลจากฐานข้อมูล
-$sql = "SELECT * FROM product";
+// ดึงข้อมูลประเภทสินค้า
+$sql = "SELECT id_type, name_type FROM type";
 $stmt = $pdo->query($sql);
-$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$types = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>เพิ่มสินค้า</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
-        tinymce.init({
-            selector: 'textarea#dtaill_product',
-           plugins: 'advlist anchor autolink autosave charmap code codesample directionality emoticons fullscreen help image imagetools insertdatetime link lists media nonbreaking pagebreak paste preview print save searchreplace spellchecker table template textcolor visualblocks visualchars wordcount',
-            toolbar: 'undo redo | formatselect |link image| fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent  | table emoticons charmap | preview fullscreen code',
-            menubar: 'file edit view insert format tools table ',
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    tinymce.init({
+        selector: 'textarea#detail',
+        plugins: 'advlist anchor autolink autosave charmap code codesample directionality emoticons fullscreen help image imagetools insertdatetime link lists media nonbreaking pagebreak paste preview print save searchreplace spellchecker table template textcolor visualblocks visualchars wordcount',
+        toolbar: 'undo redo | formatselect | link image | fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table emoticons charmap | preview fullscreen code',
+        menubar: 'file edit view insert format tools table',
+    });
+});
     </script>
-       <style>.body{
-        padding-left: 50px;
-       }
-       .form-group-edit a{
-        color:red ;
-       }
-    </style>
 </head>
 
 <body>
-<div class="header_section header_bg">
-        <div class="container-fluid">
             <?php include 'sidebar.php'; ?>
-        </div>
-    </div>
     <div class="container mt-5">
         <h1 class="mt-5">เพิ่มสินค้าใหม่</h1>
-        <form action="update.php" method="post" enctype="multipart/form-data">
+        <form action="save_product.php" method="post" enctype="multipart/form-data">
             <div class="form-group-edit">
                 <label for="name_product">ชื่อสินค้า</label>
-            </div>
-            <div class="form-group-edit">
                 <input type="text" class="form-edit" id="name_product" name="name_product" required>
             </div>
             <div class="form-group-edit">
@@ -66,37 +42,81 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div class="form-group-edit">
                 <label for="type_product">ประเภทสินค้า</label>
-                <select class="form-edit" id="type_product" name="type_product">
-                    <option value="เครื่องสำอาง">เครื่องสำอาง</option>
-                    <option value="อาหารเสริม">อาหารเสริม</option>
-                    <option value="สินค้า">สินค้า</option>
-                </select>
+                <div class="input-group">
+                    <select class="form-edit" id="type_product" name="type_product" required>
+                        <?php foreach ($types as $type) : ?>
+                        <option value="<?= $type['id_type']; ?>"><?= $type['name_type']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <!-- <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTypeModal">+</button>
+                    <button type="button" class="btn btn-danger" id="deleteType">-</button> -->
+                </div>
             </div>
             <div class="form-group-edit">
-                <label for="dtaill_product">รายละเอียดสินค้า <a><i class="fas fa-exclamation-circler"></i>การที่เพิ่มรูปในนี้ควรเป็นรูปในเว็บไม่งันรูปจะไม่แสดง</a></label>
-                <textarea class="form-edit" id="dtaill_product" name="dtaill_product" rows="3"></textarea>
+                <label for="detail_product">รายละเอียดสินค้า</label>
+                <textarea class="form-edit" id="detail" name="detail_product" rows="3"></textarea>
             </div>
             <div class="form-group-edit">
-    <label for="dtaill_img_product">ภาพรายละเอียด</label>
-    <input type="file" class="form-edit" id="dtaill_img_product" name="dtaill_img_product[]" multiple>
-</div>
+                <label for="detail_img_product">ภาพรายละเอียด</label>
+                <input type="file" class="form-edit" id="detail_img_product" name="detail_img_product[]" multiple>
+            </div>
             <div class="form-group-edit">
                 <label for="date_product">วันที่</label>
                 <input type="date" class="form-edit" id="date_product" name="date_product">
             </div>
             <div class="form-group-edit">
-                <label for="dtaill_vdo_product">ลิงก์วิดีโอรายละเอียด YouTube </label>
-                <input type="text" class="form-edit" id="dtaill_vdo_product" name="dtaill_vdo_product">
+                <label for="detail_vdo_product">ลิงก์วิดีโอรายละเอียด YouTube</label>
+                <input type="text" class="form-edit" id="detail_vdo_product" name="detail_vdo_product">
             </div>
             <button type="submit" name="submit" class="btn btn-primary">เพิ่มสินค้า</button>
         </form>
 
-        </form>
+        <!-- Modal สำหรับเพิ่มประเภทสินค้า -->
+        <div class="modal fade" id="addTypeModal" tabindex="-1" aria-labelledby="addTypeModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addTypeModalLabel">เพิ่มประเภทสินค้า</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="addTypeForm">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="name_type">ชื่อประเภทสินค้า</label>
+                                <input type="text" class="form-control" id="name_type" name="name_type" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                            <button type="submit" class="btn btn-primary">บันทึก</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-        </form>
     </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    
+    <!-- <script>
+    $('#addTypeForm').on('submit', function(e) {
+        e.preventDefault();
+        var newType = $('#name_type').val();
+        $.ajax({
+            type: 'POST',
+            url: 'add_product_type.php',
+            data: { name_type: newType },
+            success: function(response) {
+                if (response === 'success') {
+                    location.reload(); // Reload page เพื่ออัปเดต dropdown
+                } else if (response === 'exists') {
+                    alert('ประเภทสินค้านี้มีอยู่แล้ว');
+                } else {
+                    alert('Error adding type');
+                }
+            }
+        });
+    });
+    </script> -->
 </body>
-
 </html>
+ผ

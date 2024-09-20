@@ -25,11 +25,11 @@ if (!$banner) {
     exit;
 }
 
-$title = $_POST['banner_title'];
-$description = $_POST['banner_description'];
-$start_date = $_POST['display_start_date'];
-$end_date = $_POST['display_end_date'];
-$is_active = isset($_POST['is_active']) ? $_POST['is_active'] : 0;
+$name_banner= $_POST['name_banner'];
+$detail_banner = $_POST['detail_banner'];
+$star_date = $_POST['star_date_banner'];
+$end_date = $_POST['end_date_banner'];
+$active_banner = $_POST['active_banner'] ; // ตรวจสอบค่า active_banner
 
 // สร้างไดเรกทอรีสำหรับอัพโหลดถ้ายังไม่มี
 $upload_dir = "../images/banner/" . $id_banner . "/";
@@ -38,76 +38,76 @@ if (!is_dir($upload_dir)) {
 }
 
 // อัพโหลดรูปภาพหลัก
-$banner_image = $banner['banner_image']; // รักษาค่าเดิมหากไม่มีการอัพโหลดรูปใหม่
-if (isset($_FILES['banner_image']) && $_FILES['banner_image']['error'] == UPLOAD_ERR_OK) {
-    $banner_image = basename($_FILES['banner_image']['name']);
-    $target_path = $upload_dir . $banner_image;
-    if (!move_uploaded_file($_FILES['banner_image']['tmp_name'], $target_path)) {
+$img_banner = $banner['img_banner']; // รักษาค่าเดิมหากไม่มีการอัพโหลดรูปใหม่
+if (isset($_FILES['img_banner']) && $_FILES['img_banner']['error'] == UPLOAD_ERR_OK) {
+    $img_banner = basename($_FILES['img_banner']['name']);
+    $target_path = $upload_dir . $img_banner;
+    if (!move_uploaded_file($_FILES['img_banner']['tmp_name'], $target_path)) {
         echo "เกิดข้อผิดพลาดในการอัปโหลดรูปภาพหลัก";
         exit;
     }
     // ลบภาพเก่าหากมี
-    if ($banner['banner_image'] && file_exists($upload_dir . $banner['banner_image'])) {
-        unlink($upload_dir . $banner['banner_image']);
+    if ($banner['img_banner'] && file_exists($upload_dir . $banner['img_banner'])) {
+        unlink($upload_dir . $banner['img_banner']);
     }
 }
 
 // จัดการกับรูปภาพรายละเอียด (หลายรูป)
-$additional_images = [];
-$old_additional_images = unserialize($banner['additional_image']); // รูปภาพเก่า
+$img_detail_banners = [];
+$old_img_detail_banners = unserialize($banner['img_detail_banner']); // รูปภาพเก่า
 
-if (isset($_FILES['additional_image']) && !empty($_FILES['additional_image']['name'][0])) {
-    $file_count = count($_FILES['additional_image']['name']);
+if (isset($_FILES['img_detail_banner']) && !empty($_FILES['img_detail_banner']['name'][0])) {
+    $file_count = count($_FILES['img_detail_banner']['name']);
     for ($i = 0; $i < $file_count; $i++) {
-        if ($_FILES['additional_image']['error'][$i] === UPLOAD_ERR_OK) {
-            $file_name = basename($_FILES['additional_image']['name'][$i]);
+        if ($_FILES['img_detail_banner']['error'][$i] === UPLOAD_ERR_OK) {
+            $file_name = basename($_FILES['img_detail_banner']['name'][$i]);
             $target_path = $upload_dir . $file_name;
-            if (move_uploaded_file($_FILES['additional_image']['tmp_name'][$i], $target_path)) {
-                $additional_images[] = $file_name; // เก็บชื่อไฟล์ใน array หากอัปโหลดสำเร็จ
+            if (move_uploaded_file($_FILES['img_detail_banner']['tmp_name'][$i], $target_path)) {
+                $img_detail_banners[] = $file_name; // เก็บชื่อไฟล์ใน array หากอัปโหลดสำเร็จ
             } else {
                 echo "การย้ายไฟล์ล้มเหลว: " . $file_name;
                 exit;
             }
         } else {
-            echo "เกิดข้อผิดพลาดในการอัปโหลดไฟล์: " . $_FILES['additional_image']['name'][$i];
+            echo "เกิดข้อผิดพลาดในการอัปโหลดไฟล์: " . $_FILES['img_detail_banner']['name'][$i];
             exit;
         }
     }
 } else {
-    $additional_images = $old_additional_images; // ใช้ข้อมูลเดิมหากไม่มีการอัปโหลดใหม่
+    $img_detail_banners = $old_img_detail_banners; // ใช้ข้อมูลเดิมหากไม่มีการอัปโหลดใหม่
 }
 
 // ลบรูปภาพเก่า
-foreach ($old_additional_images as $old_image) {
+foreach ($old_img_detail_banners as $old_image) {
     $old_image_path = $upload_dir . $old_image;
-    if (!in_array($old_image, $additional_images) && file_exists($old_image_path)) {
+    if (!in_array($old_image, $img_detail_banners) && file_exists($old_image_path)) {
         unlink($old_image_path);
     }
 }
 
 // แปลงที่อยู่ของรูปภาพเพิ่มเติมเป็นรูปแบบ serialize
-$additional_images_serialized = serialize($additional_images);
+$img_detail_banners_serialized = serialize($img_detail_banners);
 
 // เตรียมคำสั่ง SQL สำหรับการอัพเดท
 $sql_update = "UPDATE banner 
-               SET banner_image = :banner_image, 
-                   title = :title, 
-                   description = :description, 
-                   additional_image = :additional_image, 
-                   display_start_date = :display_start_date, 
-                   display_end_date = :display_end_date, 
-                   is_active = :is_active 
+               SET img_banner = :img_banner, 
+                   name_banner = :name_banner, 
+                   detail_banner = :detail_banner, 
+                   img_detail_banner = :img_detail_banner, 
+                   star_date_banner = :star_date_banner, 
+                   end_date_banner = :end_date_banner, 
+                   active_banner = :active_banner 
                WHERE id_banner = :id_banner";
 
 $stmt_update = $pdo->prepare($sql_update);
 $stmt_update->execute([
-    ':banner_image' => $banner_image,
-    ':title' => $title,
-    ':description' => $description,
-    ':additional_image' => $additional_images_serialized,
-    ':display_start_date' => $start_date,
-    ':display_end_date' => $end_date,
-    ':is_active' => $is_active,
+    ':img_banner' => $img_banner,
+    ':name_banner' => $name_banner,
+    ':detail_banner' => $detail_banner,
+    ':img_detail_banner' => $img_detail_banners_serialized,
+    ':star_date_banner' => $star_date,
+    ':end_date_banner' => $end_date,
+    ':active_banner' => $active_banner,
     ':id_banner' => $id_banner
 ]);
 

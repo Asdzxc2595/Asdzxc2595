@@ -7,7 +7,7 @@ if (!isset($_SESSION['loggedin'])) {
 require("../db_connect.php");
 
 // ดึงข้อมูลยอดเข้าชมแยกตามประเภทสินค้า
-$sql = "SELECT type_product, name_product, view_count FROM product";
+$sql = "SELECT type_product, name_product, view_product FROM product";
 $result = $pdo->query($sql);
 
 $types = [];
@@ -20,7 +20,7 @@ $product_count_by_type = ['เครื่องสำอาง' => 0, 'อา�
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $type = $row['type_product'];
     $name = $row['name_product'];
-    $views = $row['view_count'];
+    $views = $row['view_product'];
 
     if ($views > 0) {  // ตรวจสอบเฉพาะสินค้าที่มีการเข้าชม
         $total_views += $views;

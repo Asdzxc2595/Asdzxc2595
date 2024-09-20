@@ -2,20 +2,20 @@
 include 'db_connect.php';
 
 // ดึงสินค้าขายดี
-$sqlBestSellers = "SELECT * FROM product ORDER BY view_count DESC LIMIT 8";
+$sqlBestSellers = "SELECT * FROM product ORDER BY view_product DESC LIMIT 8";
 $resultBestSellers = $pdo->query($sqlBestSellers);
 
 // ดึงสินค้าใหม่
-$sqlNewProducts = "SELECT id_product, name_product, img_product, dtaill_product 
+$sqlNewProducts = "SELECT id_product, name_product, img_product, detail_product 
                     FROM product 
                     WHERE DATE_ADD(date_product, INTERVAL 3 MONTH) >= NOW() LIMIT 5";
 $resultNewProducts = $pdo->query($sqlNewProducts);
 
 // ดึงแบนเนอร์ที่แสดงตามวันที่กำหนดและสถานะ
 $sqlBanners = "SELECT * FROM banner 
-                WHERE (display_start_date <= NOW() AND display_end_date >= NOW()) 
-                AND is_active = 1 
-                ORDER BY display_start_date DESC";
+                WHERE (star_date_banner <= NOW() AND end_date_banner >= NOW()) 
+                AND view_banner = 1 
+                ORDER BY star_date_banner DESC";
 $resultBanners = $pdo->query($sqlBanners);
 ?>
 
@@ -43,9 +43,6 @@ $resultBanners = $pdo->query($sqlBanners);
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-    body {
-        padding-top: 40px;
-    }
 
     .carousel-item .col-md-1 {
         display: flex;
@@ -75,10 +72,6 @@ $resultBanners = $pdo->query($sqlBanners);
         font-size: 50px;
     }
 
-    .carousel-inner-banner {
-        padding-top: 28px;
-    }
-
     .carousel-inner img {
         width: 100%;
         height: auto;
@@ -98,11 +91,11 @@ $resultBanners = $pdo->query($sqlBanners);
 <body>
 
 
-    <!-- <section class="parallax" id="parallax">
+    <section class="parallax" id="parallax">
         <img src="images/city2.png" id="city2">
         <div id="text_logo">LOGO</div>
         <img src="images/city1.png" id="city1">
-    </section> -->
+    </section>
 
     <button id="scrollUp" class="scroll-btn">
         <i class="fas fa-chevron-up"></i>
@@ -117,7 +110,7 @@ $resultBanners = $pdo->query($sqlBanners);
         <ol class="carousel-indicators">
             <?php
         // ดึงข้อมูลแบนเนอร์จากฐานข้อมูล
-        $sqlBanners = "SELECT * FROM banner WHERE NOW() BETWEEN display_start_date AND display_end_date AND is_active = 1 ORDER BY display_start_date LIMIT 3";
+        $sqlBanners = "SELECT * FROM banner WHERE NOW() BETWEEN star_date_banner AND end_date_banner AND view_banner = 1 ORDER BY star_date_banner LIMIT 3";
         $resultBanners = $pdo->query($sqlBanners);
         $bannerCount = $resultBanners->rowCount();
         
@@ -140,7 +133,7 @@ $resultBanners = $pdo->query($sqlBanners);
             // แสดงแบนเนอร์และลิงก์ไปยังหน้ารายละเอียด
             echo '<div class="carousel-item ' . $activeClass . '">';
             echo '<a href="banner_detail.php?id_banner=' . htmlspecialchars($row['id_banner']) . '">';
-            echo '<img src="images/banner/' . htmlspecialchars($row['id_banner']) . '/' . htmlspecialchars($row['banner_image']) . '" class="d-block w-100" alt="Banner Image" style="max-height: 500px; object-fit: cover;">';
+            echo '<img src="images/banner/' . htmlspecialchars($row['id_banner']) . '/' . htmlspecialchars($row['img_banner']) . '" class="d-block w-100" alt="Banner Image" style="max-height: 500px; object-fit: cover;">';
             echo '</a>';
             echo '</div>';
         }

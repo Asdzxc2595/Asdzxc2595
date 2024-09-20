@@ -30,24 +30,8 @@ if (!$banner) {
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>แก้ไขแบนเนอร์</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-    tinymce.init({
-        selector: 'textarea#banner_description',
-        plugins: 'advlist anchor autolink autosave charmap code codesample directionality emoticons fullscreen help image imagetools insertdatetime link lists media nonbreaking pagebreak paste preview print save searchreplace spellchecker table template textcolor visualblocks visualchars wordcount',
-        toolbar: 'undo redo | formatselect | link image | fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table emoticons charmap | preview fullscreen code',
-        menubar: 'file edit view insert format tools table',
-    });
-    </script>
+
     <style>
     .tox-promotion-link {
         display: none !important;
@@ -96,33 +80,33 @@ if (!$banner) {
 
                     <!-- Banner Title -->
                     <div class="form-group-edit">
-                        <label for="banner_title">ชื่อแบนเนอร์</label>
-                        <input type="text" class="form-edit" id="banner_title" name="banner_title" value="<?php echo htmlspecialchars($banner['title']); ?>" required>
+                        <label for="name_banner">ชื่อแบนเนอร์</label>
+                        <input type="text" class="form-edit" id="name_banner" name="name_banner" value="<?php echo htmlspecialchars($banner['name_banner']); ?>" required>
                     </div>
 
                     <!-- Banner Image -->
                     <div class="form-group-edit">
-                        <label for="banner_image">รูปภาพแบนเนอร์</label>
-                        <input type="file" class="form-edit" id="banner_image" name="banner_image">
-                        <?php if ($banner['banner_image']): ?>
-                        <img src="../images/banner/<?php echo htmlspecialchars($banner['id_banner']); ?>/<?php echo htmlspecialchars($banner['banner_image']); ?>" alt="Banner Image" width="200">
+                        <label for="img_banner">รูปภาพแบนเนอร์</label>
+                        <input type="file" class="form-edit" id="img_banner" name="img_banner">
+                        <?php if ($banner['img_banner']): ?>
+                        <img src="../images/banner/<?php echo htmlspecialchars($banner['id_banner']); ?>/<?php echo htmlspecialchars($banner['img_banner']); ?>" alt="Banner Image" width="200">
                         <?php endif; ?>
                     </div>
 
                     <!-- Banner Description -->
                     <div class="form-group-edit">
-                        <label for="banner_description">รายละเอียดแบนเนอร์</label>
-                        <textarea class="form-edit" id="banner_description" name="banner_description" rows="3"><?php echo htmlspecialchars($banner['description']); ?></textarea>
+                        <label for="detail_banner">รายละเอียดแบนเนอร์</label>
+                        <textarea class="form-edit" id="detail" name="detail_banner" rows="3"><?php echo htmlspecialchars($banner['detail_banner']); ?></textarea>
                     </div>
                     <!-- Additional Images -->
                     <div class="form-group-edit">
-                        <label for="additional_images">รูปภาพเพิ่มเติม</label>
-                        <input type="file" class="form-edit" id="additional_images" name="additional_image[]" multiple>
+                        <label for="img_detail_banner">รูปภาพเพิ่มเติม</label>
+                        <input type="file" class="form-edit" id="img_detail_banner" name="img_detail_banner[]" multiple>
                         <?php
-                        $additional_images = unserialize($banner['additional_image']); // ใช้ unserialize เพื่อถอดรหัสข้อมูล
-                        if (!empty($additional_images) && is_array($additional_images)): // ตรวจสอบว่าเป็น array ที่ถูกต้อง
+                        $img_detail_banner = unserialize($banner['img_detail_banner']); // ใช้ unserialize เพื่อถอดรหัสข้อมูล
+                        if (!empty($img_detail_banner) && is_array($img_detail_banner)): // ตรวจสอบว่าเป็น array ที่ถูกต้อง
                             echo '<div class="row">'; // เริ่มต้นการใช้ Bootstrap grid row
-                            foreach ($additional_images as $image):
+                            foreach ($img_detail_banner as $image):
                                 if (!empty($image)): // ตรวจสอบว่ารูปภาพไม่ใช่ค่าว่าง
                                     echo '<div class="col-md-2 col-sm-3 mb-4">'; // ใช้ col สำหรับขนาดหน้าจอใหญ่และเล็ก
                                     echo '<img src="../images/banner/'. htmlspecialchars($banner['id_banner']) .'/'. htmlspecialchars($image).'" alt="Additional Image" class="img-fluid" style="width: 100%;">'; // ใช้ img-fluid เพื่อให้รูปภาพตอบสนองต่อขนาดหน้าจอ
@@ -136,21 +120,21 @@ if (!$banner) {
                     <!-- Display Dates -->
                     <div class="row">
                         <div class="col">
-                            <label for="display_start_date">วันที่เริ่มแสดง</label>
-                            <input type="date" class="form-edit" id="display_start_date" name="display_start_date" value="<?php echo htmlspecialchars($banner['display_start_date']); ?>" required>
+                            <label for="star_date_banner">วันที่เริ่มแสดง</label>
+                            <input type="date" class="form-edit" id="star_date_banner" name="star_date_banner" value="<?php echo htmlspecialchars($banner['star_date_banner']); ?>" required>
                         </div>
                         <div class="col">
-                            <label for="display_end_date">วันที่สิ้นสุดการแสดง</label>
-                            <input type="date" class="form-edit" id="display_end_date" name="display_end_date" value="<?php echo htmlspecialchars($banner['display_end_date']); ?>" required>
+                            <label for="end_date_banner">วันที่สิ้นสุดการแสดง</label>
+                            <input type="date" class="form-edit" id="end_date_banner" name="end_date_banner" value="<?php echo htmlspecialchars($banner['end_date_banner']); ?>" required>
                         </div>
                     </div>
 
                     <!-- Active Status -->
                     <div class="form-group-edit">
-                        <label for="is_active">สถานะการแสดงผล</label>
-                        <select class="form-edit" id="is_active" name="is_active">
-                            <option value="1" <?php echo $banner['is_active'] ? 'selected' : ''; ?>>แสดง</option>
-                            <option value="0" <?php echo !$banner['is_active'] ? 'selected' : ''; ?>>ไม่แสดง</option>
+                        <label for="active_banner">สถานะการแสดงผล</label>
+                        <select class="form-edit" id="active_banner" name="active_banner">
+                            <option value="1" <?php echo $banner['active_banner'] ? 'selected' : ''; ?>>แสดง</option>
+                            <option value="0" <?php echo !$banner['active_banner'] ? 'selected' : ''; ?>>ไม่แสดง</option>
                         </select>
                     </div>
 
@@ -159,9 +143,6 @@ if (!$banner) {
             </div>
         </div>
     </div>
-
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

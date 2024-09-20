@@ -22,25 +22,8 @@ if (isset($_GET['id'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Edit Product</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-    tinymce.init({
-        selector: 'textarea#dtaill_product',
-        plugins: 'advlist anchor autolink autosave charmap code codesample directionality emoticons fullscreen help image imagetools insertdatetime link lists media nonbreaking pagebreak paste preview print save searchreplace spellchecker table template textcolor visualblocks visualchars wordcount',
-        toolbar: 'undo redo | formatselect | fontselect fontsizeselect | bold italic underline strikethrough | forecolor backcolor removeformat | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent  | table emoticons charmap | preview fullscreen code',
-        menubar: 'file edit view insert format tools table ',
-    });
 
     </script>
     <style>
@@ -58,7 +41,7 @@ if (isset($_GET['id'])) {
     </div>
     <div class="container mt-5">
         <h2>แก้ไขข้อมูล</h2>
-        <form action="edit_update.php" method="post" enctype="multipart/form-data">
+        <form action="edit_product_update.php" method="post" enctype="multipart/form-data">
         <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id_product']); ?>">
 
             <div class="form-group-edit">
@@ -90,18 +73,18 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="form-group-edit">
-                <label for="dtaill_product">Product Details</label>
-                <textarea class="form-edit-product" id="dtaill_product" name="dtaill_product"
-                    required><?php echo htmlspecialchars($product['dtaill_product']); ?></textarea>
+                <label for="detail_product">Product Details</label>
+                <textarea class="form-edit-product" id="detail" name="detail_product"
+                    required><?php echo htmlspecialchars($product['detail_product']); ?></textarea>
             </div>
 
             <div class="form-group-edit">
-    <label for="dtaill_img_product">Product Detail Images</label>
-    <input type="file" class="form-edit" id="dtaill_img_product" name="dtaill_img_product[]" multiple>
+    <label for="img_detail_product">Product Detail Images</label>
+    <input type="file" class="form-edit" id="img_detail_product" name="img_detail_product[]" multiple>
 
     <?php
     // แปลงข้อมูลจาก serialize กลับมาเป็น array
-    $images = unserialize($product['dtaill_img_product']) ?: [];
+    $images = unserialize($product['img_detail_product']) ?: [];
 
     if (!empty($images)) {
         echo '<div class="row ">';
@@ -128,11 +111,11 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="form-group-edit">
-                <label for="dtaill_vdo_product">Video Details</label>
-                <input type="text" class="form-edit" id="dtaill_vdo_product" name="dtaill_vdo_product"
-                    value="<?php echo htmlspecialchars($product['dtaill_vdo_product']); ?>">
+                <label for="vdo_detail_product">Video Details</label>
+                <input type="text" class="form-edit" id="vdo_detail_product" name="vdo_detail_product"
+                    value="<?php echo htmlspecialchars($product['vdo_detail_product']); ?>">
                 <?php
-                $video_id = htmlspecialchars($product['dtaill_vdo_product']);
+                $video_id = htmlspecialchars($product['vdo_detail_product']);
 
                 if (!empty($video_id)) {
                     echo '<div class="embed-responsive embed-responsive-16by9" style="margin-top: 10px;">';
