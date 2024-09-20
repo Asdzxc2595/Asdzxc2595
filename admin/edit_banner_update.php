@@ -27,7 +27,7 @@ if (!$banner) {
 
 $name_banner= $_POST['name_banner'];
 $detail_banner = $_POST['detail_banner'];
-$star_date = $_POST['star_date_banner'];
+$start_date = $_POST['start_date_banner'];
 $end_date = $_POST['end_date_banner'];
 $active_banner = $_POST['active_banner'] ; // ตรวจสอบค่า active_banner
 
@@ -94,7 +94,7 @@ $sql_update = "UPDATE banner
                    name_banner = :name_banner, 
                    detail_banner = :detail_banner, 
                    img_detail_banner = :img_detail_banner, 
-                   star_date_banner = :star_date_banner, 
+                   start_date_banner = :start_date_banner, 
                    end_date_banner = :end_date_banner, 
                    active_banner = :active_banner 
                WHERE id_banner = :id_banner";
@@ -105,7 +105,7 @@ $stmt_update->execute([
     ':name_banner' => $name_banner,
     ':detail_banner' => $detail_banner,
     ':img_detail_banner' => $img_detail_banners_serialized,
-    ':star_date_banner' => $star_date,
+    ':start_date_banner' => $start_date,
     ':end_date_banner' => $end_date,
     ':active_banner' => $active_banner,
     ':id_banner' => $id_banner

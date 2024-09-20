@@ -57,13 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 
 <body>
-    <div class="header_section header_bg">
-        <div class="container-fluid">
             <?php include 'sidebar.php'; ?>
-        </div>
-    </div>
     <div class="container">
-        <h1>เพิ่มแบนเนอร์ใหม่</h1>
+        <h1 class="mt-5">เพิ่มแบนเนอร์ใหม่</h1>
 
         <!-- Card for Banner Information -->
         <div class="card">
@@ -101,17 +97,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="col">
                             <label for="end_date_banner">วันที่สิ้นสุดการแสดง</label>
-                            <input type="date" class="form-edit" id="end_date_banner" name="end_date_banner" required>
+                            <input type="date" class="form-edit" id="end_date_banner" name="end_date_banner" required disabled>
                         </div>
                     </div>
 
                     <!-- Active Status -->
                     <div class="form-group-edit">
                         <label for="active_banner">สถานะการแสดงผล</label>
-                        <select class="form-edit" id="active_banner" name="active_banner">
-                            <option value="1">แสดง</option>
-                            <option value="0">ไม่แสดง</option>
-                        </select>
+                        <div class="form-check" >
+                            <input type="hidden" name="active_advert" value="0">
+                            <input class="form-check-input" type="checkbox" id="active_banner" name="active_banner" value="1" checked>
+                            <label class="form-check-label" for="active_banner">แสดง</label>
+                        </div>
                     </div>
 
                     <button type="submit" name="submit" class="btn btn-primary">เพิ่มแบนเนอร์</button>
@@ -122,6 +119,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <script src="../js/jquery.min.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
+    <script>
+    // เปิดใช้งานฟิลด์วันที่สิ้นสุด เมื่อเลือกวันที่เริ่มต้นแล้ว
+    document.getElementById('start_date_banner').addEventListener('change', function() {
+        var startDate = this.value;
+        var endDateField = document.getElementById('end_date_banner');
+        endDateField.removeAttribute('disabled'); // เปิดใช้งานฟิลด์วันที่สิ้นสุด
+        endDateField.setAttribute('min', startDate); // กำหนดวันที่ต่ำสุดเท่ากับวันที่เริ่มต้น
+    });
+</script>
 </body>
 
 </html>

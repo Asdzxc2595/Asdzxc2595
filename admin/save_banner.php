@@ -11,19 +11,19 @@ $id_admin = $_SESSION['id_admin'];
 if (isset($_POST['submit'])) {
     $name_banner = $_POST['name_banner'];
     $detail_banner = $_POST['detail_banner'];
-    $star_date = $_POST['star_date_banner'];
+    $start_date = $_POST['start_date_banner'];
     $end_date = $_POST['end_date_banner'];
     $active_banner = $_POST['active_banner'] ; // ตรวจสอบค่า active_banner
 
     // Prepare SQL for inserting banner information
-    $sql = "INSERT INTO banner (name_banner, detail_banner, star_date_banner, end_date_banner, active_banner) 
-            VALUES (:name_banner, :detail_banner, :star_date_banner, :end_date_banner, :active_banner )";
+    $sql = "INSERT INTO banner (name_banner, detail_banner, start_date_banner, end_date_banner, active_banner) 
+            VALUES (:name_banner, :detail_banner, :start_date_banner, :end_date_banner, :active_banner )";
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':name_banner' => $name_banner,
         ':detail_banner' => $detail_banner,
-        ':star_date_banner' => $star_date,
+        ':start_date_banner' => $start_date,
         ':end_date_banner' => $end_date,
         ':active_banner' => $active_banner,
         // ':id_admin' => $id_admin // Include admin ID

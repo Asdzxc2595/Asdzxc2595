@@ -38,7 +38,8 @@ if (!$advert) {
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.3.0/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
     tinymce.init({
@@ -49,10 +50,6 @@ if (!$advert) {
     });
     </script>
     <style>
-    .tox-promotion-link {
-        display: none !important;
-    }
-
     .container {
         max-width: 800px;
         margin-top: 50px;
@@ -97,7 +94,8 @@ if (!$advert) {
                     <!-- advert Title -->
                     <div class="form-group-edit">
                         <label for="name_advert">ชื่อแบนเนอร์</label>
-                        <input type="text" class="form-edit" id="name_advert" name="name_advert" value="<?php echo htmlspecialchars($advert['name_advert']); ?>" required>
+                        <input type="text" class="form-edit" id="name_advert" name="name_advert"
+                            value="<?php echo htmlspecialchars($advert['name_advert']); ?>" required>
                     </div>
 
                     <!-- advert Image -->
@@ -105,14 +103,16 @@ if (!$advert) {
                         <label for="img_advert">รูปภาพแบนเนอร์</label>
                         <input type="file" class="form-edit" id="img_advert" name="img_advert">
                         <?php if ($advert['img_advert']): ?>
-                        <img src="../images/advert/<?php echo htmlspecialchars($advert['id_advert']); ?>/<?php echo htmlspecialchars($advert['img_advert']); ?>" alt="advert Image" width="200">
+                        <img src="../images/advert/<?php echo htmlspecialchars($advert['id_advert']); ?>/<?php echo htmlspecialchars($advert['img_advert']); ?>"
+                            alt="advert Image" width="200">
                         <?php endif; ?>
                     </div>
 
                     <!-- advert Description -->
                     <div class="form-group-edit">
                         <label for="detail_advert">รายละเอียดแบนเนอร์</label>
-                        <textarea class="form-edit" id="detail" name="detail_advert" rows="3"><?php echo htmlspecialchars($advert['detail_advert']); ?></textarea>
+                        <textarea class="form-edit" id="detail" name="detail_advert"
+                            rows="3"><?php echo htmlspecialchars($advert['detail_advert']); ?></textarea>
                     </div>
                     <!-- Additional Images -->
                     <div class="form-group-edit">
@@ -136,32 +136,53 @@ if (!$advert) {
                     <!-- Display Dates -->
                     <div class="row">
                         <div class="col">
-                            <label for="star_date_advert">วันที่เริ่มแสดง</label>
-                            <input type="date" class="form-edit" id="star_date_advert" name="star_date_advert" value="<?php echo htmlspecialchars($advert['star_date_advert']); ?>" required>
+                            <label for="start_date_advert">วันที่เริ่มแสดง</label>
+                            <input type="date" class="form-edit" id="start_date_advert" name="start_date_advert"
+                                value="<?php echo htmlspecialchars($advert['start_date_advert']); ?>" required>
                         </div>
                         <div class="col">
                             <label for="end_date_advert">วันที่สิ้นสุดการแสดง</label>
-                            <input type="date" class="form-edit" id="end_date_advert" name="end_date_advert" value="<?php echo htmlspecialchars($advert['end_date_advert']); ?>" required>
+                            <input type="date" class="form-edit" id="end_date_advert" name="end_date_advert"
+                                value="<?php echo htmlspecialchars($advert['end_date_advert']); ?>" required>
                         </div>
                     </div>
 
-                    <!-- Active Status -->
+
                     <div class="form-group-edit">
                         <label for="active_advert">สถานะการแสดงผล</label>
-                        <select class="form-edit" id="active_advert" name="active_advert">
-                            <option value="1" <?php echo $advert['active_advert'] ? 'selected' : ''; ?>>แสดง</option>
-                            <option value="0" <?php echo !$advert['active_advert'] ? 'selected' : ''; ?>>ไม่แสดง</option>
-                        </select>
+                        <div class="form-check">
+                            <input type="hidden" name="active_advert" value="0">
+                            <input class="form-check-input" type="checkbox" id="active_advert" name="active_advert"
+                                value="1" <?php echo $advert['active_advert'] ? 'checked' : ''; ?>>
+
+                            <label class="form-check-label" for="active_advert">แสดง</label>
+                        </div>
                     </div>
+
 
                     <button type="submit" name="submit" class="btn btn-primary">บันทึกการแก้ไข</button>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var startDateInput = document.getElementById('start_date_advert');
+        var endDateInput = document.getElementById('end_date_advert');
 
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
+        // ตั้งค่า min เริ่มต้นให้กับ end_date_advert เมื่อโหลดหน้าเว็บ
+        if (startDateInput.value) {
+            endDateInput.setAttribute('min', startDateInput.value);
+        }
+
+        // เมื่อผู้ใช้เปลี่ยนวันที่เริ่มแสดง
+        startDateInput.addEventListener('change', function() {
+            var startDate = startDateInput.value;
+            endDateInput.setAttribute('min',
+            startDate); // ตั้งค่า min ของ end_date_advert ตามวันที่เริ่ม
+        });
+    });
+    </script>
 </body>
 
 </html>

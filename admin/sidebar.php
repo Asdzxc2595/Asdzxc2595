@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -15,6 +16,9 @@
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+            .tox-promotion-link {
+        display: none !important;
+    }
     .body {
         padding-left: 300px;
     }
@@ -151,7 +155,7 @@
             <i class="fas fa-plus" id="toggle-list"></i>
         </a>
         <div class="submenu" id="submenu-list">
-            <a href="product_list.php">สินค้า <i class="fas fa-box"></i></a>
+            <a href="list_product.php">สินค้า <i class="fas fa-box"></i></a>
             <a href="list_banner.php">Banner <i class="fas fa-image"></i></a>
             <a href="list_advert.php">Advert <i class="fas fa-bullhorn"></i></a>
         </div>

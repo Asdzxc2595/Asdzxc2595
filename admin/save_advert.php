@@ -5,23 +5,23 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 require "../db_connect.php";
-$id_admin = $_SESSION['id_admin'];
+
 if (isset($_POST['submit'])) {
     $name_advert = $_POST['name_advert'];
     $detail_advert = $_POST['detail_advert'];
-    $star_date = $_POST['star_date_advert'];
+    $start_date = $_POST['start_date_advert'];
     $end_date = $_POST['end_date_advert'];
     $active_advert = $_POST['active_advert'] ; // ตรวจสอบค่า active_advert
 
     // Prepare SQL for inserting advert information
-    $sql = "INSERT INTO advert (name_advert, detail_advert, star_date_advert, end_date_advert, active_advert) 
-            VALUES (:name_advert, :detail_advert, :star_date_advert, :end_date_advert, :active_advert )";
+    $sql = "INSERT INTO advert (name_advert, detail_advert, start_date_advert, end_date_advert, active_advert) 
+            VALUES (:name_advert, :detail_advert, :start_date_advert, :end_date_advert, :active_advert )";
     
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':name_advert' => $name_advert,
         ':detail_advert' => $detail_advert,
-        ':star_date_advert' => $star_date,
+        ':start_date_advert' => $start_date,
         ':end_date_advert' => $end_date,
         ':active_advert' => $active_advert,
         // ':id_admin' => $id_admin // Include admin ID

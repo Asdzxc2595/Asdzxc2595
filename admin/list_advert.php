@@ -16,16 +16,7 @@ $adverts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>รายการโฆษณา</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         .container {
 
@@ -59,9 +50,9 @@ $adverts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="container mt-8">
         <div class="list-product">
-            <h2>รายการโฆษณา</h2>
+            <h2 class="mt-5">รายการโฆษณา</h2>
         </div>
-        <a href="ad_advert.php" class="btn btn-primary mb-3">เพิ่มโฆษณาใหม่</a>
+        <!-- <a href="ad_advert.php" class="btn btn-primary mb-3">เพิ่มโฆษณาใหม่</a> -->
 
         <table class="table table-striped" id="advertTable">
             <thead>
@@ -87,7 +78,7 @@ $adverts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                     </td>
                     <td><?php echo '<p class="detail_advert">'.strip_tags($advert['detail_advert']).'</p>'; ?></td>
-                    <td><?php echo htmlspecialchars($advert['star_date_advert']); ?></td>
+                    <td><?php echo htmlspecialchars($advert['start_date_advert']); ?></td>
                     <td><?php echo htmlspecialchars($advert['end_date_advert']); ?></td>
                     <td><?php echo ($advert['active_advert']) ? 'แสดง' : 'ไม่แสดง'; ?></td>
                     <td>

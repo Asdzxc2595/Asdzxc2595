@@ -120,8 +120,8 @@ if (!$banner) {
                     <!-- Display Dates -->
                     <div class="row">
                         <div class="col">
-                            <label for="star_date_banner">วันที่เริ่มแสดง</label>
-                            <input type="date" class="form-edit" id="star_date_banner" name="star_date_banner" value="<?php echo htmlspecialchars($banner['star_date_banner']); ?>" required>
+                            <label for="start_date_banner">วันที่เริ่มแสดง</label>
+                            <input type="date" class="form-edit" id="start_date_banner" name="start_date_banner" value="<?php echo htmlspecialchars($banner['start_date_banner']); ?>" required>
                         </div>
                         <div class="col">
                             <label for="end_date_banner">วันที่สิ้นสุดการแสดง</label>
@@ -132,10 +132,12 @@ if (!$banner) {
                     <!-- Active Status -->
                     <div class="form-group-edit">
                         <label for="active_banner">สถานะการแสดงผล</label>
-                        <select class="form-edit" id="active_banner" name="active_banner">
-                            <option value="1" <?php echo $banner['active_banner'] ? 'selected' : ''; ?>>แสดง</option>
-                            <option value="0" <?php echo !$banner['active_banner'] ? 'selected' : ''; ?>>ไม่แสดง</option>
-                        </select>
+                        <div class="form-check">
+                            <input type="hidden" name="active_banner" value="0">
+                            <input class="form-check-input" type="checkbox" name="active_banner" id="activbe_banner"
+                            value="1" <?php echo $banner['active_banner']?'checked':'' ;?>>
+                            <label class="form-check-label" for="active_banner">แสดง</label>
+                        </div>
                     </div>
 
                     <button type="submit" name="submit" class="btn btn-primary">บันทึกการแก้ไข</button>
@@ -143,6 +145,25 @@ if (!$banner) {
             </div>
         </div>
     </div>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var startDateInput = document.getElementById('start_date_banner');
+    var endDateInput = document.getElementById('end_date_banner');
+
+    // ตั้งค่า min เริ่มต้นให้กับ end_date_banner เมื่อโหลดหน้าเว็บ
+    if (startDateInput.value) {
+        endDateInput.setAttribute('min', startDateInput.value);
+    }
+
+    // เมื่อผู้ใช้เปลี่ยนวันที่เริ่มแสดง
+    startDateInput.addEventListener('change', function() {
+        var startDate = startDateInput.value;
+        endDateInput.setAttribute('min', startDate); // ตั้งค่า min ของ end_date_banner ตามวันที่เริ่ม
+    });
+});
+
+
+</script>
 </body>
 
 </html>

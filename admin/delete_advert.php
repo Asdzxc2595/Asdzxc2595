@@ -7,17 +7,17 @@ if (!isset($_SESSION['loggedin'])) {
 require "../db_connect.php";
 
 if (isset($_GET['id'])) {
-    $id_banner = $_GET['id'];
+    $id_advert = $_GET['id'];
 
-    // Retrieve the banner information before deletion
-    $sql = "SELECT * FROM banner WHERE id_banner = ?";
+    // Retrieve the advert information before deletion
+    $sql = "SELECT * FROM advert WHERE id_advert = ?";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([$id_banner]);
-    $banner = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->execute([$id_advert]);
+    $advert = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($banner) {
-        // Directory path for the banner images
-        $upload_dir = "../images/banner/" . $id_banner . "/";
+    if ($advert) {
+        // Directory path for the advert images
+        $upload_dir = "../images/advert/" . $id_advert . "/";
 
 
 
@@ -28,13 +28,13 @@ if (isset($_GET['id'])) {
         }
 
         // Delete record from the database
-        $sql_delete = "DELETE FROM banner WHERE id_banner = ?";
+        $sql_delete = "DELETE FROM advert WHERE id_advert = ?";
         $stmt_delete = $pdo->prepare($sql_delete);
-        $stmt_delete->execute([$id_banner]);
+        $stmt_delete->execute([$id_advert]);
     }
 
     // Redirect after deletion
-    header("Location: list_banner.php");
+    header("Location: list_advert.php");
     exit;
 }
 

@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
         ]);
 
         // เปลี่ยนเส้นทางไปยังหน้ารายการสินค้า
-        header("Location: product_list.php");
+        header("Location: list_product.php");
         exit;
     } else {
         echo "เกิดข้อผิดพลาดในการเพิ่มข้อมูลสินค้า";

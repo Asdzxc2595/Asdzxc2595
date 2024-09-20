@@ -68,7 +68,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container mt-9">
     <div class="list-product"><h2>รายการสินค้า</h2></a>
         </div>
-            <a href="ad_product.php" class="btn btn-primary mb-3">เพิ่มสินค้าใหม่</a>
+            <!-- <a href="ad_product.php" class="btn btn-primary mb-3">เพิ่มสินค้าใหม่</a> -->
         <table class="table table-striped" id="productTable">
             <thead>
                 <tr>

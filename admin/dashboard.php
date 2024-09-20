@@ -11,10 +11,10 @@ $sql = "SELECT type_product, name_product, view_product FROM product";
 $result = $pdo->query($sql);
 
 $types = [];
+$view_by_type = []; // สร้างตัวแปรสำหรับเก็บยอดเข้าชมตามประเภท
+$product_count_by_type = []; // สร้างตัวแปรสำหรับเก็บจำนวนสินค้าตามประเภท
 $total_views = 0;
 $total_products = 0; // จำนวนรายการทั้งหมด
-$view_by_type = ['เครื่องสำอาง' => 0, 'อาหารเสริม' => 0, 'สินค้า' => 0];
-$product_count_by_type = ['เครื่องสำอาง' => 0, 'อาหารเสริม' => 0, 'สินค้า' => 0];
 
 // เก็บข้อมูลตามประเภทสินค้า
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -24,9 +24,16 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
     if ($views > 0) {  // ตรวจสอบเฉพาะสินค้าที่มีการเข้าชม
         $total_views += $views;
+        $total_products++; // เพิ่มจำนวนรายการทั้งหมด
+
+        // ถ้าประเภทสินค้ายังไม่มีใน array ให้กำหนดค่าเริ่มต้น
+        if (!isset($view_by_type[$type])) {
+            $view_by_type[$type] = 0;
+            $product_count_by_type[$type] = 0;
+        }
+        // เพิ่มยอดเข้าชมให้กับประเภทสินค้า
         $view_by_type[$type] += $views;
         $product_count_by_type[$type]++;
-        $total_products++; // เพิ่มจำนวนรายการทั้งหมด
 
         if (!isset($types[$type])) {
             $types[$type] = ['total' => 0, 'products' => []];
@@ -53,17 +60,8 @@ unset($data); // Unset reference to avoid issues
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
-    <style>
+<style>
         .body{
             padding-left: 290px;
             padding-top: 130px;
@@ -105,17 +103,7 @@ unset($data); // Unset reference to avoid issues
                     </div>
                 </div>
             </div>
-            <?php foreach ($view_by_type as $type => $views): ?>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($type); ?></h5>
-                            <p class="card-text">จำนวนยอดคนดู: <?php echo number_format($views); ?> เข้าชม</p>
-                            <p class="card-text">จำนวนรายการ: <?php echo $product_count_by_type[$type]; ?> รายการ</p>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+            ยอดคนดู วัน เดื่อน ปี
         </div>
 
         <div class="row">

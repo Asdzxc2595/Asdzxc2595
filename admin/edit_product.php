@@ -27,7 +27,7 @@ if (isset($_GET['id'])) {
 
     </script>
     <style>
-            .body{
+    .body {
         padding-left: 50px;
     }
     </style>
@@ -42,7 +42,7 @@ if (isset($_GET['id'])) {
     <div class="container mt-5">
         <h2>แก้ไขข้อมูล</h2>
         <form action="edit_product_update.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id_product']); ?>">
+            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($product['id_product']); ?>">
 
             <div class="form-group-edit">
                 <label for="img_product">Product Image</label>
@@ -79,21 +79,27 @@ if (isset($_GET['id'])) {
             </div>
 
             <div class="form-group-edit">
-    <label for="img_detail_product">Product Detail Images</label>
-    <input type="file" class="form-edit" id="img_detail_product" name="img_detail_product[]" multiple>
+                <label for="img_detail_product">Product Detail Images</label>
+                <input type="file" class="form-edit" id="img_detail_product" name="img_detail_product[]" multiple
+                    accept="image/*">
 
-    <?php
+                <?php
     // แปลงข้อมูลจาก serialize กลับมาเป็น array
     $images = unserialize($product['img_detail_product']) ?: [];
 
     if (!empty($images)) {
-        echo '<div class="row ">';
+        echo '<div class="row">';
         foreach ($images as $img) {
             $img = trim($img);
             if (!empty($img)) {
-                echo '<div class="col-md-2 col-sm-3 mb-4">';
-                echo '<img src="../images/' . htmlspecialchars($img) . '" alt="Product Detail Image" class="img-fluid" style="width: 100%;">';
-                echo '</div>';
+                $img_path = "../images/" . htmlspecialchars($img);
+                
+                // ตรวจสอบว่าไฟล์เป็นรูปภาพหรือไม่
+                if (file_exists($img_path) && @getimagesize($img_path)) {
+                    echo '<div class="col-md-2 col-sm-3 mb-4">';
+                    echo '<img src="' . $img_path . '" alt="Product Detail Image" class="img-fluid" style="width: 100%;">';
+                    echo '</div>';
+                }
             }
         }
         echo '</div>';
@@ -101,7 +107,8 @@ if (isset($_GET['id'])) {
         echo '<p>No images available.</p>';
     }
     ?>
-</div>
+            </div>
+
 
 
             <div class="form-group-edit">
