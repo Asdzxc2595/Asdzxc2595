@@ -75,13 +75,16 @@ $resultBanners = $pdo->query($sqlBanners);
         font-size: 50px;
     }
 
-.carousel-inner-banner{
-    padding-top:28px ;
-}
+    .carousel-inner-banner {
+        padding-top: 28px;
+    }
+
     .carousel-inner img {
         width: 100%;
-    height: auto; /* ให้ความสูงปรับตามอัตราส่วน */
-    object-fit: cover; /* ให้ภาพครอบตัดเต็มพื้นที่ */
+        height: auto;
+        /* ให้ความสูงปรับตามอัตราส่วน */
+        object-fit: cover;
+        /* ให้ภาพครอบตัดเต็มพื้นที่ */
     }
 
     .adBannerSlider img {
@@ -91,8 +94,9 @@ $resultBanners = $pdo->query($sqlBanners);
     </style>
 </head>
 <?php include 'nav.php'; ?>
+
 <body>
-       
+
 
     <!-- <section class="parallax" id="parallax">
         <img src="images/city2.png" id="city2">
@@ -263,7 +267,7 @@ $resultBanners = $pdo->query($sqlBanners);
     <div class="copyright_section">
         <?php include 'footer.php'; ?>
     </div>
-    
+
 
     <!-- Scripts -->
     <script src="js/jquery.min.js"></script>
@@ -275,7 +279,7 @@ $resultBanners = $pdo->query($sqlBanners);
     <script src="js/custom.js"></script>
     <script src="js/updow.js"></script>
     <script src="js/mouse_move.js"></script>
-    
+
 </body>
 
 
