@@ -55,13 +55,24 @@ foreach ($types as $type => &$data) {
     $data['percentage'] = round(($data['total'] / $total_views) * 100, 2);
 }
 unset($data); // Unset reference to avoid issues
+
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Dashboard</title>
-<style>
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+    <style>
         .body{
             padding-left: 290px;
             padding-top: 130px;
@@ -103,7 +114,17 @@ unset($data); // Unset reference to avoid issues
                     </div>
                 </div>
             </div>
-            ยอดคนดู วัน เดื่อน ปี
+            <?php foreach ($view_by_type as $type => $views): ?>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo htmlspecialchars($type); ?></h5>
+                            <p class="card-text">จำนวนยอดคนดู: <?php echo number_format($views); ?> เข้าชม</p>
+                            <p class="card-text">จำนวนรายการ: <?php echo $product_count_by_type[$type]; ?> รายการ</p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
 
         <div class="row">
